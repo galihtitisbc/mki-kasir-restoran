@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    protected $primaryKey = 'user_id';
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,4 +43,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function supervisor()
+    {
+        return $this->hasMany(User::class, 'supervisor_id');
+    }
+    public function kasir()
+    {
+        return $this->belongsTo(User::class, 'supervisor_id');
+    }
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'user_id');
+    }
+    public function suppliers()
+    {
+        return $this->hasMany(Supplier::class, 'user_id');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'user_id');
+    }
+    public function salesHistories()
+    {
+        return $this->hasMany(SalesHistory::class, 'user_id');
+    }
+    public function supervisorHasOutlet()
+    {
+        return $this->hasMany(Outlet::class, 'supervisor_id');
+    }
 }

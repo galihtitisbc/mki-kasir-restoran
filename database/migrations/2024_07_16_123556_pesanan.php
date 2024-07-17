@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('total');
             $table->boolean('status')->default(0);
+            $table->timestamps();
         });
     }
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('meja_id');
             $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->string('nomor_meja');
+            $table->timestamps();
         });
     }
 

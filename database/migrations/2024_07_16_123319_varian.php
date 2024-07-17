@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("varian_name");
             $table->string("price");
             $table->string("stock");
+            $table->timestamps();
         });
     }
 

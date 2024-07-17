@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('supplier_name');
             $table->string('phone');
             $table->string('address');
+            $table->timestamps();
         });
     }
 

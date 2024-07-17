@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('tax_name');
             $table->string('tax_rate');
             $table->string('description');
+            $table->timestamps();
         });
     }
 

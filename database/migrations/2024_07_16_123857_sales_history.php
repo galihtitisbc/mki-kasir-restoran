@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('pesanan_id')->references('pesanan_id')->on('pesanans');
             $table->integer("quantity");
             $table->integer("total_price");
+            $table->timestamps();
         });
     }
 
