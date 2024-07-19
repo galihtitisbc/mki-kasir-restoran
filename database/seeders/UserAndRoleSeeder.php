@@ -37,6 +37,7 @@ class UserAndRoleSeeder extends Seeder
             'username' => 'kasir',
             'email' => 'kasir@gmail.com',
             'phone' => '2312334',
+            'supervisor_id' => 2,
             'email_verified_at' => now(),
             'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
         ]);
@@ -45,6 +46,7 @@ class UserAndRoleSeeder extends Seeder
             'username' => 'dapur',
             'email' => 'dapur@gmail.com',
             'phone' => '1312334',
+            'supervisor_id' => 2,
             'email_verified_at' => now(),
             'password' => Hash::make('12345'),
             'remember_token' => Str::random(10),

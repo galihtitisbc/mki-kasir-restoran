@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supervisor_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
+            $table->softDeletes();
             //foregin key
             $table->foreign('supervisor_id')->references('user_id')->on('users')->onDelete('set null');
         });
