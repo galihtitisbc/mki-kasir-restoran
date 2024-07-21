@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+    <link rel="stylesheet" href="{{ asset('../../plugins/toastr/toastr.min.css') }}">
+@endpush
 @section('content')
     <div class="card">
         <div class="card-header text-center">
@@ -10,16 +13,6 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger col-5 text-center">
-                    {{ session('error') }}
-                </div>
-            @endif
             <table class="table table-hover text-center">
                 <thead>
                     <tr>
@@ -42,11 +35,13 @@
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->getRoleNames()->implode(', ') }}</td>
                             <td>
-                                <form action="{{ url('/home/pegawai/hapus', $item->user_id) }}" method="POST">
+                                <form action="{{ url('/home/pegawai/hapus', $item->user_id) }}" class="form-delete"
+                                    method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="" class="btn btn-warning">Edit</a>
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <a href="{{ url('/home/pegawai/edit', $item->user_id) }}"
+                                        class="btn btn-warning">Edit</a>
+                                    <button type="button" class="btn btn-danger delete">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -56,4 +51,46 @@
         </div>
         <!-- /.card-body -->
     </div>
+    @push('js')
+        <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $(".delete").click(function() {
+                Swal.fire({
+                    title: "Apakah Anda yakin ?",
+                    text: "Anda Tidak Bisa Mengembalikan Data ini",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        setTimeout(() => {
+                            $('.form-delete').submit();
+                        }, 1500);
+                    }
+                });
+            });
+        </script>
+        @if (session('status'))
+            <input type="hidden" id="status" value="{{ session('status') }}">
+            <script>
+                let msg = $('#status').val();
+                toastr.success(msg);
+            </script>
+        @endif
+        @if (session('error'))
+            <input type="hidden" id="status" value="{{ session('error') }}">
+            <script>
+                let msg = $('#status').val();
+                toastr.danger(msg);
+            </script>
+        @endif
+    @endpush
 @endsection

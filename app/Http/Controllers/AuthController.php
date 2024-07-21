@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Closure;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     public function login()
     {
         return view('auth.login');

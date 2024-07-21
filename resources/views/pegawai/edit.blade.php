@@ -5,8 +5,9 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ url('/home/pegawai/tambah') }}" method="POST">
+        <form action="{{ url('/home/pegawai/edit', $data->user_id) }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="card-body ms-5">
                 <div class="row">
                     <div class="col-6">
@@ -16,7 +17,7 @@
                                 class="form-control @error('name')
                                                 is-invalid
                                             @enderror"
-                                placeholder="Masukkan Nama" value="{{ old('name') }}">
+                                placeholder="Masukkan Nama" value="{{ $data->name }}">
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -27,7 +28,7 @@
                                 class="form-control @error('username')
                                                 is-invalid
                                             @enderror"
-                                placeholder="Masukkan Username" value="{{ old('username') }}">
+                                placeholder="Masukkan Username" value="{{ $data->username }}">
                             @error('username')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -38,7 +39,7 @@
                                 class="form-control @error('email')
                                                 is-invalid
                                             @enderror"
-                                placeholder="Masukkan Email" value="{{ old('email') }}">
+                                placeholder="Masukkan Email" value="{{ $data->email }}">
                             @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -51,7 +52,7 @@
                                 class="form-control @error('no_hp')
                                                 is-invalid
                                             @enderror"
-                                placeholder="Masukkan Nomor Hp" value="{{ old('no_hp') }}">
+                                placeholder="Masukkan Nomor Hp" value="{{ $data->phone }}">
                             @error('no_hp')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -62,7 +63,7 @@
                                 class="form-control @error('password')
                                                 is-invalid
                                             @enderror"
-                                placeholder="Masukkan Password Pegawai" value="{{ old('password') }}">
+                                placeholder="Masukkan Password Pegawai">
                             @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -76,7 +77,8 @@
                                 id="">
                                 <option value="">--- Pilih Posisi ---</option>
                                 @foreach ($role as $item)
-                                    <option value="{{ $item->name }}" {{ $item->name == old('role') ? 'selected' : '' }}>
+                                    <option value="{{ $item->name }}"
+                                        {{ $item->name == $data->getRoleNames()->implode(', ') ? 'selected' : '' }}>
                                         {{ $item->name }}</option>
                                 @endforeach
                             </select>
