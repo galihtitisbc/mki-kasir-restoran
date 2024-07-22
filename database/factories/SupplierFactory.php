@@ -22,7 +22,8 @@ class SupplierFactory extends Factory
             'user_id' => 2,
             'supplier_name' => fake()->name('male'),
             'phone' => fake()->phoneNumber(),
-            'address' => fake()->address()
+            'address' => fake()->address(),
+            'slug'  => fake()->slug(3)
         ];
     }
 }

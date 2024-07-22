@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->string('nomor_meja');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

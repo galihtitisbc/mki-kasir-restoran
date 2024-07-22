@@ -32,6 +32,14 @@ class UserAndRoleSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
         ]);
+        $supervisor2 = User::create([
+            'name' => 'boss2',
+            'username' => 'supervisor2',
+            'email' => '2@gmail.com',
+            'phone' => '123104',
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+        ]);
         $kasir = User::create([
             'name' => 'kasir',
             'username' => 'kasir',
@@ -59,6 +67,7 @@ class UserAndRoleSeeder extends Seeder
         //assign role
         $superadmin->assignRole($superadminRole);
         $supervisor->assignRole($supervisorRole);
+        $supervisor2->assignRole($supervisorRole);
         $kasir->assignRole($kasirRole);
         $dapur->assignRole($dapurRole);
     }

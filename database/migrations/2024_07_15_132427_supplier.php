@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id('supplier_id');
             $table->foreignId('user_id')->references('user_id')->on('users');
             $table->string('supplier_name');
+            $table->string('slug');
             $table->string('phone');
             $table->string('address');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

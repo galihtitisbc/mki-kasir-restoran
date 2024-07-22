@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category = Category::all();
+        $category = Auth::getUser()->categories()->get();
         return view('category.index', [
             'title' =>  'Kategori',
             'kategori'  => $category

@@ -14,7 +14,7 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        $pegawai = User::where('supervisor_id', Auth::user()->user_id)->get();
+        $pegawai = Auth::getUser()->supervisor()->get();
         return view('pegawai.index', [
             'title' => 'Pegawai',
             'pegawais' => $pegawai

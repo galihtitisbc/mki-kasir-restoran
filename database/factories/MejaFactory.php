@@ -16,11 +16,12 @@ class MejaFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Meja::class;
+    private static $counter = 1;
     public function definition(): array
     {
         return [
             'outlet_id' => 1,
-            'nomor_meja' => rand(1, 10)
+            'nomor_meja' => self::$counter++
         ];
     }
 }

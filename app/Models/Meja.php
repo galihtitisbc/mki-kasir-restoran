@@ -4,12 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class Meja extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'mejas';
     protected $primaryKey = 'meja_id';
+    protected $guarded = ['meja_id'];
+    public function scopeCarimeja($query, $slug = null)
+    {
+        $outlet = Outlet::where('supervisor_id', Auth::getUser()->user_id)->first();
+        return $query->when($slug, function ($query, $slug) {
+            return $query->whereHas('outlet', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            });
+        }, function ($query) use ($outlet) {
+            return $query->where('outlet_id', $outlet['outlet_id']);
+        });
+    }
     public function pesanans()
     {
         return $this->hasMany(Pesanan::class, 'meja_id');

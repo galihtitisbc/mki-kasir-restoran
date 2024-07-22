@@ -51,7 +51,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(User::class, 'supervisor_id');
     }
-    public function kasir()
+    public function pegawai()
     {
         return $this->belongsTo(User::class, 'supervisor_id');
     }
@@ -67,11 +67,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class, 'user_id');
     }
+
     public function salesHistories()
     {
         return $this->hasMany(SalesHistory::class, 'user_id');
     }
-    public function supervisorHasOutlet()
+    public function supervisorHasOutlets()
     {
         return $this->hasMany(Outlet::class, 'supervisor_id');
     }

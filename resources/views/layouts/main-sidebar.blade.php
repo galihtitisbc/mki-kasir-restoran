@@ -54,6 +54,31 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Kelola Outlet
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ url('/home/outlet') }}"
+                                        class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Daftar Outlet</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('/home/meja') }}"
+                                        class="nav-link {{ request()->segment(2) == 'meja' ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Tambah Meja Outlet</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     @endrole
                 </ul>
             </nav>
