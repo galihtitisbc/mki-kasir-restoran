@@ -55,6 +55,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/home/product') }}"
+                                class="nav-link {{ request()->segment(2) == 'product' ? 'active' : '' }}">
+                                <i class="fa fa-cube" aria-hidden="true"></i>
+                                <p>
+                                    Kelola Produk
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>

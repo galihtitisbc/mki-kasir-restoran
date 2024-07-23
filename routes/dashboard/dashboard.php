@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\ProductController;
 use App\Models\Meja;
 
 Route::controller(DashboardController::class)->group(function () {
@@ -36,4 +37,10 @@ Route::controller(MejaController::class)->group(function () {
     Route::post('/home/meja', 'store');
     Route::put('/home/meja/{meja:slug}', 'update');
     Route::delete('/home/meja/{meja:slug}', 'destroy');
+});
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/home/product', 'index');
+    Route::post('/home/product', 'store');
+    Route::put('/home/product/{product:slug}', 'update');
+    Route::delete('/home/product/{product:slug}', 'destroy');
 });

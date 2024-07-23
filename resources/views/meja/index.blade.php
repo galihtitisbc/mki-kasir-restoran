@@ -14,13 +14,14 @@
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
             <div class="mbuh col-6 text-center mx-auto my-4">
-
                 <form action="{{ url('/home/meja') }}" method="get">
                     <div class="row">
                         <div class="col-9">
                             <select name="outlet" class="form-control" id="">
                                 @foreach ($outlet as $item)
-                                    <option value="{{ $item->slug }}">{{ $item->outlet_name }}</option>
+                                    <option value="{{ $item->slug }}"
+                                        {{ request('outlet') == $item->slug ? 'selected' : '' }}>{{ $item->outlet_name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>

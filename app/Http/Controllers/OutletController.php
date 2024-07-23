@@ -33,9 +33,10 @@ class OutletController extends Controller
         $validated['slug'] = Str::slug($validated['outlet_name']);
         try {
             $user = Auth::getUser();
-            $user->outlets()->create($validated);
+            $user->supervisorHasOutlets()->create($validated);
             return redirect('/home/outlet')->with('status', 'Berhasil Tambah Outlet');
         } catch (\Throwable $e) {
+            dd($e);
             return redirect('/home/outlet')->with('error', 'Gagal Tambah Outlet');
         }
     }

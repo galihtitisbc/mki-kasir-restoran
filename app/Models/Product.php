@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'products';
     protected $primaryKey = 'product_id';
+    protected $guarded = ['product_id'];
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_products', 'product_id', 'category_id');
