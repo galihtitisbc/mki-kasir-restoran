@@ -14,7 +14,7 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        $pegawai = Auth::getUser()->supervisor()->get();
+        $pegawai = Auth::getUser()->supervisor()->with('outletWorks')->get();
         return view('pegawai.index', [
             'title' => 'Pegawai',
             'pegawais' => $pegawai

@@ -16,6 +16,10 @@ class Outlet extends Model
     {
         return $this->hasMany(SalesHistory::class, 'outlet_id');
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_outlets', 'outlet_id', 'user_id');
+    }
     public function supervisor()
     {
         return $this->belongsTo(User::class, 'supervisor_id');

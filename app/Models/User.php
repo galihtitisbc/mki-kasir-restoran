@@ -76,4 +76,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Outlet::class, 'supervisor_id');
     }
+    public function outletWorks()
+    {
+        return $this->belongsToMany(Outlet::class, 'user_outlets', 'user_id', 'outlet_id');
+    }
 }

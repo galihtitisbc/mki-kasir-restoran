@@ -18,7 +18,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Username</th>
+                        <th>Kerja Dioutlet</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Posisi</th>
@@ -30,7 +30,49 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->username }}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#info-modal{{ $item->user_id }}">
+                                    Info
+                                </button>
+                                <div class="modal fade" id="info-modal{{ $item->user_id }}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-left">
+                                                @foreach ($item->outletWorks as $outlet)
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Nama Outlet : </label>
+                                                        <input type="text" name="category_name" class="form-control"
+                                                            placeholder="Masukkan Nama" value="{{ $outlet->outlet_name }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Alamat Outlet : </label>
+                                                        <input type="text" name="category_name" class="form-control"
+                                                            placeholder="Masukkan Nama" value="{{ $outlet->address }}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Nomor Telp Outlet : </label>
+                                                        <input type="text" name="category_name" class="form-control"
+                                                            placeholder="Masukkan Nama" value="{{ $outlet->phone }}">
+                                                    </div>
+                                                    <hr>
+                                                @endforeach
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                            </td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->getRoleNames()->implode(', ') }}</td>
