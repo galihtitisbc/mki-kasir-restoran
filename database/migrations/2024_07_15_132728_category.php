@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id('category_id');
-            $table->foreignId('user_id')->references('user_id')->on('users');
+            $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->string('category_name');
             $table->string('slug');
             $table->softDeletes();

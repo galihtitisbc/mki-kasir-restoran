@@ -28,7 +28,7 @@ class PegawaiUpdateRequest extends FormRequest
             'email' => 'required|string|email|max:255',
             'no_hp' => 'required|numeric|min:5',
             'password' => 'nullable|min:4',
-            'role' => 'required|string|in:DAPUR,KASIR|regex:/^[a-zA-Z\s]*$/'
+            'role' => 'required|string|in:DAPUR,KASIR,ADMIN|regex:/^[a-zA-Z\s]*$/'
         ];
     }
 }

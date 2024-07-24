@@ -18,4 +18,8 @@ class Supplier extends Model
     {
         return $this->hasMany(Product::class, 'supplier_id');
     }
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class, 'outlet_id');
+    }
 }

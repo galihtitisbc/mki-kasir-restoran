@@ -24,6 +24,10 @@ class Product extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class, 'outlet_id');
+    }
     public function varians()
     {
         return $this->hasMany(Varian::class, 'product_id');

@@ -15,7 +15,7 @@
                         alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Wong Sehat</a>
+                    <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                     </li>
 
                     {{-- <li class="nav-header">EXAMPLES</li> --}}
-                    @role('SUPERVISOR')
+                    @hasanyrole('SUPERVISOR|ADMIN')
                         <li class="nav-item">
                             <a href="{{ url('/home/pegawai') }}"
                                 class="nav-link {{ request()->segment(2) == 'pegawai' ? 'active' : '' }}">
@@ -83,12 +83,12 @@
                                     <a href="{{ url('/home/meja') }}"
                                         class="nav-link {{ request()->segment(2) == 'meja' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Tambah Meja Outlet</p>
+                                        <p>Kelola Meja Outlet</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                    @endrole
+                    @endhasanyrole
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

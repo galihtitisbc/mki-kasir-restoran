@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('product_id');
             $table->foreignId('user_id')->references('user_id')->on('users');
             $table->foreignId('supplier_id')->references('supplier_id')->on('suppliers')->nullable(true);
+            $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->string("slug");
             $table->string("product_name");
             $table->integer("price");

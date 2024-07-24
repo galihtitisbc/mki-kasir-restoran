@@ -32,4 +32,16 @@ class Outlet extends Model
     {
         return $this->hasMany(Meja::class, 'outlet_id');
     }
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'outlet_id');
+    }
+    public function suppliers()
+    {
+        return $this->hasMany(Supplier::class, 'outlet_id');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'outlet_id');
+    }
 }

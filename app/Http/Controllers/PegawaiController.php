@@ -14,7 +14,14 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        $pegawai = Auth::getUser()->supervisor()->with('outletWorks')->get();
+        $currentUser = Auth::getUser();
+        $pegawai = '';
+        if ($currentUser->getRoleNames()->implode(', ') != 'ADMIN') {
+            $pegawai = $currentUser->supervisor()->with('outletWorks')->get();
+        } else {
+            $supervisorFromCurrentUser = User::where('user_id', $currentUser->supervisor_id)->first();
+            $pegawai = $supervisorFromCurrentUser->supervisor()->with('outletWorks')->get();
+        }
         return view('pegawai.index', [
             'title' => 'Pegawai',
             'pegawais' => $pegawai

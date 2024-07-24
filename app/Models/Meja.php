@@ -14,15 +14,12 @@ class Meja extends Model
     protected $table = 'mejas';
     protected $primaryKey = 'meja_id';
     protected $guarded = ['meja_id'];
-    public function scopeCarimeja($query, $slug = null)
+    public function scopeMejaByOutlet($query, $slug = null)
     {
-        $outlet = Outlet::where('supervisor_id', Auth::getUser()->user_id)->first();
         return $query->when($slug, function ($query, $slug) {
             return $query->whereHas('outlet', function ($query) use ($slug) {
                 $query->where('slug', $slug);
             });
-        }, function ($query) use ($outlet) {
-            return $query->where('outlet_id', $outlet['outlet_id']);
         });
     }
     public function pesanans()

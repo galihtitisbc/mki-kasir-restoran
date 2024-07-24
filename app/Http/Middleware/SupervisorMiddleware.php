@@ -17,7 +17,7 @@ class SupervisorMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if ($user->hasAnyRole(['SUPERVISOR', 'SUPERADMIN'])) {
+        if ($user->hasAnyRole(['SUPERVISOR', 'SUPERADMIN', 'ADMIN'])) {
             return $next($request);
         }
         abort(403, 'Anda Tidak Memiliki Hak Akses');

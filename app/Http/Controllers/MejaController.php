@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meja;
 use App\Models\Outlet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,9 +12,16 @@ class MejaController extends Controller
 {
     public function index(Request $request)
     {
-        $outletQuery = $request->query('outlet');
-        $outlet = Outlet::where('supervisor_id', Auth::getUser()->user_id)->get();
-        $meja = Meja::cariMeja($outletQuery)->get();
+        $slugQuery = $request->query('outlet');
+        $currentUser = Auth::getUser();
+        $outlet = '';
+        if ($currentUser->getRoleNames()->implode(', ') != 'ADMIN') {
+            $outlet = $currentUser->supervisorHasOutlets()->get();
+        } else {
+            $supervisorFromCurrentUser = User::where('user_id', $currentUser->supervisor_id)->first();
+            $outlet = $supervisorFromCurrentUser->supervisorHasOutlets()->get();
+        }
+        $meja = Meja::mejaByOutlet($slugQuery)->get();
         return view('meja.index', [
             'title' => 'Outlet',
             'data'  => $meja,

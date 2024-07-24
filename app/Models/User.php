@@ -80,4 +80,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Outlet::class, 'user_outlets', 'user_id', 'outlet_id');
     }
+    // many through
+    public function outletHasCategory()
+    {
+        return $this->hasManyThrough(Category::class, Outlet::class, 'outlet_id', 'outlet_id', 'user_id', 'outlet_id');
+    }
+    public function userHasOutletHasMeja()
+    {
+        return $this->hasManyThrough(Meja::class, Outlet::class, 'outlet_id', 'meja_id', 'user_id', 'outlet_id');
+    }
 }

@@ -14,6 +14,24 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
+            <form action="{{ url('/home/kategori') }}" method="GET">
+                <div class="row d-flex justify-content-center mt-3">
+                    <div class="col-4">
+                        <select name="outlet" class="form-control" id="">
+                            <option value="" selected>-- Semua Outlet --</option>
+                            @foreach ($outlet as $item)
+                                <option value="{{ $item->slug }}"
+                                    {{ request('outlet') == $item->slug ? 'selected' : '' }}>
+                                    {{ $item->outlet_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                </div>
+            </form>
             <table class="table table-hover text-center">
                 <thead>
                     <tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Outlet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -14,7 +15,14 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlet = Auth::getUser()->supervisorHasOutlets()->get();
+        $currentUser = Auth::getUser();
+        $outlet = '';
+        if ($currentUser->getRoleNames()->implode(', ') != 'ADMIN') {
+            $outlet = $currentUser->supervisorHasOutlets()->get();
+        } else {
+            $supervisorFromCurrentUser = User::where('user_id', $currentUser->supervisor_id)->first();
+            $outlet = $supervisorFromCurrentUser->supervisorHasOutlets()->get();
+        }
         return view('outlet.index', [
             'title' => 'Outlet',
             'data'  => $outlet

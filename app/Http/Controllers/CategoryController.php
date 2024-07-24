@@ -3,18 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Outlet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $category = Auth::getUser()->categories()->get();
+        $slugQuery = $request->query('outlet');
+        $currentUser = Auth::getUser();
+        $category = '';
+        if ($currentUser->getRoleNames()->implode(', ') != 'ADMIN') {
+            $category = $currentUser->outletHasCategory()->get();
+        } else {
+            $supervisorFromCurrentUser = User::where('user_id', $currentUser->supervisor_id)->first();
+            $category = $supervisorFromCurrentUser->outletHasCategory()->get();
+        }
+        if ($slugQuery != "" || $slugQuery != null) {
+            $category = Category::categoryByOutlet($slugQuery)->get();
+        }
         return view('category.index', [
             'title' =>  'Kategori',
-            'kategori'  => $category
+            'kategori'  => $category,
+            'outlet'    => Outlet::all()
         ]);
     }
     public function store(Request $request)
