@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('outlet_id');
             $table->foreignId('supervisor_id')->references('user_id')->on('users');
             $table->string('outlet_name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('address');
             $table->string('phone');
             $table->timestamps();

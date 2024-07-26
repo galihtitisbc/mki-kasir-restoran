@@ -7,7 +7,7 @@
         <div class="card-header text-center">
             <h3 class="card-title"><b>Daftar Pegawai</b></h3>
             <div class="card-tools">
-                <a href="{{ url('/home/pegawai/tambah') }}" class="btn btn-success"><i class="fa fa-plus"
+                <a href="{{ url('/dashboard/pegawai/tambah') }}" class="btn btn-success"><i class="fa fa-plus"
                         aria-hidden="true"></i> Tambah Pegawai</a>
             </div>
         </div>
@@ -77,11 +77,11 @@
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->getRoleNames()->implode(', ') }}</td>
                             <td>
-                                <form action="{{ url('/home/pegawai/hapus', $item->user_id) }}" class="form-delete"
+                                <form action="{{ url('/dashboard/pegawai/hapus', $item->user_id) }}" class="form-delete"
                                     method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{ url('/home/pegawai/edit', $item->user_id) }}"
+                                    <a href="{{ url('/dashboard/pegawai/edit', $item->user_id) }}"
                                         class="btn btn-warning">Edit</a>
                                     <button type="button" class="btn btn-danger delete">Delete</button>
                                 </form>

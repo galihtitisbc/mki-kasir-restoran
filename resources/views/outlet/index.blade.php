@@ -42,7 +42,8 @@
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>
-                                <form action="{{ url('/home/outlet', $item->slug) }}" class="form-delete" method="POST">
+                                <form action="{{ url('/dashboard/outlet', $item->slug) }}" class="form-delete"
+                                    method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
@@ -62,7 +63,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ url('/home/outlet', $item->slug) }}" method="POST">
+                                            <form action="{{ url('/dashboard/outlet', $item->slug) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="form-group">
@@ -118,7 +119,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('/home/outlet') }}" method="POST">
+                        <form action="{{ url('/dashboard/outlet') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Outlet : </label>

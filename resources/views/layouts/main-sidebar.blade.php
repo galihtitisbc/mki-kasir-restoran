@@ -25,7 +25,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="{{ url('/home/dashboard') }}"
+                        <a href="{{ url('/dashboard/dashboard') }}"
                             class="nav-link {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
@@ -37,7 +37,7 @@
                     {{-- <li class="nav-header">EXAMPLES</li> --}}
                     @hasanyrole('SUPERVISOR|ADMIN')
                         <li class="nav-item">
-                            <a href="{{ url('/home/pegawai') }}"
+                            <a href="{{ url('/dashboard/pegawai') }}"
                                 class="nav-link {{ request()->segment(2) == 'pegawai' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/home/kategori') }}"
+                            <a href="{{ url('/dashboard/kategori') }}"
                                 class="nav-link {{ request()->segment(2) == 'kategori' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/home/product') }}"
+                            <a href="{{ url('/dashboard/produk') }}"
                                 class="nav-link {{ request()->segment(2) == 'product' ? 'active' : '' }}">
                                 <i class="fa fa-cube" aria-hidden="true"></i>
                                 <p>
@@ -73,14 +73,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/home/outlet') }}"
+                                    <a href="{{ url('/dashboard/outlet') }}"
                                         class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Daftar Outlet</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/home/meja') }}"
+                                    <a href="{{ url('/dashboard/meja') }}"
                                         class="nav-link {{ request()->segment(2) == 'meja' ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kelola Meja Outlet</p>

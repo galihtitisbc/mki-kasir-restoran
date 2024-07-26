@@ -5,7 +5,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ url('/home/pegawai/edit', $data->user_id) }}" method="POST">
+        <form action="{{ url('/dashboard/pegawai/edit', $data->user_id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body ms-5">
@@ -83,6 +83,28 @@
                                 @endforeach
                             </select>
                             @error('role')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kerja Di Outlet : </label>
+                            <div class="row">
+                                @foreach ($outlet as $item)
+                                    <div class="col-6">
+                                        <div class="form-group clearfix">
+                                            <div class="icheck-primary d-inline">
+                                                <input type="checkbox" name="outlet[]"
+                                                    id="checkboxPrimary3{{ $item->slug }}"
+                                                    value="{{ $item->outlet_id }}" @checked(in_array($item->outlet_id, $selectedOutlet))>
+                                                <label for="checkboxPrimary3{{ $item->slug }}">
+                                                    {{ $item->outlet_name }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @error('outlet')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

@@ -23,12 +23,14 @@ class PegawaiUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|regex:/^[a-zA-Z\s]*$/',
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'no_hp' => 'required|numeric|min:5',
-            'password' => 'nullable|min:4',
-            'role' => 'required|string|in:DAPUR,KASIR,ADMIN|regex:/^[a-zA-Z\s]*$/'
+            'name'      => 'required|string|max:255|regex:/^[a-zA-Z\s]*$/',
+            'username'  => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255',
+            'no_hp'     => 'required|numeric|min:5',
+            'password'  => 'nullable|min:4',
+            'role'      => 'required|string|in:DAPUR,KASIR,ADMIN|regex:/^[a-zA-Z\s]*$/',
+            'outlet'    => 'required|array',
+            'outlet.*'  => 'required|numeric'
         ];
     }
 }

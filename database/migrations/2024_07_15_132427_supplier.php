@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('user_id')->on('users');
             $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->string('supplier_name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('phone');
             $table->string('address');
             $table->timestamps();

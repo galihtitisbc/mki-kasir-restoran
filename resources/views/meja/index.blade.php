@@ -14,7 +14,7 @@
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
             <div class="mbuh col-6 text-center mx-auto my-4">
-                <form action="{{ url('/home/meja') }}" method="get">
+                <form action="{{ url('/dashboard/meja') }}" method="get">
                     <div class="row">
                         <div class="col-9">
                             <select name="outlet" class="form-control" id="">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-3">
                             <button type="submit" class="btn btn-primary">Cari</button>
-                            <a href="{{ url('/home/meja') }}" type="submit" class="btn btn-danger">Reset</a>
+                            <a href="{{ url('/dashboard/meja') }}" type="submit" class="btn btn-danger">Reset</a>
                         </div>
                     </div>
                 </form>
@@ -40,7 +40,8 @@
                     <div class="card mx-3 my-3" style="width: 17rem;">
                         <div class="card-body text-center">
                             <h2>{{ $item->nomor_meja }}</h2>
-                            <form action="{{ url('/home/meja', $item->meja_id) }}" class="mt-4 form-delete" method="POST">
+                            <form action="{{ url('/dashboard/meja', $item->meja_id) }}" class="mt-4 form-delete"
+                                method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="button" class="btn btn-danger delete">Delete</button>
@@ -60,7 +61,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('/home/meja') }}" method="POST">
+                        <form action="{{ url('/dashboard/meja') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Piih Outlet Yang Akan Ditambahkan Meja : </label>

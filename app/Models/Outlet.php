@@ -2,23 +2,26 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Outlet extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
     protected $table = 'outlets';
     protected $primaryKey = 'outlet_id';
     protected $guarded = ['outlet_id'];
+
+
     public function salesHistories()
     {
         return $this->hasMany(SalesHistory::class, 'outlet_id');
     }
-    public function users()
+    public function products()
     {
-        return $this->belongsToMany(User::class, 'user_outlets', 'outlet_id', 'user_id');
+        return $this->belongsToMany(Product::class, 'product_outlets', 'outlet_id', 'product_id');
     }
     public function supervisor()
     {
@@ -40,8 +43,12 @@ class Outlet extends Model
     {
         return $this->hasMany(Supplier::class, 'outlet_id');
     }
-    public function products()
+    public function sluggable(): array
     {
-        return $this->hasMany(Product::class, 'outlet_id');
+        return [
+            'slug' => [
+                'source' => 'outlet_name'
+            ]
+        ];
     }
 }

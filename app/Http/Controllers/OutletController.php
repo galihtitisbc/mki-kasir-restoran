@@ -4,25 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Outlet;
 use App\Models\User;
+use App\Trait\UserAndRoleLoggedIn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class OutletController extends Controller
 {
+    use UserAndRoleLoggedIn;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $currentUser = Auth::getUser();
-        $outlet = '';
-        if ($currentUser->getRoleNames()->implode(', ') != 'ADMIN') {
-            $outlet = $currentUser->supervisorHasOutlets()->get();
-        } else {
-            $supervisorFromCurrentUser = User::where('user_id', $currentUser->supervisor_id)->first();
-            $outlet = $supervisorFromCurrentUser->supervisorHasOutlets()->get();
-        }
+        $user = $this->getSupervisorOrAdmin();
+        $outlet = $user->supervisorHasOutlets()->get();
         return view('outlet.index', [
             'title' => 'Outlet',
             'data'  => $outlet
@@ -34,18 +30,16 @@ class OutletController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'outlet_name' => 'required|unique:outlets,outlet_name|max:60|string',
+            'outlet_name' => 'required|max:60',
             'address'   => 'required',
             'phone'     => 'required|numeric|min:5'
         ]);
-        $validated['slug'] = Str::slug($validated['outlet_name']);
         try {
-            $user = Auth::getUser();
-            $user->supervisorHasOutlets()->create($validated);
-            return redirect('/home/outlet')->with('status', 'Berhasil Tambah Outlet');
+            $this->getSupervisorOrAdmin()->supervisorHasOutlets()->create($validated);
+            return redirect('/dashboard/outlet')->with('status', 'Berhasil Tambah Outlet');
         } catch (\Throwable $e) {
             dd($e);
-            return redirect('/home/outlet')->with('error', 'Gagal Tambah Outlet');
+            return redirect('/dashboard/outlet')->with('error', 'Gagal Tambah Outlet');
         }
     }
     public function update(Request $request, Outlet $outlet)
@@ -55,12 +49,11 @@ class OutletController extends Controller
             'address'   => 'required',
             'phone'     => 'required|numeric|min:5'
         ]);
-        $validated['slug'] = Str::slug($validated['outlet_name']);
         try {
             $outlet->update($validated);
-            return redirect('/home/outlet')->with('status', 'Berhasil Edit Outlet');
+            return redirect('/dashboard/outlet')->with('status', 'Berhasil Edit Outlet');
         } catch (\Throwable $e) {
-            return redirect('/home/outlet')->with('error', 'Gagal Edit Outlet');
+            return redirect('/dashboard/outlet')->with('error', 'Gagal Edit Outlet');
         }
     }
 
@@ -71,9 +64,9 @@ class OutletController extends Controller
     {
         try {
             $outlet->delete();
-            return redirect('/home/outlet')->with('status', 'Berhasil Hapus Outlet');
+            return redirect('/dashboard/outlet')->with('status', 'Berhasil Hapus Outlet');
         } catch (\Throwable $e) {
-            return redirect('/home/outlet')->with('error', 'Gagal Hapus Outlet');
+            return redirect('/dashboard/outlet')->with('error', 'Gagal Hapus Outlet');
         }
     }
 }

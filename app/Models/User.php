@@ -47,25 +47,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function supervisor()
+    public function supervisorHasPegawai()
     {
         return $this->hasMany(User::class, 'supervisor_id');
     }
-    public function pegawai()
+    public function pegawaiHasSupervisor()
     {
         return $this->belongsTo(User::class, 'supervisor_id');
-    }
-    public function categories()
-    {
-        return $this->hasMany(Category::class, 'user_id');
     }
     public function suppliers()
     {
         return $this->hasMany(Supplier::class, 'user_id');
-    }
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'user_id');
     }
 
     public function salesHistories()
@@ -83,7 +75,7 @@ class User extends Authenticatable
     // many through
     public function outletHasCategory()
     {
-        return $this->hasManyThrough(Category::class, Outlet::class, 'outlet_id', 'outlet_id', 'user_id', 'outlet_id');
+        return $this->hasManyThrough(Category::class, Outlet::class, 'supervisor_id', 'outlet_id', 'user_id', 'outlet_id');
     }
     public function userHasOutletHasMeja()
     {

@@ -7,40 +7,42 @@ use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProductController;
-use App\Models\Meja;
 
-Route::controller(DashboardController::class)->group(function () {
-    Route::get('/home/dashboard', 'index');
-});
-Route::controller(PegawaiController::class)->group(function () {
-    Route::get('/home/pegawai', 'index');
-    Route::get('/home/pegawai/tambah', 'tambahPegawai');
-    Route::post('/home/pegawai/tambah', 'storePegawai');
-    Route::get('/home/pegawai/edit/{user}', 'edit');
-    Route::put('/home/pegawai/edit/{user}', 'update');
-    Route::delete('/home/pegawai/hapus/{user}', 'hapus');
-});
-Route::controller(CategoryController::class)->group(function () {
-    Route::get('/home/kategori', 'index');
-    Route::post('/home/kategori', 'store');
-    Route::put('/home/kategori/{category}', 'update');
-    Route::delete('/home/kategori/{category}', 'delete');
-});
-Route::controller(OutletController::class)->group(function () {
-    Route::get('/home/outlet', 'index');
-    Route::post('/home/outlet', 'store');
-    Route::put('/home/outlet/{outlet:slug}', 'update');
-    Route::delete('/home/outlet/{outlet:slug}', 'destroy');
-});
-Route::controller(MejaController::class)->group(function () {
-    Route::get('/home/meja', 'index');
-    Route::post('/home/meja', 'store');
-    Route::put('/home/meja/{meja:slug}', 'update');
-    Route::delete('/home/meja/{meja:slug}', 'destroy');
-});
-Route::controller(ProductController::class)->group(function () {
-    Route::get('/home/product', 'index');
-    Route::post('/home/product', 'store');
-    Route::put('/home/product/{product:slug}', 'update');
-    Route::delete('/home/product/{product:slug}', 'destroy');
+Route::prefix('dashboard')->group(function () {
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/home', 'index');
+    });
+    Route::controller(PegawaiController::class)->group(function () {
+        Route::get('/pegawai', 'index');
+        Route::get('/pegawai/tambah', 'tambahPegawai');
+        Route::post('/pegawai/tambah', 'storePegawai');
+        Route::get('/pegawai/edit/{user}', 'edit');
+        Route::put('/pegawai/edit/{user}', 'update');
+        Route::delete('/pegawai/hapus/{user}', 'hapus');
+    });
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/kategori', 'index');
+        Route::post('/kategori', 'store');
+        Route::put('/kategori/{category}', 'update');
+        Route::delete('/kategori/{category}', 'delete');
+    });
+    Route::controller(OutletController::class)->group(function () {
+        Route::get('/outlet', 'index');
+        Route::post('/outlet', 'store');
+        Route::put('/outlet/{outlet:slug}', 'update');
+        Route::delete('/outlet/{outlet:slug}', 'destroy');
+    });
+    Route::controller(MejaController::class)->group(function () {
+        Route::get('/meja', 'index');
+        Route::post('/meja', 'store');
+        Route::put('/meja/{meja:slug}', 'update');
+        Route::delete('/meja/{meja:slug}', 'destroy');
+    });
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/produk', 'index');
+        Route::get('/produk/tambah', 'tambah');
+        Route::post('/produk/tambah', 'store');
+        Route::put('/produk/{product:slug}', 'update');
+        Route::delete('/produk/{product:slug}', 'destroy');
+    });
 });

@@ -20,5 +20,5 @@ Route::group(['middleware' => ['auth', 'supervisorMiddleware']], function () {
     require __DIR__ . '/dashboard/dashboard.php';
 });
 Route::get('/', function () {
-    return redirect('/home/dashboard');
+    return redirect('/dashboard/home');
 });

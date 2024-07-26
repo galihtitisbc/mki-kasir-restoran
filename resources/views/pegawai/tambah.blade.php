@@ -5,7 +5,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ url('/home/pegawai/tambah') }}" method="POST">
+        <form action="{{ url('/dashboard/pegawai/tambah') }}" method="POST">
             @csrf
             <div class="card-body ms-5">
                 <div class="row">
@@ -76,11 +76,34 @@
                                 id="">
                                 <option value="">--- Pilih Posisi ---</option>
                                 @foreach ($role as $item)
-                                    <option value="{{ $item->name }}" {{ $item->name == old('role') ? 'selected' : '' }}>
+                                    <option value="{{ $item->name }}"
+                                        {{ $item->name == old('role') ? 'selected' : '' }}>
                                         {{ $item->name }}</option>
                                 @endforeach
                             </select>
                             @error('role')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kerja Di Outlet : </label>
+                            <div class="row">
+                                @foreach ($outlet as $item)
+                                    <div class="col-6">
+                                        <div class="form-group clearfix">
+                                            <div class="icheck-primary d-inline">
+                                                <input type="checkbox" name="outlet[]"
+                                                    id="checkboxPrimary3{{ $item->slug }}"
+                                                    value="{{ $item->outlet_id }}" @checked(in_array($item->outlet_id, old('outlet', [])))>
+                                                <label for="checkboxPrimary3{{ $item->slug }}">
+                                                    {{ $item->outlet_name }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @error('outlet')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

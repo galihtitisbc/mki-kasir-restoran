@@ -14,7 +14,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-            <form action="{{ url('/home/kategori') }}" method="GET">
+            <form action="{{ url('/dashboard/kategori') }}" method="GET">
                 <div class="row d-flex justify-content-center mt-3">
                     <div class="col-4">
                         <select name="outlet" class="form-control" id="">
@@ -32,6 +32,12 @@
                     </div>
                 </div>
             </form>
+            @error('category_name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            @error('outlet')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <table class="table table-hover text-center">
                 <thead>
                     <tr>
@@ -46,7 +52,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->category_name }}</td>
                             <td>
-                                <form action="{{ url('/home/kategori', $item->category_id) }}"class="form-delete"
+                                <form action="{{ url('/dashboard/kategori', $item->category_id) }}"class="form-delete"
                                     method="POST">
                                     @method('DELETE')
                                     @csrf
@@ -67,7 +73,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ url('/home/kategori', $item->category_id) }}" method="POST">
+                                            <form action="{{ url('/dashboard/kategori', $item->category_id) }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="form-group">
@@ -107,7 +114,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('/home/kategori') }}" method="POST">
+                        <form action="{{ url('/dashboard/kategori') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nama Kategori : </label>
@@ -119,6 +126,16 @@
                                 @error('category')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <select name="outlet" class="form-control" id="">
+                                    <option value="" selected>-- Semua Outlet --</option>
+                                    @foreach ($outlet as $item)
+                                        <option value="{{ $item->slug }}">
+                                            {{ $item->outlet_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

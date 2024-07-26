@@ -22,7 +22,7 @@ class AuthController extends Controller
         $validated = $request->validated();
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
-            return redirect('/home/dashboard');
+            return redirect('/dashboard/home');
         }
         return back()->withErrors([
             'login' => 'Username Atau Password Salah',
