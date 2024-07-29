@@ -7,6 +7,7 @@ use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TaxController;
 
 Route::prefix('dashboard')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
@@ -42,7 +43,9 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/produk', 'index');
         Route::get('/produk/tambah', 'tambah');
         Route::post('/produk/tambah', 'store');
+        Route::get('/produk/{product:slug}', 'edit');
         Route::put('/produk/{product:slug}', 'update');
-        Route::delete('/produk/{product:slug}', 'destroy');
+        Route::get('/produk/hapus/{product:slug}', 'destroy');
     });
+    Route::resource('pajak', TaxController::class);
 });

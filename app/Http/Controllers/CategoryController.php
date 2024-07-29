@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Outlet;
 use App\Models\User;
+use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
 use DB;
 use Illuminate\Http\Request;
@@ -13,17 +14,15 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    use UserAndRoleLoggedIn;
+    use UserAndRoleLoggedIn, GetOutletByUser;
     public function index(Request $request)
     {
         $slugQuery = $request->query('outlet');
-        $user = $this->getSupervisorOrAdmin();
-        $category = $user->outletHasCategory()->categoryByOutlet($slugQuery)->get();
-        $outlet = $user->supervisorHasOutlets()->get();
+        $category = Category::categoryByOutlet($slugQuery)->get();
         return view('category.index', [
             'title' =>  'Kategori',
             'kategori'  => $category,
-            'outlet'    => $outlet
+            'outlet'    => $this->getOutletByUser()
         ]);
     }
     public function store(Request $request)

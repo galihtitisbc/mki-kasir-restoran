@@ -15,10 +15,13 @@ class OutletController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware(['role:SUPERVISOR']);
+    }
     public function index()
     {
-        $user = $this->getSupervisorOrAdmin();
-        $outlet = $user->supervisorHasOutlets()->get();
+        $outlet = Auth::getUser()->supervisorHasOutlets()->get();
         return view('outlet.index', [
             'title' => 'Outlet',
             'data'  => $outlet
@@ -35,7 +38,7 @@ class OutletController extends Controller
             'phone'     => 'required|numeric|min:5'
         ]);
         try {
-            $this->getSupervisorOrAdmin()->supervisorHasOutlets()->create($validated);
+            Auth::getUser()->supervisorHasOutlets()->create($validated);
             return redirect('/dashboard/outlet')->with('status', 'Berhasil Tambah Outlet');
         } catch (\Throwable $e) {
             dd($e);

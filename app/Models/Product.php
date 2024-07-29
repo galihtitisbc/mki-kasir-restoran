@@ -22,7 +22,7 @@ class Product extends Model
             ]
         ];
     }
-    public function scopeProductByOutlet(Builder $query, $slug)
+    public function scopeProductByOutlet(Builder $query, $slug = null)
     {
         $query->whereHas('outlets', function (Builder $query) use ($slug) {
             $query->where('slug', '=', $slug);

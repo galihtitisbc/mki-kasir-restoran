@@ -16,10 +16,8 @@ class Meja extends Model
     protected $guarded = ['meja_id'];
     public function scopeMejaByOutlet($query, $slug = null)
     {
-        return $query->when($slug, function ($query, $slug) {
-            return $query->whereHas('outlet', function ($query) use ($slug) {
-                $query->where('slug', $slug);
-            });
+        return $query->whereHas('outlet', function ($query) use ($slug) {
+            $query->where('slug', $slug);
         });
     }
     public function pesanans()

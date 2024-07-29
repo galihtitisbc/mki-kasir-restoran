@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PegawaiRequest;
 use App\Http\Requests\PegawaiUpdateRequest;
 use App\Models\User;
+use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,30 +14,30 @@ use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
-    use UserAndRoleLoggedIn;
-    public function index()
+    use UserAndRoleLoggedIn, GetOutletByUser;
+    public function index(Request $request)
     {
-        $user = $this->getSupervisorOrAdmin();
-        $pegawai = $user->supervisorHasPegawai()->with('outletWorks')->get();
+        $slugQuery = $request->query('outlet');
+        $pegawai = User::with('outletWorks')->pegawaiByOutlet($slugQuery)->get();
         return view('pegawai.index', [
-            'title' => 'Pegawai',
-            'pegawais' => $pegawai
+            'title'     => 'Pegawai',
+            'pegawais'  => $pegawai,
+            'outlet'    => $this->getOutletByUser()
         ]);
     }
     public function tambahPegawai()
     {
         $role = DB::table('roles')->whereNotBetween('id', [1, 2])->get('name');
-        $outlet = $this->getSupervisorOrAdmin()->supervisorHasOutlets()->get();
         return view('pegawai.tambah', [
             'title'     => 'Tambah Pegawai',
             'role'      => $role,
-            'outlet'    => $outlet
+            'outlet'    => $this->getOutletByUser()
         ]);
     }
     public function storePegawai(PegawaiRequest $request)
     {
         $validated = $request->validated();
-        $validated['supervisor_id'] = $this->getSupervisorOrAdmin()->user_id;
+        $validated['supervisor_id'] = $this->getSupervisor()->user_id;
         $validated['password'] = Hash::make($validated['password']);
         $validated['phone'] = $validated['no_hp'];
         try {
@@ -53,13 +54,12 @@ class PegawaiController extends Controller
     public function edit(User $user)
     {
         $role = DB::table('roles')->whereNotBetween('id', [1, 2])->get('name');
-        $outlet = $this->getSupervisorOrAdmin()->supervisorHasOutlets()->get();
         $selectedOutlet = $user->outletWorks->pluck('outlet_id')->toArray();
         return view('pegawai.edit', [
             'title'             => 'Edit Pegawai',
             'data'              => $user,
             'role'              => $role,
-            'outlet'            => $outlet,
+            'outlet'            => $this->getOutletByUser(),
             'selectedOutlet'    => $selectedOutlet
         ]);
     }

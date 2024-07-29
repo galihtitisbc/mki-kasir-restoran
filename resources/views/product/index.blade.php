@@ -39,11 +39,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Kerja Dioutlet</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Posisi</th>
+                        <th>Gambar</th>
+                        <th>Nama Produk</th>
+                        <th>Supplier</th>
+                        <th>Harga</th>
+                        <th>Stok</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -51,6 +52,18 @@
                     @foreach ($product as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td><img src="{{ asset('storage/gambar/' . $item->gambar) }}" alt="" width="50"
+                                    height="50"></td>
+                            <td>{{ $item->product_name }}</td>
+                            <td>{{ 'pppp' }}</td>
+                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->stock }}</td>
+                            <td>{{ $item->status }}</td>
+                            <td>
+                                <a href="{{ url('/dashboard/produk', $item->slug) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ url('/dashboard/produk/hapus', $item->slug) }}"
+                                    class="btn btn-danger">Delete</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

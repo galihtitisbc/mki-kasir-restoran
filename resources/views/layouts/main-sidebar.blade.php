@@ -55,8 +55,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/dashboard/supplier') }}"
+                                class="nav-link {{ request()->segment(2) == 'supplier' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-address-book"></i>
+                                <p>
+                                    Kelola Supplier
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/dashboard/produk') }}"
-                                class="nav-link {{ request()->segment(2) == 'product' ? 'active' : '' }}">
+                                class="nav-link {{ request()->segment(2) == 'produk' ? 'active' : '' }}">
                                 <i class="fa fa-cube" aria-hidden="true"></i>
                                 <p>
                                     Kelola Produk
@@ -64,21 +73,32 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <a href="{{ url('/dashboard/pajak') }}"
+                                class="nav-link {{ request()->segment(2) == 'pajak' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-credit-card" aria-hidden="true"></i>
                                 <p>
-                                    Kelola Outlet
-                                    <i class="right fas fa-angle-left"></i>
+                                    Kelola Pajak
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('/dashboard/outlet') }}"
-                                        class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Daftar Outlet</p>
-                                    </a>
-                                </li>
+                        </li>
+                        <li class="nav-item">
+                            @role('SUPERVISOR')
+                                <a href="#" class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p>
+                                        Kelola Outlet
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/dashboard/outlet') }}"
+                                            class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Daftar Outlet</p>
+                                        </a>
+                                    </li>
+                                @endrole
                                 <li class="nav-item">
                                     <a href="{{ url('/dashboard/meja') }}"
                                         class="nav-link {{ request()->segment(2) == 'meja' ? 'active' : '' }}">

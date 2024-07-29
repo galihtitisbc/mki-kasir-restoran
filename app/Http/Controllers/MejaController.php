@@ -5,23 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Meja;
 use App\Models\Outlet;
 use App\Models\User;
+use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MejaController extends Controller
 {
-    use UserAndRoleLoggedIn;
+    use UserAndRoleLoggedIn, GetOutletByUser;
     public function index(Request $request)
     {
         $slugQuery = $request->query('outlet');
-        $user = $this->getSupervisorOrAdmin();
-        $outlet = $user->supervisorHasOutlets()->get();
         $meja = Meja::mejaByOutlet($slugQuery)->get();
         return view('meja.index', [
             'title' => 'Outlet',
             'data'  => $meja,
-            'outlet' => $outlet
+            'outlet' => $this->getOutletByUser()
         ]);
     }
     public function store(Request $request)

@@ -7,7 +7,7 @@ use Auth;
 
 trait UserAndRoleLoggedIn
 {
-    public function getSupervisorOrAdmin(): User
+    public function getSupervisor(): User
     {
         $currentUser = Auth::getUser();
         $userReturn = '';

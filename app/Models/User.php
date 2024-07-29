@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,6 +49,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function scopePegawaiByOutlet(Builder $query, $slug)
+    {
+        $query->whereHas('outletWorks', function (Builder $query) use ($slug) {
+            $query->where('slug', '=', $slug);
+        });
+    }
     public function supervisorHasPegawai()
     {
         return $this->hasMany(User::class, 'supervisor_id');
