@@ -60,9 +60,13 @@
                             <td>{{ $item->stock }}</td>
                             <td>{{ $item->status }}</td>
                             <td>
-                                <a href="{{ url('/dashboard/produk', $item->slug) }}" class="btn btn-warning">Edit</a>
-                                <a href="{{ url('/dashboard/produk/hapus', $item->slug) }}"
-                                    class="btn btn-danger">Delete</a>
+                                <form action="{{ url('dashboard/produk/hapus', $item->slug) }}" class="form-delete"
+                                    method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a href="{{ url('/dashboard/produk', $item->slug) }}" class="btn btn-warning">Edit</a>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -75,7 +79,8 @@
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            $(".delete").click(function() {
+            $(".form-delete").submit(function(e) {
+                e.preventDefault();
                 Swal.fire({
                     title: "Apakah Anda yakin ?",
                     text: "Anda Tidak Bisa Mengembalikan Data ini",
@@ -92,7 +97,7 @@
                             icon: "success"
                         });
                         setTimeout(() => {
-                            $('.form-delete').submit();
+                            $(this)[0].submit();
                         }, 1500);
                     }
                 });

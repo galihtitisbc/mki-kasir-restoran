@@ -53,15 +53,6 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Masukkan Supplier : ( Opsional )</label>
-                            <select name="supplier_id" id="" class="form-control">
-                                <option value="">-- Pilih Supplier ---</option>
-                            </select>
-                            @error('supplier_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
                             <div class="row">

@@ -60,7 +60,7 @@
                                         data-target="#edit-modal{{ $item->category_id }}">
                                         Edit
                                     </button>
-                                    <button type="button" class="btn btn-danger delete">Delete</button>
+                                    <button type="submit" class="btn btn-danger delete">Delete</button>
                                 </form>
                             </td>
                             <div class="modal fade" id="edit-modal{{ $item->category_id }}">
@@ -152,7 +152,8 @@
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            $(".delete").click(function() {
+            $(".form-delete").submit(function(e) {
+                e.preventDefault();
                 Swal.fire({
                     title: "Apakah Anda yakin ?",
                     text: "Anda Tidak Bisa Mengembalikan Data ini",
@@ -169,7 +170,7 @@
                             icon: "success"
                         });
                         setTimeout(() => {
-                            $('.form-delete').submit();
+                            $(this)[0].submit();
                         }, 1500);
                     }
                 });

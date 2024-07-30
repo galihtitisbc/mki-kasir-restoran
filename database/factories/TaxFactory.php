@@ -20,8 +20,8 @@ class TaxFactory extends Factory
     public function definition(): array
     {
         return [
-            'outlet_id' => rand(1, 3),
             'tax_name' => fake()->colorName(),
+            'slug'      => fake()->slug(3),
             'tax_rate' => rand(5, 10),
             'description' => fake()->sentence(3)
         ];

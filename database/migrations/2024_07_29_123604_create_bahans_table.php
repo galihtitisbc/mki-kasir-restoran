@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('taxs', function (Blueprint $table) {
-            $table->id('tax_id');
-            $table->string('tax_name');
-            $table->string('slug')->unique();
-            $table->string('tax_rate');
-            $table->string('description');
+        Schema::create('bahans', function (Blueprint $table) {
+            $table->id('bahan_id');
+            $table->string('nama_bahan');
+            $table->unsignedInteger('harga_bahan');
+            $table->unsignedInteger('total_bahan');
+            $table->string('satuan_bahan');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('taxs');
+        Schema::dropIfExists('bahans');
     }
 };

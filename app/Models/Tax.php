@@ -2,20 +2,43 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tax extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, Sluggable;
     protected $table = 'taxs';
     protected $primaryKey = 'tax_id';
+    protected $guarded = ['tax_id'];
+
+    public function scopeTaxByOutlet(Builder $query, $slug)
+    {
+        $query->whereHas('outlets', function (Builder $query) use ($slug) {
+            $query->where('slug', $slug);
+        });
+    }
     public function salesHistories()
     {
         return $this->belongsToMany(SalesHistory::class, 'sales_history_taxs', 'tax_id', 'sales_history_id');
     }
-    public function outlet()
+    public function outlets()
     {
-        return $this->belongsTo(Outlet::class, 'outlet_id');
+        return $this->belongsToMany(Outlet::class, 'tax_outlets', 'tax_id', 'outlet_id');
+    }
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'tax_name'
+            ]
+        ];
     }
 }

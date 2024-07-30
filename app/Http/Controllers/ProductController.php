@@ -50,7 +50,6 @@ class ProductController extends Controller
                 Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
                 $produk = Product::create([
                     'user_id'       =>  Auth::getUser()->user_id,
-                    'supplier_id'   => $validated['supplier_id'],
                     'product_name'  => $validated['product_name'],
                     'price'         => $validated['price'],
                     'stock'         => $validated['stock'],
@@ -97,7 +96,6 @@ class ProductController extends Controller
                     ]);
                 }
                 $product->update([
-                    'supplier_id'   => $validated['supplier_id'],
                     'product_name'  => $validated['product_name'],
                     'price'         => $validated['price'],
                     'stock'         => $validated['stock'],

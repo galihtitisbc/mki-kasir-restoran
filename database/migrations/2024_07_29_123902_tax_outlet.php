@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('tax_outlets', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('tax_id')->references('tax_id')->on('taxs');
+            $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('tax_outlets');
+    }
+};

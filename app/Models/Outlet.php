@@ -14,7 +14,10 @@ class Outlet extends Model
     protected $primaryKey = 'outlet_id';
     protected $guarded = ['outlet_id'];
 
-
+    public function bahans()
+    {
+        return $this->belongsToMany(Bahan::class, 'bahan_outlets', 'outlet_id', 'bahan_id');
+    }
     public function salesHistories()
     {
         return $this->hasMany(SalesHistory::class, 'outlet_id');
@@ -29,7 +32,7 @@ class Outlet extends Model
     }
     public function taxs()
     {
-        return $this->hasMany(Tax::class, 'outlet_id');
+        return $this->belongsToMany(Tax::class, 'tax_outlets', 'outlet_id', 'tax_id');
     }
     public function mejas()
     {

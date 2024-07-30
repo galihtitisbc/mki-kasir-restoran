@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\UserOutlet;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,6 +45,21 @@ class DatabaseSeeder extends Seeder
                 'outlet_id' => 2
             ]
         ];
+        $taxOutlet = [
+            [
+                'tax_id'    =>  1,
+                'outlet_id' => 2
+            ],
+            [
+                'tax_id'    =>  2,
+                'outlet_id' => 2
+            ],
+            [
+                'tax_id'    =>  3,
+                'outlet_id' => 1
+            ]
+        ];
         UserOutlet::insert($userOutlet);
+        DB::table('tax_outlets')->insert($taxOutlet);
     }
 }

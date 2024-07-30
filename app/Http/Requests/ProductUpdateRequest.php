@@ -25,7 +25,6 @@ class ProductUpdateRequest extends FormRequest
         return [
             'product_name'  => 'required|max:255',
             'price'         => 'required|numeric',
-            'supplier_id'   => 'nullable|numeric',
             'stock'         => 'nullable|numeric',
             'gambar'        => 'nullable|image',
             'outlet_id'     => 'required|array',
