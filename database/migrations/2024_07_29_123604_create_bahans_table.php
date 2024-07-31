@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('supplier_id')->references('supplier_id')->on('suppliers');
             $table->string('nama_bahan');
             $table->string('slug')->unique();
-            $table->unsignedInteger('harga_bahan');
+            $table->unsignedInteger('stock');
             $table->unsignedInteger('harga_bahan_per_satuan');
-            $table->unsignedInteger('total_bahan');
+            $table->unsignedInteger('harga_bahan_keseluruhan');
             $table->string('satuan_bahan');
             $table->softDeletes();
             $table->timestamps();

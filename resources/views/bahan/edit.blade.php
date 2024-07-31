@@ -9,6 +9,15 @@
             @csrf
             @method('PUT')
             <div class="card-body ms-5">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
@@ -39,20 +48,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="total_bahan">Total Bahan : </label>
-                            <input type="text" name="total_bahan"
-                                class="form-control @error('total_bahan') is-invalid @enderror" placeholder="Masukkan Total"
-                                value="{{ $bahan->total_bahan }}">
-                            @error('total_bahan')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="harga_bahan">Harga Bahan (Keseluruhan) : </label>
-                            <input type="text" name="harga_bahan"
-                                class="form-control @error('harga_bahan') is-invalid @enderror" placeholder="Masukkan Harga"
-                                value="{{ $bahan->harga_bahan }}">
-                            @error('harga_bahan')
+                            <label for="harga_bahan">Stok Bahan : </label>
+                            <input type="text" name="stock" class="form-control @error('stock') is-invalid @enderror"
+                                placeholder="Masukkan Jumlah Barang" value="{{ $bahan->stock }}">
+                            @error('stock')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

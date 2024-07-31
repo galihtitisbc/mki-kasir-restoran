@@ -24,9 +24,8 @@ class BahanUpdateRequest extends FormRequest
         return [
             'nama_bahan' => 'required|string|max:255',
             'harga_bahan_per_satuan' => 'required|numeric',
-            'total_bahan' => 'required|numeric',
+            'stock' => 'required|numeric',
             'satuan_bahan' => 'required|string|max:255',
-            'harga_bahan' => 'required|numeric',
             'outlet_id' => 'required|array',
             'outlet_id.*' => 'required|exists:outlets,outlet_id',
             'supplier_id' => 'required|exists:suppliers,supplier_id',

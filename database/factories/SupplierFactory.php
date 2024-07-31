@@ -20,7 +20,6 @@ class SupplierFactory extends Factory
     {
         return [
             'user_id' => 2,
-            'outlet_id' => 2,
             'supplier_name' => fake()->name('male'),
             'phone' => fake()->phoneNumber(),
             'address' => fake()->address(),

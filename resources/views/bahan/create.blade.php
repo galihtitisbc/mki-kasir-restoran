@@ -38,20 +38,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="total_bahan">Total Bahan : </label>
-                            <input type="text" name="total_bahan"
-                                class="form-control @error('total_bahan') is-invalid @enderror" placeholder="Masukkan Total"
-                                value="{{ old('total_bahan') }}">
-                            @error('total_bahan')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="harga_bahan">Harga Bahan (Keseluruhan) : </label>
-                            <input type="text" name="harga_bahan"
-                                class="form-control @error('harga_bahan') is-invalid @enderror" placeholder="Masukkan Harga"
-                                value="{{ old('harga_bahan') }}">
-                            @error('harga_bahan')
+                            <label for="harga_bahan">Stok Bahan : </label>
+                            <input type="text" name="stock" class="form-control @error('stock') is-invalid @enderror"
+                                placeholder="Masukkan Jumlah Barang" value="{{ old('stock') }}">
+                            @error('stock')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -65,8 +55,8 @@
                                         <div class="form-group clearfix">
                                             <div class="icheck-primary d-inline">
                                                 <input type="checkbox" name="outlet_id[]"
-                                                    id="checkboxPrimary3{{ $item->slug }}"
-                                                    value="{{ $item->outlet_id }}" @checked(in_array($item->outlet_id, old('outlet_id', [])))>
+                                                    id="checkboxPrimary3{{ $item->slug }}" value="{{ $item->outlet_id }}"
+                                                    @checked(in_array($item->outlet_id, old('outlet_id', [])))>
                                                 <label for="checkboxPrimary3{{ $item->slug }}">
                                                     {{ $item->outlet_name }}
                                                 </label>

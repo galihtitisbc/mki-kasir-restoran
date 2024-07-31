@@ -63,6 +63,7 @@ class BahanController extends Controller
         $validated = $request->validated();
         try {
             DB::transaction(function () use ($validated) {
+                $validated['harga_bahan_keseluruhan'] = $validated['stock'] * $validated['harga_bahan_per_satuan'];
                 $bahan = Bahan::create($validated);
                 $bahan->suppliers()->associate($validated['supplier_id'])->save();
                 $bahan->outlets()->attach($validated['outlet_id']);
@@ -107,6 +108,7 @@ class BahanController extends Controller
         $validated = $request->validated();
         try {
             DB::transaction(function () use ($validated, $slug) {
+                $validated['harga_bahan_keseluruhan'] = $validated['stock'] * $validated['harga_bahan_per_satuan'];
                 $bahan = Bahan::where('slug', $slug)->first();
                 $bahan->update($validated);
                 $bahan->suppliers()->associate($validated['supplier_id'])->save();

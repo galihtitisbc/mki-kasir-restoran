@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Outlet;
+use App\Models\Supplier;
+use App\Trait\GetOutletByUser;
+use App\Trait\UserAndRoleLoggedIn;
+use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    use UserAndRoleLoggedIn, GetOutletByUser;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $slug = $request->query('outlet');
+        $supplier = Supplier::with('outlets')->supplierByOutlet($slug)->get();
         return view('supplier.index', [
-            'title' => 'Supplier'
+            'title' => 'Supplier',
+            'supplier' => $supplier,
+            'outlet' => $this->getOutletByUser()
         ]);
     }
 
@@ -29,7 +40,24 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'supplier_name' => 'required',
+            'phone' => 'required|numeric',
+            'address' => 'required',
+            'outlet_id' => 'required|array',
+            'outlet_id.*' => 'required|exists:outlets,outlet_id',
+        ]);
+        try {
+            DB::transaction(function () use ($validated) {
+                $validated['user_id'] = Auth::getUser()->user_id;
+                $supplier = Supplier::create($validated);
+                $supplier->outlets()->attach($validated['outlet_id']);
+            });
+            return redirect('/dashboard/supplier')->with('status', 'Supplier berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect('/dashboard/supplier')->with('error', 'Supplier gagal ditambahkan');
+        }
     }
 
     /**
@@ -51,16 +79,35 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $slug)
     {
-        //
+        $validated = $request->validate([
+            'supplier_name' => 'required',
+            'phone' => 'required|numeric',
+            'address' => 'required',
+            'outlet_id' => 'required|array',
+            'outlet_id.*' => 'required|exists:outlets,outlet_id',
+        ]);
+        try {
+            DB::transaction(function () use ($validated, $slug) {
+                $supplier = Supplier::where('slug', $slug)->first();
+                $supplier->update($validated);
+                $supplier->outlets()->sync($validated['outlet_id']);
+            });
+            return redirect('/dashboard/supplier')->with('status', 'Supplier berhasil diubah');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return redirect('/dashboard/supplier')->with('error', 'Supplier gagal diubah');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $slug)
     {
-        //
+        $supplier = Supplier::where('slug', $slug)->first();
+        $supplier->delete();
+        return redirect('/dashboard/supplier')->with('status', 'Supplier berhasil dihapus');
     }
 }

@@ -14,6 +14,7 @@ class Outlet extends Model
     protected $primaryKey = 'outlet_id';
     protected $guarded = ['outlet_id'];
 
+
     public function bahans()
     {
         return $this->belongsToMany(Bahan::class, 'bahan_outlets', 'outlet_id', 'bahan_id');
@@ -44,7 +45,7 @@ class Outlet extends Model
     }
     public function suppliers()
     {
-        return $this->hasMany(Supplier::class, 'outlet_id');
+        return $this->belongsToMany(Supplier::class, 'supplier_outlets', 'outlet_id', 'supplier_id');
     }
     public function sluggable(): array
     {

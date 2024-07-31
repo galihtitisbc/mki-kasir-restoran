@@ -50,7 +50,7 @@
                         <th>No</th>
                         <th>Nama Bahan</th>
                         <th>Harga Bahan ( Per Satuan )</th>
-                        <th>Total Bahan</th>
+                        <th>Stok Bahan</th>
                         <th>Satuan Bahan</th>
                         <th>Harga Bahan ( Keseluruhan )</th>
                         <th>Action</th>
@@ -62,9 +62,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama_bahan }}</td>
                             <td>{{ $item->harga_bahan_per_satuan }}</td>
-                            <td>{{ $item->total_bahan }}</td>
+                            <td>{{ $item->stock }}</td>
                             <td>{{ $item->satuan_bahan }}</td>
-                            <td>{{ $item->harga_bahan }}</td>
+                            <td>{{ $item->harga_bahan_keseluruhan }}</td>
                             <td>
                                 <form action="{{ route('bahan.destroy', $item->slug) }}" class="form-delete"
                                     method="POST">

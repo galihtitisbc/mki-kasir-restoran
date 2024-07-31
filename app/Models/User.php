@@ -54,6 +54,9 @@ class User extends Authenticatable
         $query->whereHas('outletWorks', function (Builder $query) use ($slug) {
             $query->where('slug', '=', $slug);
         });
+        $query->whereDoesntHave('roles', function (Builder $query) {
+            $query->whereIn('name', ['SUPERADMIN', 'SUPERVISOR']);
+        });
     }
     public function supervisorHasPegawai()
     {

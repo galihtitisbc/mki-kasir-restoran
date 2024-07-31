@@ -25,7 +25,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="{{ url('/dashboard/dashboard') }}"
+                        <a href="{{ url('/dashboard/home') }}"
                             class="nav-link {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
