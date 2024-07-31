@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('bahans', function (Blueprint $table) {
             $table->id('bahan_id');
+            $table->foreignId('supplier_id')->references('supplier_id')->on('suppliers');
             $table->string('nama_bahan');
+            $table->string('slug')->unique();
             $table->unsignedInteger('harga_bahan');
+            $table->unsignedInteger('harga_bahan_per_satuan');
             $table->unsignedInteger('total_bahan');
             $table->string('satuan_bahan');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

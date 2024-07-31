@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BahanController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TaxController;
 
 Route::prefix('dashboard')->group(function () {
@@ -48,4 +50,6 @@ Route::prefix('dashboard')->group(function () {
         Route::delete('/produk/hapus/{product:slug}', 'destroy');
     });
     Route::resource('pajak', TaxController::class);
+    Route::resource('bahan', BahanController::class);
+    Route::resource('supplier', SupplierController::class);
 });

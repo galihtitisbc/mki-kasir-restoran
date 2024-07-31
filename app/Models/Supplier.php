@@ -10,6 +10,7 @@ class Supplier extends Model
     use HasFactory;
     protected $table = 'suppliers';
     protected $primaryKey = 'supplier_id';
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -21,5 +22,9 @@ class Supplier extends Model
     public function outlet()
     {
         return $this->belongsTo(Outlet::class, 'outlet_id');
+    }
+    public function bahans()
+    {
+        return $this->hasMany(Bahan::class, 'supplier_id');
     }
 }

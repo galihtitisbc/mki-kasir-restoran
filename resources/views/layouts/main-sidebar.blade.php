@@ -64,6 +64,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/dashboard/bahan') }}"
+                                class="nav-link {{ request()->segment(2) == 'bahan' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-book"></i>
+                                <p>
+                                    Kelola Bahan Produk
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/dashboard/produk') }}"
                                 class="nav-link {{ request()->segment(2) == 'produk' ? 'active' : '' }}">
                                 <i class="fa fa-cube" aria-hidden="true"></i>

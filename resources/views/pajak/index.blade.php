@@ -117,7 +117,7 @@
                                                         @foreach ($outlet as $edit)
                                                             <div class="col-6">
                                                                 <div class="form-group clearfix">
-                                                                    <div class="form-control d-inline">
+                                                                    <div class="d-inline">
                                                                         @php
                                                                             $checked = false;
                                                                         @endphp
