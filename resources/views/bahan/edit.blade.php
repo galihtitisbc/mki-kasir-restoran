@@ -47,14 +47,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="harga_bahan">Stok Bahan : </label>
-                            <input type="text" name="stock" class="form-control @error('stock') is-invalid @enderror"
-                                placeholder="Masukkan Jumlah Barang" value="{{ $bahan->stock }}">
-                            @error('stock')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -65,8 +57,7 @@
                                         <div class="form-group clearfix">
                                             <div class="icheck-primary d-inline">
                                                 <input type="checkbox" name="outlet_id[]"
-                                                    id="checkboxPrimary3{{ $item->slug }}"
-                                                    value="{{ $item->outlet_id }}"
+                                                    id="checkboxPrimary3{{ $item->slug }}" value="{{ $item->outlet_id }}"
                                                     {{ in_array($item->outlet_id, $selectedOutlet) ? 'checked' : '' }}>
                                                 <label for="checkboxPrimary3{{ $item->slug }}">
                                                     {{ $item->outlet_name }}

@@ -8,6 +8,7 @@ use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TaxController;
 
@@ -52,4 +53,7 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('pajak', TaxController::class);
     Route::resource('bahan', BahanController::class);
     Route::resource('supplier', SupplierController::class);
+    Route::controller(StockController::class)->group(function () {
+        Route::get('/stock/sesuaikan', 'index');
+    });
 });

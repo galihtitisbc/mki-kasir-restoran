@@ -33,18 +33,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Stok : ( Opsional )</label>
-                            <input type="text" name="stock"
-                                class="form-control @error('stock')
-                                                is-invalid
-                                            @enderror"
-                                placeholder="Masukkan stock ( Opsional )" value="{{ old('stock') }}">
-                            @error('stock')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Upload Gambar : </label>
+                            <label for="exampleInputEmail1">Upload Gambar : ( Opsional )</label>
                             <input type="file" name="gambar" class="form-control" id="">
                             @error('gambar')
                                 <div class="alert alert-danger">{{ $message }}</div>

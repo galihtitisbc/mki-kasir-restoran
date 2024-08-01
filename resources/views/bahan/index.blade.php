@@ -7,8 +7,15 @@
         <div class="card-header text-center">
             <h3 class="card-title"><b>Daftar Bahan</b></h3>
             <div class="card-tools">
-                <a href="{{ url('/dashboard/bahan/create') }}" class="btn btn-success"> <i class="fa fa-plus"
-                        aria-hidden="true"></i> Tambah Bahan</a>
+                <div class="row" style="margin-left: -10%">
+                    <div class="col">
+                        <a href="{{ url('/dashboard/bahan/create') }}" class="btn btn-success"> <i class="fa fa-plus"
+                                aria-hidden="true"></i> Tambah Bahan</a>
+                    </div>
+                    <div class="col">
+                        <a href="{{ url('/dashboard/stock/sesuaikan') }}" class="btn btn-primary"></i> Sesuaikan Stock</a>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.card-header -->

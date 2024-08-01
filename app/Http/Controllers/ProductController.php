@@ -44,16 +44,21 @@ class ProductController extends Controller
     public function store(ProductCreateRequest $request)
     {
         $validated = $request->validated();
+
         try {
             DB::transaction(function () use ($validated) {
-                $fileName = $validated['gambar']->hashName();
-                Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
+                if (isset($validated['gambar'])) {
+                    $fileName = $validated['gambar']->hashName();
+                    Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
+                }
+                $productCount = Product::count();
+                $productCode = 'PRD' . str_pad($productCount + 1, 3, '0', STR_PAD_LEFT);
                 $produk = Product::create([
                     'user_id'       =>  Auth::getUser()->user_id,
                     'product_name'  => $validated['product_name'],
                     'price'         => $validated['price'],
-                    'stock'         => $validated['stock'],
-                    'gambar'        => $fileName
+                    'gambar'        => $fileName ?? null,
+                    'product_code'  => $productCode
                 ]);
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);
@@ -87,19 +92,18 @@ class ProductController extends Controller
         $validated = $request->validated();
         try {
             DB::transaction(function () use ($validated, $product) {
+                $updateData = [
+                    'product_name'  => $validated['product_name'],
+                    'price'         => $validated['price'],
+                ];
                 if (isset($validated['gambar'])) {
                     $fileName = $validated['gambar']->hashName();
                     Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
                     Storage::delete('public/gambar/' . $product->gambar);
-                    $product->update([
-                        'gambar'    =>  $fileName
-                    ]);
+                    $updateData['gambar'] = $fileName;
                 }
-                $product->update([
-                    'product_name'  => $validated['product_name'],
-                    'price'         => $validated['price'],
-                    'stock'         => $validated['stock'],
-                ]);
+
+                $product->update($updateData);
                 $product->categories()->sync($validated['category_id']);
                 $product->outlets()->sync($validated['outlet_id']);
             });
