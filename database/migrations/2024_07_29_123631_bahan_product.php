@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->references('product_id')->on('products');
             $table->foreignId('bahan_id')->references('bahan_id')->on('bahans');
+            $table->unsignedInteger('qty');
+            $table->string('satuan_bahan');
         });
     }
 

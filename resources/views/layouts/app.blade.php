@@ -8,7 +8,7 @@
     @include('layouts.header')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed {{ request()->segment(2) == 'stock' ? 'sidebar-collapse' : '' }}">
     <div class="wrapper">
 
         <!-- Preloader -->

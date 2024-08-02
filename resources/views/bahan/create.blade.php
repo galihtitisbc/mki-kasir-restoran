@@ -67,6 +67,7 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="supplier_id">Pilih Supplier Bahan : </label>
                             <select name="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
                                 <option value="">-- Pilih Supplier --</option>
                                 @foreach ($supplier as $item)

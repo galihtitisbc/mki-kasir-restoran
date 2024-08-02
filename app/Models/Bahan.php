@@ -31,6 +31,10 @@ class Bahan extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'bahan_id');
+    }
     public function sluggable(): array
     {
         return [

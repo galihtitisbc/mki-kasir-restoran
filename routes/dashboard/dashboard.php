@@ -54,6 +54,8 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('bahan', BahanController::class);
     Route::resource('supplier', SupplierController::class);
     Route::controller(StockController::class)->group(function () {
-        Route::get('/stock/sesuaikan', 'index');
+        Route::get('/stock', 'index');
+        Route::get('/stock/sesuaikan', 'sesuaikan');
+        Route::post('/stock/sesuaikan', 'update');
     });
 });

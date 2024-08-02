@@ -19,7 +19,6 @@
                 </div>
             </div>
 
-
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -69,6 +68,15 @@
                                 <i class="nav-icon fa fa-book"></i>
                                 <p>
                                     Kelola Bahan Produk
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/dashboard/stock/') }}"
+                                class="nav-link {{ request()->segment(2) == 'stock' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-boxes"></i>
+                                <p>
+                                    Kelola Stok Bahan
                                 </p>
                             </a>
                         </li>

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('stock_id');
             $table->enum('shift', ['SIANG', 'MALAM']);
             $table->foreignId('bahan_id')->references('bahan_id')->on('bahans');
-            $table->unsignedInteger('stock_awal')->nullable();
             $table->unsignedInteger('stock_masuk')->nullable();
             $table->unsignedInteger('stock_keluar')->nullable();
             $table->timestamps();
