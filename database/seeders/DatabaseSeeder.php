@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Bahan;
+use App\Models\Outlet;
+use App\Models\Pesanan;
+use App\Models\Product;
+use App\Models\SalesHistory;
 use App\Models\UserOutlet;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -92,5 +97,21 @@ class DatabaseSeeder extends Seeder
         DB::table('supplier_outlets')->insert($supplierOutlet);
         UserOutlet::insert($userOutlet);
         DB::table('tax_outlets')->insert($taxOutlet);
+        Bahan::factory(10)->create();
+        $bahan = Bahan::all();
+        Outlet::each(function ($outlet) use ($bahan) {
+            $outlet->bahans()->attach($bahan->random(rand(1, 10))->pluck('bahan_id')->toArray());
+        });
+        Product::factory(20)->create();
+        Product::each(function ($product) use ($bahan) {
+            $pivotArray = [];
+            $bahanIds = $bahan->random(rand(1, 10))->pluck('bahan_id')->toArray();
+            foreach ($bahanIds as $bahanId) {
+                $pivotArray[] = ['bahan_id' => $bahanId, 'qty' => rand(1, 10), 'satuan_bahan' => fake()->randomElement(['Liter', 'Kg', 'gr'])];
+            }
+            $product->bahans()->attach($pivotArray);
+        });
+        Pesanan::factory(10)->create();
+        SalesHistory::factory(20)->create();
     }
 }
