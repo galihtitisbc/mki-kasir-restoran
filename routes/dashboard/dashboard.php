@@ -4,6 +4,7 @@ use App\Http\Controllers\BahanController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanTransaksi;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
@@ -20,15 +21,15 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/pegawai', 'index');
         Route::get('/pegawai/tambah', 'tambahPegawai');
         Route::post('/pegawai/tambah', 'storePegawai');
-        Route::get('/pegawai/edit/{user}', 'edit');
-        Route::put('/pegawai/edit/{user}', 'update');
-        Route::delete('/pegawai/hapus/{user}', 'hapus');
+        Route::get('/pegawai/edit/{user:email}', 'edit');
+        Route::put('/pegawai/edit/{user:email}', 'update');
+        Route::delete('/pegawai/hapus/{user:email}', 'hapus');
     });
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/kategori', 'index');
         Route::post('/kategori', 'store');
-        Route::put('/kategori/{category}', 'update');
-        Route::delete('/kategori/{category}', 'delete');
+        Route::put('/kategori/{category:slug}', 'update');
+        Route::delete('/kategori/{category:slug}', 'delete');
     });
     Route::controller(OutletController::class)->group(function () {
         Route::get('/outlet', 'index');
@@ -57,5 +58,8 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/stock', 'index');
         Route::get('/stock/sesuaikan', 'sesuaikan');
         Route::post('/stock/sesuaikan', 'update');
+    });
+    Route::controller(LaporanTransaksi::class)->group(function () {
+        Route::get('/laporan/', 'index');
     });
 });

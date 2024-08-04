@@ -5,7 +5,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action="{{ url('/dashboard/pegawai/edit', $data->user_id) }}" method="POST">
+        <form action="{{ url('/dashboard/pegawai/edit', $data->email) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body ms-5">

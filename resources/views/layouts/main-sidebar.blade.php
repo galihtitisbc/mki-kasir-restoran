@@ -32,6 +32,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/dashboard/laporan') }}"
+                            class="nav-link {{ request()->segment(2) == 'laporan' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                            <p>
+                                Laporan Transaksi
+                            </p>
+                        </a>
+                    </li>
 
                     {{-- <li class="nav-header">EXAMPLES</li> --}}
                     @hasanyrole('SUPERVISOR|ADMIN')

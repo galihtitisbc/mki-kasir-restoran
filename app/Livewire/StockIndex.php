@@ -11,15 +11,21 @@ class StockIndex extends Component
     use GetOutletByUser;
     public $outlets = '';
     public $stock = '';
-    public $outlet;
+    public $outletSearch;
+    public $fromDate;
+    public $toDate;
     public function mount()
     {
         $this->outlets = $this->getOutletByUser();
     }
     public function render()
     {
-
-        $this->stock = Stock::with('bahan')->stockByOutlet($this->outlet)->get();
+        $data = [
+            'outlet' => $this->outletSearch,
+            'fromDate' => $this->fromDate,
+            'toDate' => $this->toDate,
+        ];
+        $this->stock = Stock::with('bahan')->stockByOutlet($data)->get();
         return view('livewire.stock-index');
     }
 }

@@ -3,63 +3,53 @@
         <div class="mbuh col-6 text-center mx-auto my-4">
             <form action="{{ url('/dashboard/stock') }}" method="get">
                 <div class="row">
-                    <div class="col-9">
-                        <h1> {{ $outlet }}</h1>
-                        <select wire:model.change="outlet" class="form-control" id="">
+                    <div class="col-6">
+                        <label for="outlet"></label>
+                        <select wire:model.live="outletSearch" class="form-control" id="">
                             <option value="" selected>-- Pilih Outlet --</option>
                             @foreach ($outlets as $item)
                                 <option value="{{ $item->slug }}"
-                                    {{ request('outlet') == $item->slug ? 'selected' : '' }}>{{ $item->outlet_name }}
+                                    {{ request('outlet') == $item->slug ? 'selected' : '' }}>
+                                    {{ $item->outlet_name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-3 d-flex">
-                        <button type="submit" class="btn btn-primary mr-2">Cari</button>
-                        <a href="{{ url('/dashboard/pegawai') }}" type="submit" class="btn btn-danger">Reset</a>
+                    <div class="col-3">
+                        Dari Tanggal : <input type="date" wire:model.live="fromDate" class="form-control"
+                            id="fromDate">
+                    </div>
+                    <div class="col-3">
+                        Ke Tanggal : <input type="date" wire:model.live="toDate" class="form-control" id="toDate">
                     </div>
                 </div>
             </form>
         </div>
-        <table class="table table-hover text-center">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Kerja Dioutlet</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Posisi</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{-- @foreach ($pegawais as $item)
+        @if ($outlets)
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Shift</th>
+                        <th>Nama Bahan</th>
+                        <th>Stock Masuk</th>
+                        <th>Stock Keluar</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($stock as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->name }}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#info-modal{{ $item->user_id }}">
-                                    Info
-                                </button>
-                            </td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->phone }}</td>
-                            <td>{{ $item->getRoleNames()->implode(', ') }}</td>
-                            <td>
-                                <form action="{{ url('/dashboard/pegawai/hapus', $item->user_id) }}" class="form-delete"
-                                    method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <a href="{{ url('/dashboard/pegawai/edit', $item->user_id) }}"
-                                        class="btn btn-warning">Edit</a>
-                                    <button type="submit" class="btn btn-danger delete">Delete</button>
-                                </form>
-                            </td>
+                            <td>{{ $item->shift }}</td>
+                            <td>{{ $item->bahan->nama_bahan }}</td>
+                            <td>{{ $item->stock_masuk == null ? '-' : $item->stock_masuk }}</td>
+                            <td>{{ $item->stock_keluar == null ? '-' : $item->stock_keluar }}</td>
+                            <td>{{ $item->created_at }}</td>
                         </tr>
-                    @endforeach --}}
-            </tbody>
-        </table>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 </div>

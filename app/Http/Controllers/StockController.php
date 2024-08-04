@@ -15,13 +15,13 @@ class StockController extends Controller
     use GetOutletByUser;
     public function index(Request $request)
     {
-        $slug = $request->query('outlet');
-        $outlet = $this->getOutletByUser();
-        $stock = Stock::with('bahan')->stockByOutlet($slug)->get();
-        dump($stock);
+        // $slug = $request->query('outlet');
+        // $outlet = $this->getOutletByUser();
+        // $stock = Stock::with('bahan')->stockByOutlet($slug)->get();
+        // dump($stock);
         return view('stock.index', [
             'title' => 'Stok',
-            'outlet' => $outlet,
+            // 'outlet' => $outlet,
         ]);
     }
     public function sesuaikan(Request $request)

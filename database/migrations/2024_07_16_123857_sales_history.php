@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->foreignId('pesanan_id')->references('pesanan_id')->on('pesanans');
             $table->integer("quantity");
+            $table->integer("product_price");
             $table->integer("total_price");
             $table->timestamps();
         });

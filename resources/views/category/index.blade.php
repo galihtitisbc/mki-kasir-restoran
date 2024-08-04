@@ -52,18 +52,18 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->category_name }}</td>
                             <td>
-                                <form action="{{ url('/dashboard/kategori', $item->category_id) }}"class="form-delete"
+                                <form action="{{ url('/dashboard/kategori', $item->slug) }}"class="form-delete"
                                     method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="#edit-modal{{ $item->category_id }}">
+                                        data-target="#edit-modal{{ $item->slug }}">
                                         Edit
                                     </button>
                                     <button type="submit" class="btn btn-danger delete">Delete</button>
                                 </form>
                             </td>
-                            <div class="modal fade" id="edit-modal{{ $item->category_id }}">
+                            <div class="modal fade" id="edit-modal{{ $item->slug }}">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -73,8 +73,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ url('/dashboard/kategori', $item->category_id) }}"
-                                                method="POST">
+                                            <form action="{{ url('/dashboard/kategori', $item->slug) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="form-group">

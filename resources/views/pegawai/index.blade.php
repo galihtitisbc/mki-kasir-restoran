@@ -52,10 +52,10 @@
                             <td>{{ $item->name }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#info-modal{{ $item->user_id }}">
+                                    data-target="#info-modal{{ $item->email }}">
                                     Info
                                 </button>
-                                <div class="modal fade" id="info-modal{{ $item->user_id }}">
+                                <div class="modal fade" id="info-modal{{ $item->email }}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -97,11 +97,11 @@
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->getRoleNames()->implode(', ') }}</td>
                             <td>
-                                <form action="{{ url('/dashboard/pegawai/hapus', $item->user_id) }}" class="form-delete"
+                                <form action="{{ url('/dashboard/pegawai/hapus', $item->email) }}" class="form-delete"
                                     method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="{{ url('/dashboard/pegawai/edit', $item->user_id) }}"
+                                    <a href="{{ url('/dashboard/pegawai/edit', $item->email) }}"
                                         class="btn btn-warning">Edit</a>
                                     <button type="submit" class="btn btn-danger delete">Delete</button>
                                 </form>

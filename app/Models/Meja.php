@@ -14,9 +14,9 @@ class Meja extends Model
     protected $table = 'mejas';
     protected $primaryKey = 'meja_id';
     protected $guarded = ['meja_id'];
-    public function scopeMejaByOutlet($query, $slug = null)
+    public function scopeMejaByOutlet(Builder $query, $slug = null)
     {
-        return $query->whereHas('outlet', function ($query) use ($slug) {
+        $query->whereHas('outlet', function ($query) use ($slug) {
             $query->where('slug', $slug);
         });
     }

@@ -28,7 +28,6 @@
                         </div>
                         <div class="col-3">
                             <button type="submit" class="btn btn-primary">Cari</button>
-                            <a href="{{ url('/dashboard/meja') }}" type="submit" class="btn btn-danger">Reset</a>
                         </div>
                     </div>
                 </form>
