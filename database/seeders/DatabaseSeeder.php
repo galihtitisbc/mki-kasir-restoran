@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Bahan;
+use App\Models\Category;
 use App\Models\Outlet;
 use App\Models\Pesanan;
 use App\Models\Product;
@@ -111,7 +112,11 @@ class DatabaseSeeder extends Seeder
             }
             $product->bahans()->attach($pivotArray);
         });
-        Pesanan::factory(10)->create();
+        $category = Category::all();
+        Product::each(function ($product) use ($category) {
+            $product->categories()->attach($category->random(rand(1, 5))->pluck('category_id')->toArray());
+        });
+        Pesanan::factory(20)->create();
         SalesHistory::factory(20)->create();
     }
 }

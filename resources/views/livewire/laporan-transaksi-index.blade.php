@@ -4,39 +4,79 @@
             <form action="{{ url('/dashboard/stock') }}" method="get">
                 <div class="row d-flex justify-content-center">
                     <div class="col-3">
-                        <label for="outlet"></label>
+                        <label for="outlet">Pilih Outlet :</label>
                         <select wire:model.live="outletSearch" class="form-control" id="">
                             <option value="" selected>-- Pilih Outlet --</option>
-                            {{-- @foreach ($outlets as $item)
+                            @foreach ($outlets as $item)
                                 <option value="{{ $item->slug }}"
                                     {{ request('outlet') == $item->slug ? 'selected' : '' }}>
                                     {{ $item->outlet_name }}
                                 </option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-3">
-                        <label for="outlet"></label>
-                        <select wire:model.live="outletSearch" class="form-control" id="">
+                        <label for="outlet">Pilih Kategori :</label>
+                        <select wire:model.live="categorySearch" class="form-control" id="category">
                             <option value="" selected>-- Pilih Kategori --</option>
-                            {{-- @foreach ($outlets as $item)
+                            @foreach ($categories as $item)
                                 <option value="{{ $item->slug }}"
-                                    {{ request('outlet') == $item->slug ? 'selected' : '' }}>
-                                    {{ $item->outlet_name }}
+                                    {{ request('categories') == $item->slug ? 'selected' : '' }}>
+                                    {{ $item->category_name }}
                                 </option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-2">
-                        Dari Tanggal : <input type="date" wire:model.live="fromDate" class="form-control"
-                            id="fromDate">
+                        <label for="fromDate">Dari Tanggal :</label>
+                        <input type="date" wire:model.live="fromDate" class="form-control" id="fromDate">
                     </div>
                     <div class="col-2">
-                        Ke Tanggal : <input type="date" wire:model.live="toDate" class="form-control" id="toDate">
+                        <label for="toDate">Ke Tanggal :</label>
+                        <input type="date" wire:model.live="toDate" class="form-control" id="toDate">
                     </div>
 
                 </div>
             </form>
         </div>
+        @if (!is_null($transactions))
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kasir</th>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Outlet</th>
+                                <th>Harga Produk</th>
+                                <th>Quantity</th>
+                                <th>Total Harga</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($transactions as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->product->product_name }}</td>
+                                    <td>
+                                        @foreach ($item->product->categories as $cat)
+                                            {{ $loop->last ? $cat->category_name : $cat->category_name . ',' }}
+                                        @endforeach
+                                    <td>
+                                    <td>{{ $item->outlet->outlet_name }}</td>
+                                    <td>{{ $item->product->price }}</td>
+                                    <td>{{ $item->quantity }}</td>
+                                    <td>{{ $item->total_price }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
     </div>
-</div>

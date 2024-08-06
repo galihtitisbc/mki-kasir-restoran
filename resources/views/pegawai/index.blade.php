@@ -52,10 +52,10 @@
                             <td>{{ $item->name }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#info-modal{{ $item->email }}">
+                                    data-target="#info-modal{{ $item->username }}">
                                     Info
                                 </button>
-                                <div class="modal fade" id="info-modal{{ $item->email }}">
+                                <div class="modal fade" id="info-modal{{ $item->username }}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
