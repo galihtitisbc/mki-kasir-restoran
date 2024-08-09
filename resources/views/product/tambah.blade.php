@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
@@ -44,22 +47,14 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
-                            <div class="row">
+                            <select class="form-control tambah-select" name="category_id[]" multiple="multiple"
+                                data-placeholder="Pilih Outlet" style="width: 100%;">
+                                <option value=""> -- Pilih Kategori --</option>
                                 @foreach ($category as $item)
-                                    <div class="col-6">
-                                        <div class="form-group clearfix">
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" name="category_id[]"
-                                                    id="checkboxPrimary3-{{ $item->slug }}"
-                                                    value="{{ $item->category_id }}" @checked(in_array($item->category_id, old('category_id', [])))>
-                                                <label for="checkboxPrimary3-{{ $item->slug }}">
-                                                    {{ $item->category_name }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <option value="{{ $item->category_id }}">
+                                        {{ $item->category_name }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                             @error('category_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -67,34 +62,113 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Produk Untuk Outlet :</label>
                             <br>
-                            <div class="row">
+                            <select class="form-control tambah-select" name="outlet_id[]" multiple="multiple"
+                                data-placeholder="Pilih Outlet" style="width: 100%;">
+                                <option value=""> -- Pilih Outlet --</option>
                                 @foreach ($outlet as $item)
-                                    <div class="col-6">
-                                        <div class="form-group clearfix">
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" name="outlet_id[]"
-                                                    id="checkboxPrimary3{{ $item->slug }}"
-                                                    value="{{ $item->outlet_id }}" @checked(in_array($item->outlet_id, old('outlet_id', [])))>
-                                                <label for="checkboxPrimary3{{ $item->slug }}">
-                                                    {{ $item->outlet_name }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <option value="{{ $item->outlet_id }}">
+                                        {{ $item->outlet_name }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                             @error('outlet_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <div class="opsi d-flex justify-content-between">
+                                <h5><b>Pilih Opsi :</b></h5>
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#tambah-modal"><i class="fa fa-plus-circle"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                            <div class="daftar-opsi">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card-footer d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-center">
+                <button type="submit" class="btn btn-success">Submit</button>
             </div>
     </div>
-    </form>
     </div>
+    </form>
+    <div class="modal fade" id="tambah-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Opsi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group ">
+                        <div class="opsi-name d-flex justify-content-start">
+                            <label for="exampleInputEmail1">Nama Grup Opsi : </label>
+                            <input type="text" id="opsi_name" name="opsi_name"
+                                class="form-control mx-4 col-4 @error('opsi_name') is-invalid @enderror"
+                                placeholder="Masukkan Nama Grup Opsi" value="{{ old('opsi_name') }}">
+                            <button type="button" class="btn btn-success tambah-form-opsi"><i class="fa fa-plus-circle"
+                                    aria-hidden="true"></i>Tambah Detail Opsi</button>
+                        </div>
+                        @error('opsi_name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="detail-opsi" id="form-container">
+                        <div class="form-group form-detail-opsi">
+                            <div class="row d-flex justify-content-center my-3">
+                                <div class="col-4">
+                                    <label for="opsi">Nama Opsi : </label>
+                                    <input type="text" class="form-control opsi" name="opsi" id="opsi">
+                                </div>
+                                <div class="col-4">
+                                    <label for="opsi">Harga : </label>
+                                    <input type="number" class="form-control harga" name="harga" id="harga">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="simpan-opsi" class="btn btn-success">Tambah Data</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-detail-opsi">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Opsi </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-opsi" id="form-container">
+                        <div class="form-group container-detail-opsi">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    </div>
+    @push('js')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="{{ asset('js/opsi.js') }}"></script>
+    @endpush
 @endsection

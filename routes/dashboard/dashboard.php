@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BahanController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OpsiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanTransaksi;
@@ -62,4 +63,7 @@ Route::prefix('dashboard')->group(function () {
     Route::controller(LaporanTransaksi::class)->group(function () {
         Route::get('/laporan/', 'index');
     });
+    Route::get('/opsi', [OpsiController::class, 'getOpsi']);
+    Route::get('/opsi/{opsi}', [OpsiController::class, 'getDetailOpsi']);
+    Route::post('/opsi', [OpsiController::class, 'store']);
 });

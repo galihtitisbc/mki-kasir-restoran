@@ -32,6 +32,10 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'category_products', 'product_id', 'category_id');
     }
+    public function opsi()
+    {
+        return $this->belongsToMany(Opsi::class, 'detail_opsis', 'product_id', 'opsi_id');
+    }
     public function bahans()
     {
         return $this->belongsToMany(Bahan::class, 'bahan_products', 'product_id', 'bahan_id');

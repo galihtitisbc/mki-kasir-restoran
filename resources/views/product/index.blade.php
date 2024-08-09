@@ -43,7 +43,7 @@
                         <th>Nama Produk</th>
                         <th>Supplier</th>
                         <th>Harga</th>
-                        <th>Stok</th>
+                        {{-- <th>Stok</th> --}}
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -57,7 +57,7 @@
                             <td>{{ $item->product_name }}</td>
                             <td>{{ 'pppp' }}</td>
                             <td>{{ $item->price }}</td>
-                            <td>{{ $item->stock }}</td>
+                            {{-- <td>{{ $item->stock }}</td> --}}
                             <td>{{ $item->status }}</td>
                             <td>
                                 <form action="{{ url('dashboard/produk/hapus', $item->slug) }}" class="form-delete"
@@ -78,6 +78,23 @@
     @push('js')
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @if (session('status'))
+            @if (session('status') == 'success')
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                    });
+                </script>
+            @elseif(session('status') == 'error')
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                    });
+                </script>
+            @endif
+        @endif
         <script>
             $(".form-delete").submit(function(e) {
                 e.preventDefault();
@@ -103,20 +120,5 @@
                 });
             });
         </script>
-        @if (session('status'))
-            <input type="hidden" id="status" value="{{ session('status') }}">
-            <script>
-                let msg = $('#status').val();
-                toastr.success(msg);
-            </script>
-        @endif
-        @if (session('error'))
-            <input type="hidden" id="error" value="{{ session('error') }}">
-            <script>
-                let msg = $('#error').val();
-                alert(msg);
-                toastr.danger(msg);
-            </script>
-        @endif
     @endpush
 @endsection

@@ -53,10 +53,10 @@ class SupplierController extends Controller
                 $supplier = Supplier::create($validated);
                 $supplier->outlets()->attach($validated['outlet_id']);
             });
-            return redirect('/dashboard/supplier')->with('status', 'Supplier berhasil ditambahkan');
+            return redirect('/dashboard/supplier')->with('status', 'success');
         } catch (\Throwable $th) {
             dd($th->getMessage());
-            return redirect('/dashboard/supplier')->with('error', 'Supplier gagal ditambahkan');
+            return redirect('/dashboard/supplier')->with('status', 'error');
         }
     }
 
@@ -94,10 +94,10 @@ class SupplierController extends Controller
                 $supplier->update($validated);
                 $supplier->outlets()->sync($validated['outlet_id']);
             });
-            return redirect('/dashboard/supplier')->with('status', 'Supplier berhasil diubah');
+            return redirect('/dashboard/supplier')->with('status', 'success');
         } catch (\Throwable $th) {
             dd($th->getMessage());
-            return redirect('/dashboard/supplier')->with('error', 'Supplier gagal diubah');
+            return redirect('/dashboard/supplier')->with('status', 'error');
         }
     }
 
@@ -108,6 +108,6 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::where('slug', $slug)->first();
         $supplier->delete();
-        return redirect('/dashboard/supplier')->with('status', 'Supplier berhasil dihapus');
+        return redirect('/dashboard/supplier')->with('status', 'success');
     }
 }

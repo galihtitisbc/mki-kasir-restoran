@@ -43,7 +43,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
                                 <th>No</th>
                                 <th>Kasir</th>
@@ -56,7 +56,7 @@
                                 <th>Tanggal</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($transactions as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
@@ -66,9 +66,9 @@
                                         @foreach ($item->product->categories as $cat)
                                             {{ $loop->last ? $cat->category_name : $cat->category_name . ',' }}
                                         @endforeach
-                                    <td>
+                                    </td>
                                     <td>{{ $item->outlet->outlet_name }}</td>
-                                    <td>{{ $item->product->price }}</td>
+                                    <td>{{ $item->product_price }}</td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>{{ $item->total_price }}</td>
                                     <td>{{ $item->created_at }}</td>

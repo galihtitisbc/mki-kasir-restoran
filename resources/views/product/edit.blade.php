@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
@@ -33,7 +36,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="exampleInputEmail1">Stok : ( Opsional )</label>
                             <input type="text" name="stock"
                                 class="form-control @error('stock')
@@ -43,7 +46,7 @@
                             @error('stock')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Upload Gambar : </label>
                             <input type="file" name="gambar" class="form-control" id="">
@@ -56,22 +59,14 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
-                            <div class="row">
+                            <select class="form-control edit-select" name="category_id[]" multiple="multiple"
+                                data-placeholder="Pilih Outlet" style="width: 100%;">
+                                <option value=""> -- Pilih Kategori --</option>
                                 @foreach ($category as $item)
-                                    <div class="col-6">
-                                        <div class="form-group clearfix">
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" name="category_id[]"
-                                                    id="checkboxPrimary3-{{ $item->slug }}"
-                                                    value="{{ $item->category_id }}" @checked(in_array($item->category_id, $selectedCategory))>
-                                                <label for="checkboxPrimary3-{{ $item->slug }}">
-                                                    {{ $item->category_name }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <option value="{{ $item->category_id }}" @selected(in_array($item->category_id, $selectedCategory))>
+                                        {{ $item->category_name }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                             @error('category_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -79,22 +74,14 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Produk Untuk Outlet :</label>
                             <br>
-                            <div class="row">
+                            <select class="form-control edit-select" name="outlet_id[]" multiple="multiple"
+                                data-placeholder="Pilih Outlet" style="width: 100%;">
+                                <option value=""> -- Pilih Outlet --</option>
                                 @foreach ($outlet as $item)
-                                    <div class="col-6">
-                                        <div class="form-group clearfix">
-                                            <div class="icheck-primary d-inline">
-                                                <input type="checkbox" name="outlet_id[]"
-                                                    id="checkboxPrimary3{{ $item->slug }}"
-                                                    value="{{ $item->outlet_id }}" @checked(in_array($item->outlet_id, $selectedOutlet))>
-                                                <label for="checkboxPrimary3{{ $item->slug }}">
-                                                    {{ $item->outlet_name }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <option value="{{ $item->outlet_id }}" @selected(in_array($item->outlet_id, $selectedOutlet))>
+                                        {{ $item->outlet_name }}</option>
                                 @endforeach
-                            </div>
+                            </select>
                             @error('outlet_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -109,4 +96,12 @@
     </div>
     </form>
     </div>
+    @push('js')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.edit-select').select2();
+            });
+        </script>
+    @endpush
 @endsection

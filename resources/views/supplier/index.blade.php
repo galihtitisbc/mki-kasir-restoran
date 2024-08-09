@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('../../plugins/toastr/toastr.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="card">
@@ -117,23 +118,17 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Pajak Untuk Outlet : </label>
-                                                    <div class="row">
-                                                        @foreach ($outlet as $edit)
-                                                            <div class="col-6">
-                                                                <div class="form-group clearfix">
-                                                                    <div class="d-inline">
-                                                                        <input type="checkbox" name="outlet_id[]"
-                                                                            value="{{ $edit->outlet_id }}"
-                                                                            {{ in_array($edit->outlet_id, $item->outlets->pluck('outlet_id')->toArray()) ? 'checked' : '' }}>
-                                                                        <label>
-                                                                            {{ $edit->outlet_name }}
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <label for="exampleInputEmail1">Supplier Untuk Outlet : </label>
+                                                    <select class="form-control tambah-select" name="outlet_id[]"
+                                                        multiple="multiple" data-placeholder="Pilih Outlet"
+                                                        style="width: 100%;">
+                                                        <option value=""> -- Pilih Outlet --</option>
+                                                        @foreach ($outlet as $o)
+                                                            <option value="{{ $o->outlet_id }}"
+                                                                {{ in_array($o->outlet_id, $item->outlets->pluck('outlet_id')->toArray()) ? 'selected' : '' }}>
+                                                                {{ $o->outlet_name }}</option>
                                                         @endforeach
-                                                    </div>
+                                                    </select>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-default"
@@ -193,20 +188,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="outlet">Pilih Outlet:</label>
-                                <div class="row">
+                                <select class="form-control tambah-select" name="outlet_id[]" multiple="multiple"
+                                    data-placeholder="Pilih Outlet" style="width: 100%;">
+                                    <option value=""> -- Pilih Outlet --</option>
                                     @foreach ($outlet as $item)
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="outlet_id[]"
-                                                    value="{{ $item->outlet_id }}" id="outlet_id{{ $item->slug }}"
-                                                    {{ in_array($item->slug, old('outlet_id', [])) ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="outlet_id{{ $item->slug }}">
-                                                    {{ $item->outlet_name }}
-                                                </label>
-                                            </div>
-                                        </div>
+                                        <option value="{{ $item->outlet_id }}">{{ $item->outlet_name }}</option>
                                     @endforeach
-                                </div>
+                                </select>
                             </div>
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -223,7 +211,28 @@
     @push('js')
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @if (session('status'))
+            @if (session('status') == 'success')
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                    });
+                </script>
+            @elseif(session('status') == 'error')
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal',
+                    });
+                </script>
+            @endif
+        @endif
         <script>
+            $(document).ready(function() {
+                $('.tambah-select').select2();
+            });
             $(".form-delete").submit(function(e) {
                 e.preventDefault();
                 Swal.fire({
@@ -248,19 +257,5 @@
                 });
             });
         </script>
-        @if (session('status'))
-            <input type="hidden" id="status" value="{{ session('status') }}">
-            <script>
-                let msg = $('#status').val();
-                toastr.success(msg);
-            </script>
-        @endif
-        @if (session('error'))
-            <input type="hidden" id="status" value="{{ session('error') }}">
-            <script>
-                let msg = $('#status').val();
-                toastr.danger(msg);
-            </script>
-        @endif
     @endpush
 @endsection

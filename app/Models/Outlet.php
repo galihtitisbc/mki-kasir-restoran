@@ -19,6 +19,10 @@ class Outlet extends Model
     {
         return $this->belongsToMany(Bahan::class, 'bahan_outlets', 'outlet_id', 'bahan_id');
     }
+    public function opsi()
+    {
+        return $this->hasMany(Opsi::class, 'outlet_id');
+    }
     public function salesHistories()
     {
         return $this->hasMany(SalesHistory::class, 'outlet_id');
@@ -46,6 +50,10 @@ class Outlet extends Model
     public function suppliers()
     {
         return $this->belongsToMany(Supplier::class, 'supplier_outlets', 'outlet_id', 'supplier_id');
+    }
+    public function outletHasPegawai()
+    {
+        return $this->belongsToMany(Outlet::class, 'user_outlets', 'outlet_id', 'user_id');
     }
     public function sluggable(): array
     {

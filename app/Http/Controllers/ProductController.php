@@ -63,9 +63,9 @@ class ProductController extends Controller
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);
             });
-            return redirect('/dashboard/produk')->with('status', 'Berhasil Tambah produk');
+            return redirect('/dashboard/produk')->with('status', 'success');
         } catch (\Throwable $e) {
-            return redirect('/dashboard/produk')->with('error', 'Gagal Tambah produk. message ' . $e->getMessage());
+            return redirect('/dashboard/produk')->with('status', 'error');
         }
     }
     public function edit(Product $product)
@@ -107,9 +107,9 @@ class ProductController extends Controller
                 $product->categories()->sync($validated['category_id']);
                 $product->outlets()->sync($validated['outlet_id']);
             });
-            return redirect('/dashboard/produk')->with('status', 'Berhasil Edit produk');
+            return redirect('/dashboard/produk')->with('status', 'success');
         } catch (\Throwable $e) {
-            return redirect('/dashboard/produk')->with('error', 'Gagal Edit produk. message ' . $e->getMessage());
+            return redirect('/dashboard/produk')->with('status', 'error');
         }
     }
     public function destroy(Product $product)
