@@ -60,7 +60,7 @@
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
                             <select class="form-control edit-select" name="category_id[]" multiple="multiple"
-                                data-placeholder="Pilih Outlet" style="width: 100%;">
+                                data-placeholder="Pilih Kategori" style="width: 100%;">
                                 <option value=""> -- Pilih Kategori --</option>
                                 @foreach ($category as $item)
                                     <option value="{{ $item->category_id }}" @selected(in_array($item->category_id, $selectedCategory))>
@@ -85,6 +85,56 @@
                             @error('outlet_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Opsi Untuk Produk ( Opsional ) :</label>
+                            @foreach ($opsi as $val)
+                                <div class="custom-control custom-checkbox d-flex justify-content-between my-2">
+                                    <input class="custom-control-input" name="opsi_id[]" value="{{ $val->id }}"
+                                        type="checkbox" id="customCheckbox{{ $loop->index }}"
+                                        {{ in_array($val->id, $selectedOpsi) ? 'checked' : '' }}>
+                                    <label for="customCheckbox{{ $loop->index }}"
+                                        class="custom-control-label">{{ $val->opsi_name }}</label>
+                                    <button type="button" class="btn btn-primary detail-opsi" data-toggle="modal"
+                                        data-target="#modal-detail-opsi-{{ $val->slug }}"><i class="fa fa-eye"
+                                            aria-hidden="true"></i></button>
+                                </div>
+                                <div class="modal fade" id="modal-detail-opsi-{{ $val->slug }}">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Detail Opsi </h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @foreach ($val->detailOpsi as $detail)
+                                                    <div class="row d-flex justify-content-center my-3">
+                                                        <div class="col-4">
+                                                            <label for="opsi">Nama Opsi : </label>
+                                                            <input type="text" class="form-control"
+                                                                value="{{ $detail->opsi }}" disabled>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <label for="opsi">Harga : </label>
+                                                            <input type="number" class="form-control"
+                                                                value="{{ $detail->harga }}" disabled>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

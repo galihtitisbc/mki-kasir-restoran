@@ -30,7 +30,9 @@ class ProductUpdateRequest extends FormRequest
             'outlet_id'     => 'required|array',
             'outlet.*'      => 'required|numeric',
             'category_id'   => 'required|array',
-            'category.*'    => 'required|numeric'
+            'category.*'    => 'required|numeric',
+            'opsi_id'       => 'nullable|array',
+            'opsi.*'        => 'nullable|numeric',
         ];
     }
 }

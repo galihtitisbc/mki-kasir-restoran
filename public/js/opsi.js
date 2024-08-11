@@ -12,10 +12,10 @@ function getOpsi() {
             res.data.forEach((e, index) => {
                 htmlData += `
                                 <div class="custom-control custom-checkbox d-flex justify-content-between my-2">
-                                    <input class="custom-control-input" value="${e.id}" type="checkbox" id="customCheckbox${index}">
+                                    <input class="custom-control-input" name="opsi_id[]" value="${e.id}" type="checkbox" id="customCheckbox${index}">
                                     <label for="customCheckbox${index}" class="custom-control-label">${e.opsi_name}</label>
-                                    <button type="button" class="btn btn-primary detail-opsi" id="${e.id}" data-toggle="modal"
-                                    data-target="#modal-detail-opsi-${e.id}">Detail</button>
+                                    <button type="button" class="btn btn-primary detail-opsi" id="${e.slug}" data-toggle="modal"
+                                    data-target="#modal-detail-opsi-${e.slug}"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                 </div>
                             `;
             });
@@ -40,7 +40,7 @@ $(".daftar-opsi").on("click", ".detail-opsi", function () {
         success: function (res) {
             res.data.detail_opsi.forEach((e) => {
                 console.log(e.harga);
-                htmlData = `
+                htmlData += `
                   <div class="row d-flex justify-content-center my-3">
                                 <div class="col-4">
                                     <label for="opsi">Nama Opsi : </label>
@@ -64,6 +64,10 @@ $(".daftar-opsi").on("click", ".detail-opsi", function () {
 
 $(document).ready(function () {
     $(".tambah-select").select2();
+    $(".select-opsi").select2({
+        minimumResultsForSearch: -1,
+        placeholder: "Pilih Outlet",
+    });
     $("#form-container").on("input", ".form-control", function () {
         var value = $(this).val().trim();
         if (value === "") {
@@ -79,6 +83,8 @@ $(document).ready(function () {
         formGroup.find("input").val("");
         formGroup.find(".error-message").hide();
         formGroup.find(".form-control").removeClass("is-invalid");
+        formGroup.find(".opsi").attr("name", "opsi[]");
+        formGroup.find(".harga").attr("name", "harga[]");
         $("#form-container").append(formGroup);
     });
     // kirim data
@@ -86,14 +92,15 @@ $(document).ready(function () {
         let data = [];
         let valid = true;
         let grupOpsi = $("#opsi_name").val().trim();
+        let outletId = $("[name='outlet_id']").val();
         $(".form-detail-opsi").each(function () {
             let namaOpsi = $(this).find(".opsi").val().trim();
             let harga = $(this).find(".harga").val().trim();
-
             if (namaOpsi === "") {
                 $(this).find(".opsi").addClass("is-invalid");
                 $(this).find(".opsi").siblings(".error-message").show();
                 valid = false;
+                return;
             } else {
                 $(this).find(".opsi").removeClass("is-invalid");
                 $(this).find(".opsi").siblings(".error-message").hide();
@@ -102,6 +109,7 @@ $(document).ready(function () {
                 $(this).find(".harga").addClass("is-invalid");
                 $(this).find(".harga").siblings(".error-message").show();
                 valid = false;
+                return;
             } else {
                 $(this).find(".harga").removeClass("is-invalid");
                 $(this).find(".harga").siblings(".error-message").hide();
@@ -113,7 +121,7 @@ $(document).ready(function () {
                 });
             }
         });
-        console.log(data);
+        data.push({ grupOpsi: grupOpsi, outletId: outletId });
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -123,10 +131,22 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (response) {
-                console.log(response);
+                $("#tambah-modal").modal("hide");
+                getOpsi();
+                Swal.fire({
+                    title: "Berhasil Tambah Opsi",
+                    text: `${response.message}`,
+                    icon: "success",
+                });
             },
             error: function (xhr, status, error) {
-                console.error(error);
+                $("#tambah-modal").modal("hide");
+                getOpsi();
+                Swal.fire({
+                    title: "Gagal Tambah Opsi",
+                    text: `${error.messsage}`,
+                    icon: "error",
+                });
             },
         });
     });

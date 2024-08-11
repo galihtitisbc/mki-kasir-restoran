@@ -14,6 +14,12 @@ class Product extends Model
     protected $table = 'products';
     protected $primaryKey = 'product_id';
     protected $guarded = ['product_id'];
+    protected static function booted()
+    {
+        static::addGlobalScope('latest', function ($query) {
+            $query->orderBy('created_at', 'desc');
+        });
+    }
     public function sluggable(): array
     {
         return [
@@ -34,7 +40,7 @@ class Product extends Model
     }
     public function opsi()
     {
-        return $this->belongsToMany(Opsi::class, 'detail_opsis', 'product_id', 'opsi_id');
+        return $this->belongsToMany(Opsi::class, 'product_opsis', 'product_id', 'opsi_id');
     }
     public function bahans()
     {

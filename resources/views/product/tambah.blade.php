@@ -48,7 +48,7 @@
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
                             <select class="form-control tambah-select" name="category_id[]" multiple="multiple"
-                                data-placeholder="Pilih Outlet" style="width: 100%;">
+                                data-placeholder="Pilih Kategori" style="width: 100%;">
                                 <option value=""> -- Pilih Kategori --</option>
                                 @foreach ($category as $item)
                                     <option value="{{ $item->category_id }}">
@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group">
                             <div class="opsi d-flex justify-content-between">
-                                <h5><b>Pilih Opsi :</b></h5>
+                                <label for="exampleInputEmail1">Opsi Untuk Produk ( Opsional ) :</label>
                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#tambah-modal"><i class="fa fa-plus-circle"
                                         aria-hidden="true"></i></button>
@@ -110,7 +110,7 @@
                             <label for="exampleInputEmail1">Nama Grup Opsi : </label>
                             <input type="text" id="opsi_name" name="opsi_name"
                                 class="form-control mx-4 col-4 @error('opsi_name') is-invalid @enderror"
-                                placeholder="Masukkan Nama Grup Opsi" value="{{ old('opsi_name') }}">
+                                placeholder="Masukkan Nama Grup Opsi" required value="{{ old('opsi_name') }}">
                             <button type="button" class="btn btn-success tambah-form-opsi"><i class="fa fa-plus-circle"
                                     aria-hidden="true"></i>Tambah Detail Opsi</button>
                         </div>
@@ -119,15 +119,25 @@
                         @enderror
                     </div>
                     <div class="detail-opsi" id="form-container">
+                        <div class="col-5 mx-auto">
+                            <select class="select-opsi" name="outlet_id" data-placeholder="Pilih Outlet"
+                                style="width: 100%;">
+                                <option value=""> -- Pilih Outlet --</option>
+                                @foreach ($outlet as $item)
+                                    <option value="{{ $item->outlet_id }}">
+                                        {{ $item->outlet_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group form-detail-opsi">
                             <div class="row d-flex justify-content-center my-3">
                                 <div class="col-4">
                                     <label for="opsi">Nama Opsi : </label>
-                                    <input type="text" class="form-control opsi" name="opsi" id="opsi">
+                                    <input type="text" class="form-control opsi" name="opsi[]" id="opsi">
                                 </div>
                                 <div class="col-4">
                                     <label for="opsi">Harga : </label>
-                                    <input type="number" class="form-control harga" name="harga" id="harga">
+                                    <input type="number" class="form-control harga" name="harga[]" id="harga">
                                 </div>
                             </div>
                         </div>
@@ -169,6 +179,7 @@
     </div>
     @push('js')
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/opsi.js') }}"></script>
     @endpush
 @endsection

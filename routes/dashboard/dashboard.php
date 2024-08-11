@@ -64,6 +64,9 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/laporan/', 'index');
     });
     Route::get('/opsi', [OpsiController::class, 'getOpsi']);
-    Route::get('/opsi/{opsi}', [OpsiController::class, 'getDetailOpsi']);
+    Route::get('/opsi/{opsi:slug}', [OpsiController::class, 'getDetailOpsi']);
     Route::post('/opsi', [OpsiController::class, 'store']);
+    Route::get('/opsi-produk', [OpsiController::class, 'index']);
+    Route::delete('/opsi/hapus/{opsi:slug}', [OpsiController::class, 'destroy']);
+    Route::put('/opsi/update/{opsi:slug}', [OpsiController::class, 'update']);
 });

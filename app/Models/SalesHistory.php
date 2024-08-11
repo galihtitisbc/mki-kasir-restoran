@@ -11,6 +11,12 @@ class SalesHistory extends Model
     use HasFactory;
     protected $table = 'sales_histories';
     protected $primaryKey = 'sales_history_id';
+    protected static function booted()
+    {
+        static::addGlobalScope('latest', function ($query) {
+            $query->orderBy('created_at', 'desc');
+        });
+    }
     public function scopeFilter(Builder $query, array $data)
     {
         $query->whereHas('outlet', function ($query) use ($data) {

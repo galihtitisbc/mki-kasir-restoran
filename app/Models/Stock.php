@@ -13,6 +13,12 @@ class Stock extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = ['stock_id'];
     protected $primaryKey = 'stock_id';
+    protected static function booted()
+    {
+        static::addGlobalScope('latest', function ($query) {
+            $query->orderBy('created_at', 'desc');
+        });
+    }
     public function scopeStockByOutlet(Builder $query, array $data)
     {
         $query->whereHas('bahan.outlets', function ($query) use ($data) {

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id('pesanan_id');
             $table->foreignId('product_id')->references('product_id')->on('products');
-            $table->foreignId('meja_id')->references('meja_id')->on('mejas');
+            $table->foreignId('meja_id')->nullable()->references('meja_id')->on('mejas');
             $table->integer('quantity');
             $table->integer('total');
             $table->boolean('status')->default(0);

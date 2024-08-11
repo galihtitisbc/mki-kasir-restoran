@@ -44,7 +44,6 @@ class ProductController extends Controller
     public function store(ProductCreateRequest $request)
     {
         $validated = $request->validated();
-
         try {
             DB::transaction(function () use ($validated) {
                 if (isset($validated['gambar'])) {
@@ -62,29 +61,33 @@ class ProductController extends Controller
                 ]);
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);
+                $produk->opsi()->attach($validated['opsi_id']);
             });
             return redirect('/dashboard/produk')->with('status', 'success');
         } catch (\Throwable $e) {
+            dd($e->getMessage());
             return redirect('/dashboard/produk')->with('status', 'error');
         }
     }
     public function edit(Product $product)
     {
         $outlet = $this->getRole() == 'ADMIN'
-            ? Auth::user()->outletWorks()->with('categories')->get()
-            : Auth::user()->supervisorHasOutlets()->with('categories')->get();
-        $category = $outlet->flatMap(function ($outlet) {
-            return $outlet->categories;
-        });
+            ? Auth::user()->outletWorks()->with(['categories', 'opsi.detailOpsi'])->get()
+            : Auth::user()->supervisorHasOutlets()->with(['categories', 'opsi.detailOpsi'])->get();
+        $category = $outlet->flatMap->categories;
+        $opsi = $outlet->flatMap->opsi;
         $selectedCategory = $product->categories->pluck('category_id', 'category_name', 'slug')->toArray();
         $selectedOutlet = $product->outlets->pluck('outlet_id', 'outlet_name', 'slug')->toArray();
+        $selectedOpsi = $product->opsi->pluck('id', 'opsi_name')->toArray();
         return view('product.edit', [
             'title'             => 'Update Produk',
             'produk'            => $product,
             'selectedCategory'  => $selectedCategory,
             'selectedOutlet'    => $selectedOutlet,
+            'selectedOpsi'     => $selectedOpsi,
             'outlet'            => $outlet,
-            'category'          => $category
+            'category'          => $category,
+            'opsi'              => $opsi
         ]);
     }
     public function update(Product $product, ProductUpdateRequest $request)
@@ -102,10 +105,10 @@ class ProductController extends Controller
                     Storage::delete('public/gambar/' . $product->gambar);
                     $updateData['gambar'] = $fileName;
                 }
-
                 $product->update($updateData);
                 $product->categories()->sync($validated['category_id']);
                 $product->outlets()->sync($validated['outlet_id']);
+                $product->opsi()->sync($validated['opsi_id']);
             });
             return redirect('/dashboard/produk')->with('status', 'success');
         } catch (\Throwable $e) {

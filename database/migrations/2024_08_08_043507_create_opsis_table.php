@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->string('opsi_name');
+            $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

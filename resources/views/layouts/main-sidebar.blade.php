@@ -54,6 +54,24 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/dashboard/produk') }}"
+                                class="nav-link {{ request()->segment(2) == 'produk' ? 'active' : '' }}">
+                                <i class="fa fa-cube" aria-hidden="true"></i>
+                                <p>
+                                    Kelola Produk
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/dashboard/opsi-produk') }}"
+                                class="nav-link {{ request()->segment(2) == 'opsi-produk' ? 'active' : '' }}">
+                                <i class="fa fa-coffee" aria-hidden="true"></i>
+                                <p>
+                                    Kelola Opsi Produk
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/dashboard/kategori') }}"
                                 class="nav-link {{ request()->segment(2) == 'kategori' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-image"></i>
@@ -86,15 +104,6 @@
                                 <i class="nav-icon fas fa-boxes"></i>
                                 <p>
                                     Kelola Stok Bahan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/dashboard/produk') }}"
-                                class="nav-link {{ request()->segment(2) == 'produk' ? 'active' : '' }}">
-                                <i class="fa fa-cube" aria-hidden="true"></i>
-                                <p>
-                                    Kelola Produk
                                 </p>
                             </a>
                         </li>
