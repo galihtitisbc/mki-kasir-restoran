@@ -51,14 +51,27 @@
                 <tbody>
                     @foreach ($product as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td><img src="{{ asset('storage/gambar/' . $item->gambar) }}" alt="" width="50"
-                                    height="50"></td>
+                            <td>{{ $product->firstItem() + $loop->index }}</td>
+                            <td>
+                                @if ($item->gambar != null)
+                                    <img src="{{ asset('storage/gambar/' . $item->gambar) }}" alt="" width="50"
+                                        height="50">
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>{{ $item->product_name }}</td>
                             <td>{{ 'pppp' }}</td>
                             <td>{{ $item->price }}</td>
                             {{-- <td>{{ $item->stock }}</td> --}}
-                            <td>{{ $item->status }}</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" data-id="{{ $item->slug }}"
+                                        class="custom-control-input status-product" id="{{ $item->slug }}"
+                                        {{ $item->status ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="{{ $item->slug }}"></label>
+                                </div>
+                            </td>
                             <td>
                                 <form action="{{ url('dashboard/produk/hapus', $item->slug) }}" class="form-delete"
                                     method="POST">
@@ -75,6 +88,11 @@
         </div>
         <!-- /.card-body -->
     </div>
+    @if (!is_null($product))
+        <div class="pagination justify-content-center">
+            {{ $product->links() }}
+        </div>
+    @endif
     @push('js')
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -96,6 +114,36 @@
             @endif
         @endif
         <script>
+            $('.status-product').change(function() {
+                let slug = $(this).data('id');
+                let status = $(this).is(':checked') ? 1 : 0;
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    url: "/dashboard/produk/status/" + slug,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: {
+                        status: status
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                        })
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                        })
+                    },
+                });
+            })
             $(".form-delete").submit(function(e) {
                 e.preventDefault();
                 Swal.fire({

@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'slug'          => fake()->slug(3),
             'product_name'  => fake()->unique()->name(),
             'price'         => rand(10000, 50000),
-            'status'        => 1,
+            'status'        => fake()->boolean(),
         ];
     }
 }

@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $slugQuery = $request->query('outlet');
-        $produk = Product::productByOutlet($slugQuery)->get();
+        $produk = Product::productByOutlet($slugQuery)->paginate(10)->withQueryString();
         return view('product.index', [
             'title'     =>  'Kelola Produk',
             'product'   => $produk,
@@ -61,7 +61,9 @@ class ProductController extends Controller
                 ]);
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);
-                $produk->opsi()->attach($validated['opsi_id']);
+                if (isset($validated['opsi_id'])) {
+                    $produk->opsi()->attach($validated['opsi_id']);
+                }
             });
             return redirect('/dashboard/produk')->with('status', 'success');
         } catch (\Throwable $e) {
@@ -108,11 +110,30 @@ class ProductController extends Controller
                 $product->update($updateData);
                 $product->categories()->sync($validated['category_id']);
                 $product->outlets()->sync($validated['outlet_id']);
-                $product->opsi()->sync($validated['opsi_id']);
+                if (isset($validated['opsi_id'])) {
+                    $product->opsi()->sync($validated['opsi_id']);
+                }
             });
             return redirect('/dashboard/produk')->with('status', 'success');
         } catch (\Throwable $e) {
             return redirect('/dashboard/produk')->with('status', 'error');
+        }
+    }
+    public function updateStatus(Product $product)
+    {
+        try {
+            $product->update([
+                'status'    =>  !$product->status
+            ]);
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil Update Status produk',
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => 401,
+                'message' => $e->getMessage()
+            ]);
         }
     }
     public function destroy(Product $product)

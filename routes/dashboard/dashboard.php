@@ -50,6 +50,7 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/produk/tambah', 'store');
         Route::get('/produk/{product:slug}', 'edit');
         Route::put('/produk/{product:slug}', 'update');
+        Route::put('/produk/status/{product:slug}', 'updateStatus');
         Route::delete('/produk/hapus/{product:slug}', 'destroy');
     });
     Route::resource('pajak', TaxController::class);

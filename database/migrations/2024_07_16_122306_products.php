@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("slug")->nullable()->unique();
             $table->string("product_name");
             $table->integer("price");
-            $table->boolean("status")->default(0);
+            $table->boolean("status")->default(false);
             $table->integer("stock")->nullable();
             $table->string("gambar")->nullable();
             $table->timestamps();

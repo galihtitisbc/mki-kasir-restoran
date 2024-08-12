@@ -116,6 +116,10 @@ class DatabaseSeeder extends Seeder
         Product::each(function ($product) use ($category) {
             $product->categories()->attach($category->random(rand(1, 5))->pluck('category_id')->toArray());
         });
+        $outlet = Outlet::all();
+        Product::each(function ($product) use ($outlet) {
+            $product->outlets()->attach($outlet->random(rand(1, 5))->pluck('outlet_id')->toArray());
+        });
         Pesanan::factory(20)->create();
         SalesHistory::factory(20)->create();
     }

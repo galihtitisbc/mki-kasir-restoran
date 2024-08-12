@@ -63,10 +63,13 @@ $(".daftar-opsi").on("click", ".detail-opsi", function () {
 });
 
 $(document).ready(function () {
-    $(".tambah-select").select2();
+    $(".tambah-select").select2({
+        theme: "classic",
+    });
     $(".select-opsi").select2({
         minimumResultsForSearch: -1,
         placeholder: "Pilih Outlet",
+        theme: "classic",
     });
     $("#form-container").on("input", ".form-control", function () {
         var value = $(this).val().trim();
