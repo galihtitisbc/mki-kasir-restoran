@@ -128,13 +128,7 @@
                         status: status
                     },
                     success: function(response) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                        })
-                        setTimeout(() => {
-                            location.reload();
-                        }, 1000);
+                        toastr.success("Berhasil");
                     },
                     error: function(xhr, status, error) {
                         Swal.fire({

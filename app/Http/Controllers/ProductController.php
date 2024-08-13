@@ -20,6 +20,12 @@ class ProductController extends Controller
     {
         $slugQuery = $request->query('outlet');
         $produk = Product::productByOutlet($slugQuery)->paginate(10)->withQueryString();
+        // $slugQuery = $request->query('outlet');
+        // $userId = Auth::getUser()->user_id;
+        // $cacheKey = "search_results_user_{$userId}_keyword_{$slugQuery}";
+        // $produk = Cache::rememberForever($cacheKey, function () use ($slugQuery) {
+        //     return Product::productByOutlet($slugQuery)->paginate(10)->withQueryString();
+        // });
         return view('product.index', [
             'title'     =>  'Kelola Produk',
             'product'   => $produk,
