@@ -55,10 +55,7 @@ class SalesHistory extends Model
     {
         return $this->belongsTo(Pesanan::class, 'pesanan_id');
     }
-    public function salesHistoryTax()
-    {
-        return $this->hasMany(SalesHistoryTax::class, 'sales_history_id');
-    }
+
     public function taxs()
     {
         return $this->belongsToMany(Tax::class, 'sales_history_taxs', 'sales_history_id', 'tax_id');

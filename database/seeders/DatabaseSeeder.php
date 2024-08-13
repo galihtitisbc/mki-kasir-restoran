@@ -10,6 +10,7 @@ use App\Models\Outlet;
 use App\Models\Pesanan;
 use App\Models\Product;
 use App\Models\SalesHistory;
+use App\Models\Tax;
 use App\Models\UserOutlet;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -122,5 +123,14 @@ class DatabaseSeeder extends Seeder
         });
         Pesanan::factory(20)->create();
         SalesHistory::factory(20)->create();
+        $tax = Tax::all();
+        SalesHistory::each(function ($salesHistory) use ($tax) {
+            $pivotArray = [];
+            $taxIds = $tax->random(rand(1, 3))->pluck('tax_id')->toArray();
+            foreach ($taxIds as $taxId) {
+                $pivotArray[] = ['tax_id' => $taxId, 'total' => $salesHistory->total_price * $tax[$taxId - 1]->tax_rate / 100];
+            }
+            $salesHistory->taxs()->attach($pivotArray);
+        });
     }
 }

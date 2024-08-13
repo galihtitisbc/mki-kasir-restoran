@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('sales_history_tax_id');
             $table->foreignId('sales_history_id')->references('sales_history_id')->on('sales_histories');
             $table->foreignId('tax_id')->references('tax_id')->on('taxs');
-            $table->integer("total");
+            $table->double("total");
             $table->timestamps();
         });
     }
