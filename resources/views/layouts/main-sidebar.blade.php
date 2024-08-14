@@ -25,7 +25,7 @@
                     data-accordion="false">
                     <li class="nav-item">
                         <a href="{{ url('/dashboard/home') }}"
-                            class="nav-link {{ request()->segment(2) == 'dashboard' ? 'active' : '' }}">
+                            class="nav-link {{ request()->segment(2) == 'home' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Dashboard

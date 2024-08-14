@@ -29,12 +29,13 @@
                         </div>
                         <div class="col-3 d-flex">
                             <button type="submit" class="btn btn-primary mr-2">Cari</button>
-                            <a href="{{ url('/dashboard/meja') }}" type="submit" class="btn btn-danger">Reset</a>
+                            <a href="{{ url('/dashboard/produk') }}" type="submit" class="btn btn-danger">Reset</a>
                         </div>
                     </div>
                 </form>
             </div>
             <br>
+            <h5 class="ml-3">Jumlah Produk : {{ $product->total() }}</h5>
             <table class="table table-hover text-center">
                 <thead>
                     <tr>

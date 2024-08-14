@@ -11,6 +11,7 @@ use App\Trait\UserAndRoleLoggedIn;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use Milon\Barcode\DNS1D;
 use Storage;
 
 class ProductController extends Controller
@@ -20,12 +21,6 @@ class ProductController extends Controller
     {
         $slugQuery = $request->query('outlet');
         $produk = Product::productByOutlet($slugQuery)->paginate(10)->withQueryString();
-        // $slugQuery = $request->query('outlet');
-        // $userId = Auth::getUser()->user_id;
-        // $cacheKey = "search_results_user_{$userId}_keyword_{$slugQuery}";
-        // $produk = Cache::rememberForever($cacheKey, function () use ($slugQuery) {
-        //     return Product::productByOutlet($slugQuery)->paginate(10)->withQueryString();
-        // });
         return view('product.index', [
             'title'     =>  'Kelola Produk',
             'product'   => $produk,
@@ -56,14 +51,20 @@ class ProductController extends Controller
                     $fileName = $validated['gambar']->hashName();
                     Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
                 }
-                $productCount = Product::count();
-                $productCode = 'PRD' . str_pad($productCount + 1, 3, '0', STR_PAD_LEFT);
+                $productCount = Product::latest()->first();
+                $productCode = 'PRD' . str_pad($productCount->product_id + 1, 3, '0', STR_PAD_LEFT);
+
+                $dns1d = new DNS1D();
+                $barcodeName = "{$productCode}.png";
+                $barcodeData = $dns1d->getBarcodePNG("{$productCode}", "C39");
+                Storage::put("public/barcode/{$barcodeName}", base64_decode($barcodeData));
                 $produk = Product::create([
                     'user_id'       =>  Auth::getUser()->user_id,
                     'product_name'  => $validated['product_name'],
                     'price'         => $validated['price'],
                     'gambar'        => $fileName ?? null,
-                    'product_code'  => $productCode
+                    'product_code'  => $productCode,
+                    'barcode'       => $barcodeName
                 ]);
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);

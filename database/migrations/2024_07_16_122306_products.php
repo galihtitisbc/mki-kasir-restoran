@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean("status")->default(false);
             $table->integer("stock")->nullable();
             $table->string("gambar")->nullable();
+            $table->string("barcode")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

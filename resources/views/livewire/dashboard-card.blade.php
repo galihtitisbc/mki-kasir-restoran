@@ -1,6 +1,6 @@
 <div>
     <div class="pilih-outlet d-flex justify-content-center">
-        <select wire:model.change="outletSearch" class="form-control col-3 mb-2" id="">
+        <select wire:model.change="outletSearch" class="form-control col-3 mb-4" id="">
             <option value="">-- Pilih Outlet --</option>
             @foreach ($outlets as $item)
                 <option value="{{ $item->slug }}" {{ request('outlet') == $item->slug ? 'selected' : '' }}>
@@ -9,7 +9,7 @@
             @endforeach
         </select>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-between">
         <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
@@ -50,20 +50,19 @@
                 </div>
             </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-primary">
                 <div class="inner">
-                    <h3>65</h3>
-
-                    <p>Unique Visitors</p>
+                    <h3>{{ $jumlahProduk }}</h3>
+                    <p>Jumlah Produk</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+                    <i class="ion ion-cube"></i>
                 </div>
             </div>
         </div>
+        <!-- ./col -->
         <!-- ./col -->
     </div>
 </div>
