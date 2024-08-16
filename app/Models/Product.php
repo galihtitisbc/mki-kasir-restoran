@@ -31,7 +31,9 @@ class Product extends Model
     public function scopeProductByOutlet(Builder $query, $slug = null)
     {
         $query->whereHas('outlets', function (Builder $query) use ($slug) {
-            $query->where('slug', '=', $slug);
+            $query->when($slug ?? null, function ($query) use ($slug) {
+                return $query->where('slug', $slug);
+            });
         });
     }
     public function categories()

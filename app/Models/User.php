@@ -53,7 +53,9 @@ class User extends Authenticatable
     public function scopePegawaiByOutlet(Builder $query, $slug)
     {
         $query->whereHas('outletWorks', function (Builder $query) use ($slug) {
-            $query->where('slug', '=', $slug);
+            $query->when($slug ?? null, function ($query) use ($slug) {
+                return $query->where('slug', $slug);
+            });
         });
         $query->whereDoesntHave('roles', function (Builder $query) {
             $query->whereIn('name', ['SUPERADMIN', 'SUPERVISOR']);

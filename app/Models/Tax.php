@@ -23,7 +23,9 @@ class Tax extends Model
     public function scopeTaxByOutlet(Builder $query, $slug)
     {
         $query->whereHas('outlets', function (Builder $query) use ($slug) {
-            $query->where('slug', $slug);
+            $query->when($slug ?? null, function ($query) use ($slug) {
+                return $query->where('slug', $slug);
+            });
         });
     }
     public function salesHistories()
