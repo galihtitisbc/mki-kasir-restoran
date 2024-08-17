@@ -16,9 +16,7 @@ class Bahan extends Model
     public function scopeBahanByOutlet(Builder $query, $slug)
     {
         $query->whereHas('outlets', function (Builder $query) use ($slug) {
-            $query->when($slug ?? null, function ($query) use ($slug) {
-                return $query->where('slug', $slug);
-            });
+            $query->where('slug', $slug);
         });
     }
     public function outlets()

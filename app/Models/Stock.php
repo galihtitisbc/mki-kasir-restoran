@@ -22,9 +22,7 @@ class Stock extends Model
     public function scopeStockByOutlet(Builder $query, array $data)
     {
         $query->whereHas('bahan.outlets', function ($query) use ($data) {
-            $query->when($data['outlet'] ?? null, function ($query) use ($data) {
-                return $query->where('slug', $data['outlet']);
-            });
+            $query->where('slug', $data['outlet']);
         });
         $query->when($data['fromDate'], function ($query) use ($data) {
             return $query->where('created_at', '>=', $data['fromDate']);

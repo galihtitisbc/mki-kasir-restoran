@@ -30,9 +30,7 @@ class Opsi extends Model
     public function scopeOpsiByOutlet(Builder $query, $slug)
     {
         $query->whereHas('outlet', function ($query) use ($slug) {
-            $query->when($slug ?? null, function ($query) use ($slug) {
-                return $query->where('slug', $slug);
-            });
+            $query->where('slug', $slug);
         });
     }
     public function outlet()

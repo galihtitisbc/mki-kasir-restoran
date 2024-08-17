@@ -10,7 +10,7 @@
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
             <form action="{{ url('/dashboard/stock/sesuaikan') }}" method="GET" class="mb-3">
-                <div class="row d-flex justify-content-center ml-5 mt-3">
+                <div class="row d-flex justify-content-center mt-3">
                     <div class="col-4">
                         <select name="outlet" class="form-control" id="">
                             <option value="" selected>-- Semua Outlet --</option>

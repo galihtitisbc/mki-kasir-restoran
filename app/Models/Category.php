@@ -19,9 +19,7 @@ class Category extends Model
     public function scopeCategoryByOutlet(Builder $query, $slug = null)
     {
         $query->whereHas('outlet', function (Builder $query) use ($slug) {
-            $query->when($slug ?? null, function ($query) use ($slug) {
-                return $query->where('slug', $slug);
-            });
+            $query->where('slug', $slug);
         });
     }
     public function outlet()
