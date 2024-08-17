@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tax;
-use App\Trait\GetOutletByUser;
 use DB;
+use App\Models\Tax;
 use Illuminate\Http\Request;
+use App\Trait\GetOutletByUser;
+use Illuminate\Support\Facades\Auth;
 
 class TaxController extends Controller
 {
@@ -13,7 +14,11 @@ class TaxController extends Controller
     public function index(Request $request)
     {
         $slug = $request->query('outlet');
-        $tax = Tax::with('outlets')->taxByOutlet($slug)->get();
+        $userFilter = [
+            'role'      => Auth::user()->roles->pluck('name')[0],
+            'user_id'   => Auth::user()->user_id
+        ];
+        $tax = Tax::with('outlets')->taxByOutlet($slug, $userFilter)->get();
         return view('pajak.index', [
             'title'     =>  'Pajak',
             'outlet'    =>  $this->getOutletByUser(),

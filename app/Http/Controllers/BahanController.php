@@ -33,7 +33,11 @@ class BahanController extends Controller
     {
         $slug = $request->query('outlet');
         $outlet = $this->getOutletByUser();
-        $bahan = Bahan::bahanByOutlet($slug)->get();
+        $userFilter = [
+            'role'      => Auth::user()->roles->pluck('name')[0],
+            'user_id'   => Auth::user()->user_id
+        ];
+        $bahan = Bahan::bahanByOutlet($slug, $userFilter)->get();
         return view('bahan.index', [
             'title' => 'Bahan',
             'bahan' => $bahan,

@@ -28,10 +28,15 @@ class Product extends Model
             ]
         ];
     }
-    public function scopeProductByOutlet(Builder $query, $slug = null)
+    public function scopeProductByOutlet(Builder $query, $slug = null, array $userFilter)
     {
         $query->whereHas('outlets', function (Builder $query) use ($slug) {
-            $query->where('slug', '=', $slug);
+            $query->when($slug ?? null, function (Builder $query) use ($slug) {
+                $query->where('slug', $slug);
+            });
+        });
+        $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'outlets.supervisor' : 'outlets.outletHasPegawai', function (Builder $query) use ($userFilter) {
+            $query->where('user_id', $userFilter['user_id']);
         });
     }
     public function categories()

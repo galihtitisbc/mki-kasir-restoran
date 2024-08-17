@@ -18,7 +18,11 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $slugQuery = $request->query('outlet');
-        $category = Category::categoryByOutlet($slugQuery)->get();
+        $userFilter = [
+            'role'      => Auth::user()->roles->pluck('name')[0],
+            'user_id'   => Auth::user()->user_id
+        ];
+        $category = Category::categoryByOutlet($slugQuery, $userFilter)->get();
         return view('category.index', [
             'title' =>  'Kategori',
             'kategori'  => $category,

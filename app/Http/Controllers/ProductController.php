@@ -20,7 +20,11 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $slugQuery = $request->query('outlet');
-        $produk = Product::productByOutlet($slugQuery)->paginate(10)->withQueryString();
+        $userFilter = [
+            'role'      => Auth::user()->roles->pluck('name')[0],
+            'user_id'   => Auth::user()->user_id
+        ];
+        $produk = Product::productByOutlet($slugQuery, $userFilter)->paginate(10)->withQueryString();
         return view('product.index', [
             'title'     =>  'Kelola Produk',
             'product'   => $produk,

@@ -19,7 +19,11 @@ class SupplierController extends Controller
     public function index(Request $request)
     {
         $slug = $request->query('outlet');
-        $supplier = Supplier::with('outlets')->supplierByOutlet($slug)->get();
+        $userFilter = [
+            'role'      => Auth::user()->roles->pluck('name')[0],
+            'user_id'   => Auth::user()->user_id
+        ];
+        $supplier = Supplier::with('outlets')->supplierByOutlet($slug, $userFilter)->get();
         return view('supplier.index', [
             'title' => 'Supplier',
             'supplier' => $supplier,

@@ -38,13 +38,16 @@ class StockController extends Controller
     public function update(SesuaikanStockRequest $request)
     {
         $validated = collect($request->validated());
+
         try {
             DB::transaction(function () use ($validated) {
+                $shift = $validated['shift'];
                 $bahanId = $validated->get('bahan_id');
                 $stockMasuk = $validated->get('stock_masuk');
                 $stockKeluar = $validated->get('stock_keluar');
-                $stockData = collect($bahanId)->map(function ($bahanId, $index) use ($stockMasuk, $stockKeluar) {
+                $stockData = collect($bahanId)->map(function ($bahanId, $index) use ($stockMasuk, $stockKeluar, $shift) {
                     return [
+                        'shift' => $shift,
                         'bahan_id' => $bahanId,
                         'stock_masuk' => $stockMasuk[$index],
                         'stock_keluar' => $stockKeluar[$index]
@@ -55,18 +58,21 @@ class StockController extends Controller
 
                 foreach ($stockData as $value) {
                     $bahan = $bahans[$value['bahan_id']];
-                    $bahan->stock = ($bahan->stock + $value['stock_masuk']) - $value['stock_keluar'];
+                    $bahan->stock = ($bahan->stock + $value['stock_masuk'] ?? 0) - $value['stock_keluar'] ?? 0;
                     $bahan->save();
                 }
-                Stock::insert($stockData->map(function ($item) {
+                Stock::insert($stockData->filter(function ($item) {
+                    return !($item['stock_keluar'] === null && $item['stock_masuk'] === null);
+                })->map(function ($item) {
                     $item['created_at'] = now();
                     $item['updated_at'] = now();
                     return $item;
                 })->toArray());
             });
-            return redirect()->back()->with('success', 'Stok berhasil diubah');
+            return redirect('/dashboard/stock')->with('status', 'Berhasil Sesuaikan Stok');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
+            dd($th->getMessage());
+            return redirect('/dashboard/stock')->with('error', 'Gagal Menyesuaikan Stock. message ' . $th->getMessage());
         }
     }
 }

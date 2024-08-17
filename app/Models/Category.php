@@ -16,10 +16,15 @@ class Category extends Model
     protected $guarded = ['category_id'];
     public $timestamps = false;
 
-    public function scopeCategoryByOutlet(Builder $query, $slug = null)
+    public function scopeCategoryByOutlet(Builder $query, $slug = null, array $userFilter)
     {
         $query->whereHas('outlet', function (Builder $query) use ($slug) {
-            $query->where('slug', $slug);
+            $query->when($slug ?? null, function (Builder $query) use ($slug) {
+                $query->where('slug', $slug);
+            });
+        });
+        $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'outlet.supervisor' : 'outlet.outletHasPegawai', function (Builder $query) use ($userFilter) {
+            $query->where('user_id', $userFilter['user_id']);
         });
     }
     public function outlet()

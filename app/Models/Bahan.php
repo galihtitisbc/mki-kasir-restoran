@@ -13,10 +13,15 @@ class Bahan extends Model
     use HasFactory, SoftDeletes, Sluggable;
     protected $primaryKey = 'bahan_id';
     protected $guarded = ['bahan_id'];
-    public function scopeBahanByOutlet(Builder $query, $slug)
+    public function scopeBahanByOutlet(Builder $query, $slug, array $userFilter)
     {
-        $query->whereHas('outlets', function (Builder $query) use ($slug) {
-            $query->where('slug', $slug);
+        $query->whereHas('outlets', function ($query) use ($slug) {
+            $query->when($slug ?? null, function (Builder $query) use ($slug) {
+                $query->where('slug', $slug);
+            });
+        });
+        $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'outlets.supervisor' : 'outlets.outletHasPegawai', function (Builder $query) use ($userFilter) {
+            $query->where('user_id', $userFilter['user_id']);
         });
     }
     public function outlets()
