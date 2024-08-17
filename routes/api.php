@@ -19,8 +19,7 @@ Route::middleware(['auth:sanctum', 'userApi'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    require __DIR__ . '/API/Category/ApiCategory.php';
+    require __DIR__ . '/API/Product/ApiProduct.php';
 });
-Route::post('/login', [AuthenticationController::class, 'login']);
-Route::get('/test', function () {
-    return 'test';
-});
+require __DIR__ . '/API/Auth/ApiAuth.php';

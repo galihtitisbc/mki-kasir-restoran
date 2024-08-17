@@ -39,6 +39,13 @@ class Product extends Model
             $query->where('user_id', $userFilter['user_id']);
         });
     }
+    public function scopeApiProductByOutlet(Builder $query, $slug = null, $name)
+    {
+        $query->whereHas('outlets', function (Builder $query) use ($slug) {
+            $query->where('slug', $slug);
+        });
+        $query->where('product_name', 'like', '%' . $name . '%');
+    }
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_products', 'product_id', 'category_id');

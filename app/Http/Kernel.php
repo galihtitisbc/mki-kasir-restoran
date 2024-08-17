@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'supervisorMiddleware' => SupervisorMiddleware::class,
-        'userApi'   =>  UserApiMiddleware::class
+        'userApi'   =>  UserApiMiddleware::class,
+        'customSanctum' => \App\Http\Middleware\CustomAuthSanctum::class,
     ];
 }
