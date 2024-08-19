@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('meja_id')->nullable()->references('meja_id')->on('mejas');
             $table->integer('quantity');
             $table->integer('total');
-            $table->boolean('status')->default(0);
+            $table->enum('status', ['UNPAID', 'PAID'])->default('UNPAID');
+            $table->string('nama_pemesan')->default('Lorem Ipsum');
             $table->timestamps();
         });
     }
