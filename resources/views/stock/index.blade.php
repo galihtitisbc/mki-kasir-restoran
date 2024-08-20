@@ -5,12 +5,6 @@
 @endpush
 @section('content')
     <div class="card">
-        <div class="card-header text-center">
-            <h3 class="card-title"><b>Pergerakan Stock</b></h3>
-            <div class="card-tools">
-                <a href="{{ url('/dashboard/stock/sesuaikan') }}" class="btn btn-primary">Update Stock</a>
-            </div>
-        </div>
         <!-- /.card-header -->
         <livewire:stock-index>
             <!-- /.card-body -->

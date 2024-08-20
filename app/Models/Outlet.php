@@ -50,7 +50,7 @@ class Outlet extends Model
     }
     public function categories()
     {
-        return $this->hasMany(Category::class, 'outlet_id');
+        return $this->belongsToMany(Category::class, 'category_outlets', 'outlet_id', 'category_id');
     }
     public function suppliers()
     {

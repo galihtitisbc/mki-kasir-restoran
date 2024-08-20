@@ -121,6 +121,9 @@ class DatabaseSeeder extends Seeder
         Product::each(function ($product) use ($outlet) {
             $product->outlets()->attach($outlet->random(rand(1, 5))->pluck('outlet_id')->toArray());
         });
+        Category::each(function ($category) use ($outlet) {
+            $category->outlet()->attach($outlet->random(rand(1, 5))->pluck('outlet_id')->toArray());
+        });
         Pesanan::factory(20)->create();
         SalesHistory::factory(20)->create();
         $tax = Tax::all();

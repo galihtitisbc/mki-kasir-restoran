@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id');
-            $table->string('category_name');
-            $table->string('slug')->unique();
-            $table->softDeletes();
+        Schema::create('category_outlets', function (Blueprint $table) {
+            $table->foreignId('category_id')->references('category_id')->on('categories');
+            $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
         });
     }
 
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_outlets');
     }
 };

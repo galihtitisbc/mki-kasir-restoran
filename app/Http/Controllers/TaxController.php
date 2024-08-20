@@ -32,7 +32,7 @@ class TaxController extends Controller
             'tax_rate'      => 'required|numeric',
             'description'   => 'required',
             'outlet_id'     => 'required|array',
-            'outlet.*'      => 'required|numeric'
+            'outlet.*'      => 'required|numeric|exists:outlets,outlet_id',
         ]);
         try {
             DB::transaction(function () use ($validated) {
@@ -42,6 +42,23 @@ class TaxController extends Controller
             return redirect('/dashboard/pajak')->with('status', 'Berhasil Tambah pajak');
         } catch (\Throwable $e) {
             return redirect('/dashboard/pajak')->with('error', 'Gagal Tambah pajak. message ' . $e->getMessage());
+        }
+    }
+    public function changeStatus(Tax $tax)
+    {
+        try {
+            $tax->update([
+                'status'    =>  !$tax->status
+            ]);
+            return response()->json([
+                'status' => 200,
+                'message' => 'Berhasil Update Status produk',
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => 401,
+                'message' => $e->getMessage()
+            ]);
         }
     }
     public function destroy($slug)

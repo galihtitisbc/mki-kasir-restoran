@@ -22,7 +22,7 @@ class CategoryController extends Controller
             'role'      => Auth::user()->roles->pluck('name')[0],
             'user_id'   => Auth::user()->user_id
         ];
-        $category = Category::categoryByOutlet($slugQuery, $userFilter)->get();
+        $category = Category::with('outlet')->categoryByOutlet($slugQuery, $userFilter)->get();
         return view('category.index', [
             'title' =>  'Kategori',
             'kategori'  => $category,
@@ -33,12 +33,16 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'category_name' => 'required',
-            'outlet'        => 'required'
+            'outlet_id'     => 'required|array',
+            'outlet_id.*'   => 'required|exists:outlets,outlet_id',
         ]);
+        dd($validated);
         try {
             DB::transaction(function () use ($validated) {
-                $outlet = Outlet::where('slug', '=', $validated['outlet'])->first();
-                $outlet->categories()->create($validated);
+                $category = Category::create([
+                    'category_name' => $validated['category_name'],
+                ]);
+                $category->outlet()->attach($validated['outlet_id']);
             });
             return redirect('/dashboard/kategori')->with('status', 'Berhasil Tambah Kategori');
         } catch (\Throwable $e) {
@@ -49,10 +53,15 @@ class CategoryController extends Controller
     public function update(Category $category, Request $request)
     {
         $validated = $request->validate([
-            'category_name' => 'required|max:60',
+            'category_name' => 'required',
+            'outlet_id'     => 'required|array',
+            'outlet_id.*'   => 'required|exists:outlets,outlet_id',
         ]);
         try {
-            $category->update($validated);
+            $category->update([
+                'category_name' => $validated['category_name'],
+            ]);
+            $category->outlet()->sync($validated['outlet_id']);
             return redirect('/dashboard/kategori')->with('status', 'Berhasil Edit Kategori');
         } catch (\Throwable $e) {
             return redirect('/dashboard/kategori')->with('error', 'Gagal Edit Kategori');

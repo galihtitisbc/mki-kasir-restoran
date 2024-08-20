@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('../../plugins/toastr/toastr.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="card">
@@ -26,32 +27,31 @@
                                 </option>
                             @endforeach
                         </select>
-                        @error('tax_name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        @error('tax_rate')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        @error('description')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        @error('outlet_id')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="col-3">
                         <button type="submit" class="btn btn-primary">Cari</button>
                     </div>
                 </div>
             </form>
-
-            <table class="table table-hover text-center">
+            <div class="col-4 text-center mx-auto mt-4">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="text-center">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+            <table class="table table-hover text-center mt-3">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Nama Pajak</th>
                         <th>Pajak Rate ( % )</th>
                         <th>Deskripsi</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -62,6 +62,14 @@
                             <td>{{ $item->tax_name }}</td>
                             <td>{{ $item->tax_rate }}</td>
                             <td>{{ $item->description }}</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" data-id="{{ $item->slug }}"
+                                        class="custom-control-input status-tax" id="{{ $item->slug }}"
+                                        {{ $item->status ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="{{ $item->slug }}"></label>
+                                </div>
+                            </td>
                             <td>
                                 <form action="{{ route('pajak.destroy', $item->slug) }}" class="form-delete"
                                     method="POST">
@@ -112,35 +120,16 @@
                                                         placeholder="Masukkan Nama" value="{{ $item->description }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Pajak Untuk Outlet : </label>
-                                                    <div class="row">
-                                                        @foreach ($outlet as $edit)
-                                                            <div class="col-6">
-                                                                <div class="form-group clearfix">
-                                                                    <div class="d-inline">
-                                                                        @php
-                                                                            $checked = false;
-                                                                        @endphp
-                                                                        @foreach ($item->outlets as $key)
-                                                                            @if ($key->outlet_id == $edit->outlet_id)
-                                                                                @php
-                                                                                    $checked = true;
-                                                                                    break;
-                                                                                @endphp
-                                                                            @endif
-                                                                        @endforeach
-                                                                        <input type="checkbox" name="outlet_id[]"
-                                                                            value="{{ $edit->outlet_id }}"
-                                                                            {{ $checked ? 'checked' : '' }}>
-                                                                        <label>
-                                                                            {{ $edit->outlet_name }}
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <label for="outlet">Pilih Outlet:</label>
+                                                    <select class="pajak-select" name="outlet_id[]" multiple="multiple"
+                                                        data-placeholder="Pilih Outlet" style="width: 100%;">
+                                                        <option value=""> -- Pilih Outlet --</option>
+                                                        @foreach ($outlet as $o)
+                                                            <option value="{{ $o->outlet_id }}"
+                                                                {{ $item->outlets->contains('outlet_id', $o->outlet_id) ? 'selected' : '' }}>
+                                                                {{ $o->outlet_name }}</option>
                                                         @endforeach
-
-                                                    </div>
+                                                    </select>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-default"
@@ -198,23 +187,14 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Pajak Untuk Outlet : </label>
-                                <div class="row">
+                                <label for="outlet">Pilih Outlet:</label>
+                                <select class="pajak-select" name="outlet_id[]" multiple="multiple"
+                                    data-placeholder="Pilih Outlet" style="width: 100%;">
+                                    <option value=""> -- Pilih Outlet --</option>
                                     @foreach ($outlet as $item)
-                                        <div class="col-6">
-                                            <div class="form-group clearfix">
-                                                <div class="icheck-primary d-inline">
-                                                    <input type="checkbox" name="outlet_id[]"
-                                                        id="checkboxPrimary3{{ $item->slug }}"
-                                                        value="{{ $item->outlet_id }}" @checked(in_array($item->outlet_id, old('outlet_id', [])))>
-                                                    <label for="checkboxPrimary3{{ $item->slug }}">
-                                                        {{ $item->outlet_name }}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <option value="{{ $item->outlet_id }}">{{ $item->outlet_name }}</option>
                                     @endforeach
-                                </div>
+                                </select>
                             </div>
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -229,8 +209,38 @@
     </div>
     @push('js')
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
+            $(document).ready(function() {
+                $('.pajak-select').select2({
+                    theme: "classic",
+                });
+            });
+            $('.status-tax').change(function() {
+                let slug = $(this).data('id');
+                let status = $(this).is(':checked') ? 1 : 0;
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    url: "/dashboard/pajak/status/" + slug,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: {
+                        status: status
+                    },
+                    success: function(response) {
+                        toastr.success("Berhasil");
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                        })
+                    },
+                });
+            })
             $(".form-delete").submit(function(e) {
                 e.preventDefault();
                 Swal.fire({

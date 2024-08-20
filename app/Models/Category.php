@@ -29,7 +29,7 @@ class Category extends Model
     }
     public function outlet()
     {
-        return $this->belongsTo(Outlet::class, 'outlet_id');
+        return $this->belongsToMany(Outlet::class, 'category_outlets', 'category_id', 'outlet_id');
     }
     public function products()
     {

@@ -1,4 +1,11 @@
 <div>
+    <div class="card-header text-center">
+        <h3 class="card-title"><b>Pergerakan Stock</b></h3>
+        <div class="card-tools">
+            <a href="{{ url('/dashboard/stock/sesuaikan?outlet=' . $outletSearch) }}" class="btn btn-primary">Update
+                Stock</a>
+        </div>
+    </div>
     <div class="card-body table-responsive p-0">
         <div class="mbuh col-6 text-center mx-auto my-4">
             <form action="{{ url('/dashboard/stock') }}" method="get">

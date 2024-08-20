@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('css')
     <link rel="stylesheet" href="{{ asset('../../plugins/toastr/toastr.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
     <div class="card">
@@ -32,12 +33,15 @@
                     </div>
                 </div>
             </form>
-            @error('category_name')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            @error('outlet')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            @if ($errors->any())
+                <div class="alert alert-danger mx-auto col-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <table class="table table-hover text-center">
                 <thead>
                     <tr>
@@ -87,6 +91,18 @@
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="outlet">Pilih Outlet:</label>
+                                                    <select class="category-select" name="outlet_id[]" multiple="multiple"
+                                                        data-placeholder="Pilih Outlet" style="width: 100%;">
+                                                        <option value=""> -- Pilih Outlet --</option>
+                                                        @foreach ($outlet as $o)
+                                                            <option value="{{ $o->outlet_id }}"
+                                                                {{ $item->outlet->pluck('outlet_id')->contains($o->outlet_id) ? 'selected' : '' }}>
+                                                                {{ $o->outlet_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-default"
                                                         data-dismiss="modal">Close</button>
@@ -126,13 +142,14 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
-                                <select name="outlet" class="form-control" id="">
-                                    <option value="" selected>-- Semua Outlet --</option>
+                                <label for="outlet">Pilih Outlet:</label>
+                                <select class="category-select" name="outlet_id[]" multiple="multiple"
+                                    data-placeholder="Pilih Outlet" style="width: 100%;">
+                                    <option value=""> -- Pilih Outlet --</option>
                                     @foreach ($outlet as $item)
-                                        <option value="{{ $item->slug }}">
-                                            {{ $item->outlet_name }}
-                                        </option>
+                                        <option value="{{ $item->outlet_id }}">{{ $item->outlet_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -150,7 +167,13 @@
     @push('js')
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
+            $(document).ready(function() {
+                $('.category-select').select2({
+                    theme: "classic",
+                });
+            });
             $(".form-delete").submit(function(e) {
                 e.preventDefault();
                 Swal.fire({

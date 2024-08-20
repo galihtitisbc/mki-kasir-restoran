@@ -231,7 +231,9 @@
         @endif
         <script>
             $(document).ready(function() {
-                $('.tambah-select').select2();
+                $('.tambah-select').select2({
+                    theme: "classic",
+                });
             });
             $(".form-delete").submit(function(e) {
                 e.preventDefault();

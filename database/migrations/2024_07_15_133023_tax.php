@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('tax_rate');
             $table->string('description');
+            $table->boolean("status")->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
