@@ -23,5 +23,6 @@ Route::middleware(['auth:sanctum', 'userApi'])->group(function () {
     require __DIR__ . '/API/Product/ApiProduct.php';
     require __DIR__ . '/API/Transaction/ApiMeja.php';
     require __DIR__ . '/API/Transaction/ApiPesanan.php';
+    require __DIR__ . '/API/Transaction/ApiTax.php';
 });
 require __DIR__ . '/API/Auth/ApiAuth.php';

@@ -50,6 +50,7 @@ class OpsiController extends Controller
         try {
             $data = $request->all();
             $rules = [
+                'outletId.*' => 'required|numeric|exists:outlets,outlet_id',
                 'opsi.*' => 'required|string',
                 'harga.*' => 'required|numeric',
                 'grupOpsi.*' => 'nullable|string',
@@ -77,6 +78,7 @@ class OpsiController extends Controller
                 DetailOpsi::insert($dataInsertOpsi);
             });
             return response()->json([
+                'code' => 201,
                 'status' => 'success',
                 'message' => 'Berhasil Tambah Opsi'
             ]);
@@ -92,6 +94,7 @@ class OpsiController extends Controller
         try {
             $data = $request->all();
             $rules = [
+                'outletId.*' => 'required|numeric|exists:outlets,outlet_id',
                 'opsi.*' => 'required|string',
                 'harga.*' => 'required|numeric',
                 'grupOpsi.*' => 'nullable|string',

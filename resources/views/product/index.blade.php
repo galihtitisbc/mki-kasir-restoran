@@ -42,7 +42,6 @@
                         <th>No</th>
                         <th>Gambar</th>
                         <th>Nama Produk</th>
-                        <th>Supplier</th>
                         <th>Harga</th>
                         {{-- <th>Stok</th> --}}
                         <th>Status</th>
@@ -62,7 +61,6 @@
                                 @endif
                             </td>
                             <td>{{ $item->product_name }}</td>
-                            <td>{{ 'pppp' }}</td>
                             <td>{{ $item->price }}</td>
                             {{-- <td>{{ $item->stock }}</td> --}}
                             <td>

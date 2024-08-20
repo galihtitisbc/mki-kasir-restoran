@@ -135,22 +135,37 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             success: function (response) {
                 $("#tambah-modal").modal("hide");
-                getOpsi();
-                Swal.fire({
-                    title: "Berhasil Tambah Opsi",
-                    text: `${response.message}`,
-                    icon: "success",
-                });
+                if (response.code == 201) {
+                    getOpsi();
+                    Swal.fire({
+                        title: "Berhasil",
+                        text: `Berhasil Tambah Opsi`,
+                        icon: "success",
+                    });
+                } else {
+                    console.log(response.errors);
+                    Swal.fire({
+                        title: "Gagal Tambah Opsi",
+                        text: `${status}`,
+                        icon: "error",
+                    });
+                }
             },
             error: function (xhr, status, error) {
+                console.log(error);
                 $("#tambah-modal").modal("hide");
-                getOpsi();
                 Swal.fire({
-                    title: "Gagal Tambah Opsi",
+                    title: "Gagal",
                     text: `${error.messsage}`,
                     icon: "error",
                 });
+                getOpsi();
             },
         });
+    });
+    $("#tambah-modal").on("hidden.bs.modal", function () {
+        $(this).find("input").val(""); // Mengosongkan semua input
+        $(this).find("textarea").val(""); // Mengosongkan semua textarea
+        $(this).find("select").prop("selectedIndex", 0); // Mereset semua select ke pilihan pertama
     });
 });
