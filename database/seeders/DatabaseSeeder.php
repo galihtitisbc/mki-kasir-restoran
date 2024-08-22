@@ -135,5 +135,21 @@ class DatabaseSeeder extends Seeder
             }
             $salesHistory->taxs()->attach($pivotArray);
         });
+        $pesanan = Pesanan::all();
+        Product::each(function ($product) use ($pesanan) {
+            $pivotArray = [];
+            $pesananIds = $pesanan->random(rand(1, 20))->pluck('pesanan_id')->toArray();
+            $randTotal = rand(1, 15);
+            foreach ($pesananIds as $pesananId) {
+                $pivotArray[] = [
+                    'pesanan_id' => $pesananId,
+                    'product_id' => $product->product_id,
+                    'qty' => $randTotal,
+                    'harga' => $product->price,
+                    'total' => $product->price * $randTotal
+                ];
+            }
+            $product->pesanans()->attach($pivotArray);
+        });
     }
 }

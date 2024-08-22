@@ -10,6 +10,7 @@ class Pesanan extends Model
     use HasFactory;
     protected $table = 'pesanans';
     protected $primaryKey = 'pesanan_id';
+    protected $guarded = ['pesanan_id'];
     protected static function booted()
     {
         static::addGlobalScope('latest', function ($query) {
@@ -22,7 +23,7 @@ class Pesanan extends Model
     }
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsToMany(Product::class, 'pesanan_product', 'pesanan_id', 'product_id')->withPivot('qty', 'harga', 'total');
     }
     public function meja()
     {

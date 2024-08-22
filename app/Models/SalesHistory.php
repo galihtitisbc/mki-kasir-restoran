@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utils\StatusPesanan;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,7 +37,7 @@ class SalesHistory extends Model
             $query->whereDate('created_at', '<=', $toDate);
         });
         $query->whereHas('pesanan', function ($query) {
-            $query->where('status', '1');
+            $query->where('status', StatusPesanan::PAID);
         });
     }
     public function product()

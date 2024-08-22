@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('user_id')->on('users');
             $table->foreignId('outlet_id')->references('outlet_id')->on('outlets');
             $table->foreignId('pesanan_id')->references('pesanan_id')->on('pesanans');
+            $table->string('product_name');
             $table->integer("quantity");
             $table->integer("product_price");
             $table->integer("total_price");

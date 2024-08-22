@@ -21,11 +21,8 @@ class PesananFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id'    =>  Product::inRandomOrder()->first()->product_id,
             'meja_id'   =>  Meja::inRandomOrder()->first()->meja_id,
-            'quantity'  =>  rand(1, 10),
-            'total'     =>  rand(10000, 100000),
-            'status'    => 1
+            'status'    => 'UNPAID'
         ];
     }
 }

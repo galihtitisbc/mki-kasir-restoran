@@ -61,7 +61,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->product->product_name }}</td>
+                                    <td>{{ $item->product_name }}</td>
                                     <td>
                                         @foreach ($item->product->categories as $cat)
                                             {{ $loop->last ? $cat->category_name : $cat->category_name . ',' }}

@@ -26,6 +26,7 @@ class SalesHistoryFactory extends Factory
             'user_id'      => fake()->randomElement([2, 4]),
             'outlet_id'     => Outlet::inRandomOrder()->first()->outlet_id,
             'pesanan_id'    => Pesanan::inRandomOrder()->first()->pesanan_id,
+            'product_name'   =>  Product::inRandomOrder()->first()->product_name,
             'quantity'     => rand(1, 10),
             'product_price' => rand(10000, 100000),
             'total_price'  => rand(10000, 100000),

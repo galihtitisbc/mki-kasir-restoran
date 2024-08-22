@@ -84,6 +84,6 @@ class Product extends Model
     }
     public function pesanans()
     {
-        return $this->hasMany(Pesanan::class, 'product_id');
+        return $this->belongsToMany(Pesanan::class, 'pesanan_product', 'pesanan_id', 'product_id')->withPivot('qty', 'harga', 'total');
     }
 }

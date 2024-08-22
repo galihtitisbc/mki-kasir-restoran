@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id('pesanan_id');
-            $table->foreignId('product_id')->references('product_id')->on('products');
             $table->foreignId('meja_id')->nullable()->references('meja_id')->on('mejas');
-            $table->integer('quantity');
-            $table->integer('total');
             $table->enum('status', ['UNPAID', 'PAID'])->default('UNPAID');
             $table->string('nama_pemesan')->default('Lorem Ipsum');
             $table->timestamps();

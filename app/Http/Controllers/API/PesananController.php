@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pesanan;
+use DB;
 
 class PesananController extends Controller
 {
@@ -38,26 +39,30 @@ class PesananController extends Controller
                 ], 401);
             }
             $validated = $validator->validated();
-            $meja = Meja::where('meja_id', $validated['meja_id'])->firstOrFail();
-            if ($meja->status_meja == 'TERPESAN') {
-                throw new \Exception("Meja Sudah Terpesan", 1);
-            }
-            $dataPesanan = [];
-            foreach ($validated['product'] as $key => $value) {
-                $dataPesanan[] = [
-                    'meja_id'       => $validated['meja_id'],
-                    'product_id'    => $value['product_id'],
-                    'quantity'      => $value['qty'],
-                    'total'         => $value['qty'] * Product::find($value['product_id'])->price,
-                    'nama_pemesan'  => $validated['nama_pemesan'],
-                    'created_at'    => date('Y-m-d H:i:s'),
-                    'updated_at'    => date('Y-m-d H:i:s'),
-                ];
-            }
-            Pesanan::insert($dataPesanan);
-            $meja->update([
-                'status_meja' => 'TERPESAN',
-            ]);
+            DB::transaction(function () use ($validated) {
+                $meja = Meja::where('meja_id', $validated['meja_id'])->firstOrFail();
+                if ($meja->status_meja == 'TERPESAN') {
+                    throw new \Exception("Meja Sudah Terpesan", 1);
+                }
+                $pesanan = Pesanan::create([
+                    'meja_id'       =>  $validated['meja_id'],
+                    'nama_pemesan'  =>  $validated['nama_pemesan']
+                ]);
+                $dataProduct = [];
+                foreach ($validated['product'] as $value) {
+                    $product = Product::where('product_id', $value['product_id'])->first();
+                    $dataProduct[] = [
+                        'product_id'    =>  $value['product_id'],
+                        'qty'           =>  $value['qty'],
+                        'harga'         =>  $product->price,
+                        'total'         =>  $product->price * $value['qty']
+                    ];
+                }
+                $pesanan->product()->attach($dataProduct);
+                $meja->update([
+                    'status_meja' => 'TERPESAN',
+                ]);
+            });
             return response()->json([
                 'status'    => 'Berhasil',
                 'messahe'   => 'Berhasil Tambah Pesanan Pada Meja Nomor ' . $validated['meja_id'],
