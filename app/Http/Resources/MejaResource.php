@@ -17,7 +17,8 @@ class MejaResource extends JsonResource
         return [
             'meja_id'       => $this->meja_id,
             'nomor_meja'    => $this->nomor_meja,
-            'status_meja'   => $this->status_meja
+            'status_meja'   => $this->status_meja,
+            'pesanan'       => $this->status_meja == 'TERPESAN' ? $this->pesanans : null
         ];
     }
 }

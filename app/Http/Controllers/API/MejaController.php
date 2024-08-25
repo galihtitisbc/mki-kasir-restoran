@@ -32,7 +32,7 @@ class MejaController extends Controller
     public function show(string $outlet)
     {
         try {
-            $meja = Meja::mejaByOutlet($outlet)->get();
+            $meja = Meja::with('pesanans')->mejaByOutlet($outlet)->get();
             return response()->json([
                 'message'           => 'Sukses',
                 'meja'              => MejaResource::collection($meja)
