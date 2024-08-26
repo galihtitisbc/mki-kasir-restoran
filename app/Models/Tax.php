@@ -20,15 +20,10 @@ class Tax extends Model
             $query->orderBy('created_at', 'desc');
         });
     }
-    public function scopeTaxByOutlet(Builder $query, $slug, array $userFilter)
+    public function scopeTaxByOutlet(Builder $query, $slug)
     {
         $query->whereHas('outlets', function ($query) use ($slug) {
-            $query->when($slug ?? null, function (Builder $query) use ($slug) {
-                $query->where('slug', $slug);
-            });
-        });
-        $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'outlets.supervisor' : 'outlets.outletHasPegawai', function (Builder $query) use ($userFilter) {
-            $query->where('user_id', $userFilter['user_id']);
+            $query->where('slug', $slug);
         });
     }
     public function salesHistories()

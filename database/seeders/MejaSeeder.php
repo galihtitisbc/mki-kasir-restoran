@@ -13,6 +13,6 @@ class MejaSeeder extends Seeder
      */
     public function run(): void
     {
-        Meja::factory()->count(10)->create();
+        Meja::factory()->count(20)->create();
     }
 }

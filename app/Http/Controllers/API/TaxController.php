@@ -32,7 +32,9 @@ class TaxController extends Controller
     public function show(Outlet $outlet)
     {
         try {
-            $outlet->load('taxs');
+            $outlet->load(['taxs' => function ($query) {
+                $query->where('status', true);
+            }]);
             return response()->json([
                 'message'           => 'Sukses',
                 'data'              => TaxResource::collection($outlet->taxs),

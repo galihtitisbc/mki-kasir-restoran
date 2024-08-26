@@ -22,7 +22,7 @@ class Meja extends Model
     }
     public function pesanans()
     {
-        return $this->hasMany(Pesanan::class, 'meja_id');
+        return $this->hasOne(Pesanan::class, 'meja_id');
     }
     public function outlet()
     {

@@ -34,7 +34,7 @@ class ProductController extends Controller
     {
         try {
             $name = $request->query('name');
-            $product = Product::apiProductByOutlet($outlet, $name)->get();
+            $product = Product::where('status', true)->apiProductByOutlet($outlet, $name)->get();
             return response()->json([
                 'message'           => 'Sukses',
                 'total'             => $product->count(),

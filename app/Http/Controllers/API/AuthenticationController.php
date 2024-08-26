@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OutletWorks;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -24,9 +25,11 @@ class AuthenticationController extends Controller
                 ]);
             }
             $token = $user->createToken($request->email)->plainTextToken;
+            $user->load('outletWorks');
             return response()->json([
                 'message' => 'Sukses',
                 'token' => $token,
+                'outlet_kerja' => OutletWorks::collection($user->outletWorks)
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

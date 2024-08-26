@@ -14,11 +14,7 @@ class TaxController extends Controller
     public function index(Request $request)
     {
         $slug = $request->query('outlet');
-        $userFilter = [
-            'role'      => Auth::user()->roles->pluck('name')[0],
-            'user_id'   => Auth::user()->user_id
-        ];
-        $tax = Tax::with('outlets')->taxByOutlet($slug, $userFilter)->get();
+        $tax = Tax::with('outlets')->taxByOutlet($slug)->get();
         return view('pajak.index', [
             'title'     =>  'Pajak',
             'outlet'    =>  $this->getOutletByUser(),

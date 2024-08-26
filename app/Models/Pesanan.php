@@ -29,4 +29,8 @@ class Pesanan extends Model
     {
         return $this->belongsTo(Meja::class, 'meja_id');
     }
+    public function pesanan()
+    {
+        return $this->belongsTo(Pesanan::class, 'outlet_id');
+    }
 }

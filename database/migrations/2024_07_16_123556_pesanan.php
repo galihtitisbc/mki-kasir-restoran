@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id('pesanan_id');
             $table->foreignId('meja_id')->nullable()->references('meja_id')->on('mejas');
+            $table->foreignId('outlet_id')->nullable()->references('outlet_id')->on('outlets');
             $table->enum('status', ['UNPAID', 'PAID'])->default('UNPAID');
             $table->string('nama_pemesan')->default('Lorem Ipsum');
             $table->timestamps();

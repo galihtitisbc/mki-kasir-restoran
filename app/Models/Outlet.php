@@ -48,6 +48,10 @@ class Outlet extends Model
     {
         return $this->hasMany(Meja::class, 'outlet_id');
     }
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class, 'outlet_id');
+    }
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'category_outlets', 'outlet_id', 'category_id');

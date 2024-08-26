@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Meja;
+use App\Models\Outlet;
 use App\Models\Pesanan;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,6 +23,7 @@ class PesananFactory extends Factory
     {
         return [
             'meja_id'   =>  Meja::inRandomOrder()->first()->meja_id,
+            'outlet_id'   =>  Outlet::inRandomOrder()->first()->outlet_id,
             'status'    => 'UNPAID'
         ];
     }
