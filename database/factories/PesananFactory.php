@@ -24,7 +24,7 @@ class PesananFactory extends Factory
         return [
             'meja_id'   =>  Meja::inRandomOrder()->first()->meja_id,
             'outlet_id'   =>  Outlet::inRandomOrder()->first()->outlet_id,
-            'status'    => 'UNPAID'
+            'status'    => 'PAID'
         ];
     }
 }

@@ -30,6 +30,12 @@ class SalesHistory extends Model
                 });
             });
         });
+        $query->when($data['productName'] ?? null, function (Builder $query, $productName) {
+            $query->whereHas('outlet.products', function (Builder $query) use ($productName) {
+                $query->where('product_name', 'LIKE', '%' . $productName . '%');
+            });
+        });
+
         $query->when($data['fromDate'] ?? null, function (Builder $query, $fromDate) {
             $query->whereDate('created_at', '>=', $fromDate);
         });

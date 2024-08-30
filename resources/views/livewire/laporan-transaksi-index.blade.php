@@ -1,43 +1,48 @@
 <div>
     <div class="card-body table-responsive p-0">
         <div class="text-center mx-auto my-4">
-            <form action="{{ url('/dashboard/stock') }}" method="get">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-3">
-                        <label for="outlet">Pilih Outlet :</label>
-                        <select wire:model.live="outletSearch" class="form-control" id="">
-                            <option value="" selected>-- Pilih Outlet --</option>
-                            @foreach ($outlets as $item)
-                                <option value="{{ $item->slug }}"
-                                    {{ request('outlet') == $item->slug ? 'selected' : '' }}>
-                                    {{ $item->outlet_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-3">
-                        <label for="outlet">Pilih Kategori :</label>
-                        <select wire:model.live="categorySearch" class="form-control" id="category">
-                            <option value="" selected>-- Pilih Kategori --</option>
-                            @foreach ($categories as $item)
-                                <option value="{{ $item->slug }}"
-                                    {{ request('categories') == $item->slug ? 'selected' : '' }}>
-                                    {{ $item->category_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <label for="fromDate">Dari Tanggal :</label>
-                        <input type="date" wire:model.live="fromDate" class="form-control" id="fromDate">
-                    </div>
-                    <div class="col-2">
-                        <label for="toDate">Ke Tanggal :</label>
-                        <input type="date" wire:model.live="toDate" class="form-control" id="toDate">
-                    </div>
-
+            <div class="row d-flex justify-content-center">
+                <div class="col-2">
+                    <label for="outlet">Pilih Outlet :</label>
+                    <select wire:model.live="outletSearch" class="form-control" id="">
+                        <option value="" selected>-- Pilih Outlet --</option>
+                        @foreach ($outlets as $item)
+                            <option value="{{ $item->slug }}" {{ request('outlet') == $item->slug ? 'selected' : '' }}>
+                                {{ $item->outlet_name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
-            </form>
+                <div class="col-2">
+                    <label for="outlet">Nama Produk :</label>
+                    <input type="text" class="form-control" {{ $outletSearch == null ? 'disabled' : '' }}
+                        wire:model.live="productSearch" id="">
+                </div>
+                <div class="col-2">
+                    <label for="outlet">Pilih Kategori :</label>
+                    <select wire:model.live="categorySearch" {{ $outletSearch == null ? 'disabled' : '' }}
+                        class="form-control" id="category">
+                        <option value="" selected>-- Pilih Kategori --</option>
+                        @foreach ($categories as $item)
+                            <option value="{{ $item->slug }}"
+                                {{ request('categories') == $item->slug ? 'selected' : '' }}>
+                                {{ $item->category_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-1">
+                    <label for="fromDate">Dari Tanggal :</label>
+                    <input type="date" wire:model.live="fromDate" {{ $outletSearch == null ? 'disabled' : '' }}
+                        class="form-control" id="fromDate">
+                </div>
+                <div class="col-1">
+                    <label for="toDate">Ke Tanggal :</label>
+                    <input type="date" wire:model.live="toDate" {{ $outletSearch == null ? 'disabled' : '' }}
+                        class="form-control" id="toDate">
+                </div>
+
+            </div>
         </div>
         @if (!is_null($transactions))
             <div class="card-body">
