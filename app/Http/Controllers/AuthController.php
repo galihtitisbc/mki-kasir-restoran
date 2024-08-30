@@ -22,7 +22,11 @@ class AuthController extends Controller
         $validated = $request->validated();
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
-            return redirect('/dashboard/home');
+            if (Auth::user()->hasAnyRole(['SUPERADMIN'])) {
+                return redirect('/dashboard/superadmin/home');
+            } else {
+                return redirect('/dashboard/home');
+            }
         }
         return back()->withErrors([
             'login' => 'Username Atau Password Salah',

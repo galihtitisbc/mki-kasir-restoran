@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth/auth.php';
 //dashboard
 Route::group(['middleware' => ['auth', 'supervisorMiddleware']], function () {
-    require __DIR__ . '/dashboard/dashboard.php';
+    require __DIR__ . '/web/admin-supervisor/dashboard.php';
+});
+Route::group(['middleware' => ['auth', 'superAdminMiddleware']], function () {
+    require __DIR__ . '/web/superadmin/dashboard.php';
 });
 Route::get('/', function () {
-    return redirect('/dashboard/home');
+    return redirect('/auth/login');
 });

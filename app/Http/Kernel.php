@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\SuperAdminMiddleware;
 use App\Http\Middleware\SupervisorMiddleware;
 use App\Http\Middleware\UserApiMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -70,5 +71,6 @@ class Kernel extends HttpKernel
         'supervisorMiddleware' => SupervisorMiddleware::class,
         'userApi'   =>  UserApiMiddleware::class,
         'customSanctum' => \App\Http\Middleware\CustomAuthSanctum::class,
+        'superAdminMiddleware' => SuperAdminMiddleware::class
     ];
 }
