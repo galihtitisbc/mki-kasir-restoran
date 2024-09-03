@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'user_id'       => fake()->randomElement([2, 4]),
             'slug'          => fake()->slug(3),
             'product_name'  => fake()->unique()->name(),
-            'price'         => rand(10000, 50000),
+            'price'         => rand(1, 5) * 10000,
             'status'        => fake()->boolean(),
         ];
     }

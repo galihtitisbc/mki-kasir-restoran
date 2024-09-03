@@ -24,26 +24,43 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="{{ url('/dashboard/home') }}"
-                            class="nav-link {{ request()->segment(2) == 'home' ? 'active' : '' }}">
+                        @hasanyrole('SUPERVISOR|ADMIN')
+                            <a href="{{ url('/dashboard/home') }}"
+                                class="nav-link {{ request()->segment(2) == 'home' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        @endhasanyrole
+                    </li>
+                    @role('SUPERADMIN')
+                        <a href="{{ url('/dashboard/superadmin/home') }}"
+                            class="nav-link {{ request()->segment(3) == 'home' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Dashboard
                             </p>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('/dashboard/laporan') }}"
-                            class="nav-link {{ request()->segment(2) == 'laporan' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                        <a href="{{ url('/dashboard/superadmin/pemilik-outlet') }}"
+                            class="nav-link {{ request()->segment(3) == 'pemilik-outlet' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                             <p>
-                                Laporan Transaksi
+                                Daftar Pemilik Outlet
                             </p>
                         </a>
-                    </li>
-
-                    {{-- <li class="nav-header">EXAMPLES</li> --}}
+                    @endrole
                     @hasanyrole('SUPERVISOR|ADMIN')
+                        <li class="nav-item">
+                            <a href="{{ url('/dashboard/laporan') }}"
+                                class="nav-link {{ request()->segment(2) == 'laporan' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                                <p>
+                                    Laporan Transaksi
+                                </p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-header">EXAMPLES</li> --}}
                         <li class="nav-item">
                             <a href="{{ url('/dashboard/pegawai') }}"
                                 class="nav-link {{ request()->segment(2) == 'pegawai' ? 'active' : '' }}">

@@ -24,10 +24,10 @@
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        @error('email')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="input-group mb-3">
                         <input type="password" name="password"
                             class="form-control @error('nama_instansi')
@@ -39,10 +39,10 @@
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        @error('password')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="row">
                         <div class="col-12 mb-3">
                             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
