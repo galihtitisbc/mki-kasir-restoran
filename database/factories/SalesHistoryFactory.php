@@ -21,15 +21,16 @@ class SalesHistoryFactory extends Factory
     protected $model = SalesHistory::class;
     public function definition(): array
     {
+        $product = Product::inRandomOrder()->first();
         return [
             'product_id'   =>  Product::inRandomOrder()->first()->product_id,
             'user_id'      => fake()->randomElement([2, 4]),
             'outlet_id'     => Outlet::inRandomOrder()->first()->outlet_id,
             'pesanan_id'    => Pesanan::inRandomOrder()->first()->pesanan_id,
-            'product_name'   =>  Product::inRandomOrder()->first()->product_name,
+            'product_name'   =>  $product->product_name,
             'quantity'     => rand(1, 10),
-            'product_price' => rand(10000, 100000),
-            'total_price'  => rand(10000, 100000),
+            'product_price' => $product->price,
+            'total_price'  => rand(1, 6) * $product->price,
             'created_at'    => \Carbon\Carbon::now()->startOfMonth()->addDays(rand(1, 30))->format('Y-m-d H:i:s'),
         ];
     }
