@@ -54,6 +54,7 @@ Route::prefix('dashboard')->group(function () {
         Route::delete('/produk/hapus/{product:slug}', 'destroy');
     });
     Route::resource('pajak', TaxController::class);
+    Route::get('/riwayat-bayar-pajak', [TaxController::class, 'riwayatBayarPajak']);
     Route::put('/pajak/status/{tax:slug}', [TaxController::class, 'changeStatus']);
     Route::resource('bahan', BahanController::class);
     Route::resource('supplier', SupplierController::class);

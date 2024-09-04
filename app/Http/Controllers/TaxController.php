@@ -88,4 +88,10 @@ class TaxController extends Controller
             return redirect('/dashboard/pajak')->with('error', 'Gagal Update pajak. message ' . $e->getMessage());
         }
     }
+    public function riwayatBayarPajak()
+    {
+        return view('pajak.history-bayar-pajak', [
+            'title'     =>  'Riwayat Pembayaran'
+        ]);
+    }
 }

@@ -64,6 +64,10 @@ class Outlet extends Model
     {
         return $this->belongsToMany(Outlet::class, 'user_outlets', 'outlet_id', 'user_id');
     }
+    public function historyBayarPajak()
+    {
+        return $this->hasMany(HistoryBayarPajak::class, 'outlet_id');
+    }
     public function sluggable(): array
     {
         return [

@@ -65,6 +65,7 @@ class SalesHistory extends Model
 
     public function taxs()
     {
-        return $this->belongsToMany(Tax::class, 'sales_history_taxs', 'sales_history_id', 'tax_id')->withPivot('total');
+        return $this->belongsToMany(Tax::class, 'sales_history_taxs', 'sales_history_id', 'tax_id')
+            ->withPivot('sales_history_id', 'tax_id', 'total');
     }
 }

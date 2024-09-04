@@ -134,6 +134,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/dashboard/riwayat-bayar-pajak') }}"
+                                class="nav-link {{ request()->segment(2) == 'riwayat-bayar-pajak' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-credit-card" aria-hidden="true"></i>
+                                <p>
+                                    Riwayat Bayar Pajak
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             @role('SUPERVISOR')
                                 <a href="#" class="nav-link {{ request()->segment(2) == 'outlet' ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>

@@ -6,7 +6,9 @@ namespace Database\Seeders;
 
 use App\Models\Bahan;
 use App\Models\Category;
+use App\Models\HistoryBayarPajak;
 use App\Models\Outlet;
+use App\Models\PajakyangDibayar;
 use App\Models\Pesanan;
 use App\Models\Product;
 use App\Models\SalesHistory;
@@ -151,5 +153,7 @@ class DatabaseSeeder extends Seeder
             }
             $product->pesanans()->attach($pivotArray);
         });
+        HistoryBayarPajak::factory(1)->create();
+        PajakyangDibayar::factory(3)->create();
     }
 }
