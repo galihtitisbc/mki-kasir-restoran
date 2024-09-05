@@ -40,5 +40,5 @@
     </div>
 @endsection
 @push('js')
-    @livewireStyles
+    @livewireScripts
 @endpush

@@ -44,6 +44,7 @@
                         <th>Nama Produk</th>
                         <th>Harga</th>
                         {{-- <th>Stok</th> --}}
+                        <th>Daftar Bahan</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -63,6 +64,8 @@
                             <td>{{ $item->product_name }}</td>
                             <td>{{ $item->price }}</td>
                             {{-- <td>{{ $item->stock }}</td> --}}
+                            <td><button class="btn btn-outline-primary" data-toggle="modal"
+                                    data-target="#detail-modal{{ $item->product_code }}">Detail</button></td>
                             <td>
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" data-id="{{ $item->slug }}"
@@ -81,6 +84,46 @@
                                 </form>
                             </td>
                         </tr>
+                        <div class="modal fade" id="detail-modal{{ $item->product_code }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Daftar Bahan</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @foreach ($item->bahans as $bahan)
+                                            <div class="border border-secondary p-3 my-2">
+                                                <div class="row my-2">
+                                                    <div class="col">
+                                                        <label for="">Bahan</label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" disabled class="form-control"
+                                                            value="{{ $bahan->nama_bahan }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row my-2">
+                                                    <div class="col">
+                                                        <label for="">Qty</label>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" disabled class="form-control"
+                                                            value="{{ $bahan->pivot->qty . ' ' . $bahan->pivot->satuan_bahan }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>

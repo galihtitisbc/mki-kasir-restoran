@@ -62,7 +62,7 @@ class Outlet extends Model
     }
     public function outletHasPegawai()
     {
-        return $this->belongsToMany(Outlet::class, 'user_outlets', 'outlet_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_outlets', 'outlet_id', 'user_id');
     }
     public function historyBayarPajak()
     {

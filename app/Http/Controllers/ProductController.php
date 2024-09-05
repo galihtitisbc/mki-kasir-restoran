@@ -24,7 +24,7 @@ class ProductController extends Controller
             'role'      => Auth::user()->roles->pluck('name')[0],
             'user_id'   => Auth::user()->user_id
         ];
-        $produk = Product::productByOutlet($slugQuery, $userFilter)->paginate(10)->withQueryString();
+        $produk = Product::with('bahans')->productByOutlet($slugQuery, $userFilter)->paginate(10)->withQueryString();
         return view('product.index', [
             'title'     =>  'Kelola Produk',
             'product'   => $produk,

@@ -56,7 +56,7 @@ class Product extends Model
     }
     public function bahans()
     {
-        return $this->belongsToMany(Bahan::class, 'bahan_products', 'product_id', 'bahan_id');
+        return $this->belongsToMany(Bahan::class, 'bahan_products', 'product_id', 'bahan_id')->withPivot('qty', 'satuan_bahan');
     }
     public function outlets()
     {

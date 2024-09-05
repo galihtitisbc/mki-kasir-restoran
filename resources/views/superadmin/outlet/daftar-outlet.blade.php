@@ -22,7 +22,8 @@
                             <div class="icon">
                                 <i class="fas fa-home"></i>
                             </div>
-                            <a href="#" class="small-box-footer">
+                            <a href="{{ url('dashboard/superadmin/pemilik-outlet/daftar-outlet/' . $outlet->slug . '/detail') }}"
+                                class="small-box-footer" target="_blank">
                                 Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -33,5 +34,5 @@
     </div>
 @endsection
 @push('js')
-    @livewireStyles
+    @livewireScripts
 @endpush
