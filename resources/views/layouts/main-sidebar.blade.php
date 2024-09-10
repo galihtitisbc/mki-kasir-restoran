@@ -49,6 +49,13 @@
                                 Daftar Pemilik Outlet
                             </p>
                         </a>
+                        <a href="{{ url('/dashboard/superadmin/seluruh-outlet') }}"
+                            class="nav-link {{ request()->segment(3) == 'seluruh-outlet' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+                            <p>
+                                Daftar Outlet
+                            </p>
+                        </a>
                     @endrole
                     @hasanyrole('SUPERVISOR|ADMIN')
                         <li class="nav-item">
