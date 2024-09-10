@@ -48,6 +48,19 @@ class ProductController extends Controller
         }
     }
 
+    public function addOrder($outlet, Request $request){
+        try {
+            $validatedData = $request->validate([
+
+            ]);
+        } catch (\Throwable $th){
+            return response()->json([
+                'status' => 401,
+                'message' => $th->getMessage()
+            ]);
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      */
