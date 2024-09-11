@@ -20,11 +20,10 @@ class PajakYangDibayarFactory extends Factory
     public function definition(): array
     {
         $history = HistoryBayarPajak::inRandomOrder()->first();
-        $outlet = Outlet::firstWhere('outlet_id', $history->outlet_id);
-        $tax = $outlet->taxs()->first()->tax_name;
+        $tax = Tax::inRandomOrder()->first();
         return [
             'history_bayar_pajak_id'    =>  $history->id,
-            'nama_pajak'                =>  $tax,
+            'nama_pajak'                =>  $tax->tax_name,
             'total'                     =>  rand(50000, 100000)
         ];
     }

@@ -36,7 +36,6 @@ class CategoryController extends Controller
             'outlet_id'     => 'required|array',
             'outlet_id.*'   => 'required|exists:outlets,outlet_id',
         ]);
-        dd($validated);
         try {
             DB::transaction(function () use ($validated) {
                 $category = Category::create([

@@ -88,12 +88,14 @@
                             <table class="table">
                                 <thead>
                                     <th>Nama</th>
+                                    <th>Role</th>
                                     <th>No HP</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($outlet->outletHasPegawai as $pegawai)
                                         <tr>
                                             <td>{{ $pegawai->name }}</td>
+                                            <td>{{ implode(', ', $pegawai->getRoleNames()->toArray()) }}</td>
                                             <td>{{ $pegawai->phone }}</td>
                                         </tr>
                                     @endforeach

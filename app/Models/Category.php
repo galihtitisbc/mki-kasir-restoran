@@ -24,7 +24,7 @@ class Category extends Model
             });
         });
         $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'outlet.supervisor' : 'outlet.outletHasPegawai', function (Builder $query) use ($userFilter) {
-            $query->where('user_id', $userFilter['user_id']);
+            $query->where('users.user_id', $userFilter['user_id']);
         });
     }
     public function outlet()

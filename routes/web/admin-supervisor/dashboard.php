@@ -25,6 +25,7 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/pegawai/edit/{user:email}', 'edit');
         Route::put('/pegawai/edit/{user:email}', 'update');
         Route::delete('/pegawai/hapus/{user:email}', 'hapus');
+        Route::patch('/pegawai/status-akun/{user:username}', 'changeStatus');
     });
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/kategori', 'index');

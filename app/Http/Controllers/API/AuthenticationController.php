@@ -19,6 +19,11 @@ class AuthenticationController extends Controller
                 'password' => 'required',
             ]);
             $user = User::where('email', $request->email)->first();
+            if ($user->is_active == false) {
+                throw ValidationException::withMessages([
+                    'is_active' => ['Akun Anda Tidak Aktif'],
+                ]);
+            }
             if (!$user || !Hash::check($request->password, $user->password)) {
                 throw ValidationException::withMessages([
                     'email' => ['Email Atau Password Salah'],

@@ -36,7 +36,7 @@ class Product extends Model
             });
         });
         $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'outlets.supervisor' : 'outlets.outletHasPegawai', function (Builder $query) use ($userFilter) {
-            $query->where('user_id', $userFilter['user_id']);
+            $query->where('users.user_id', $userFilter['user_id']);
         });
     }
     public function scopeApiProductByOutlet(Builder $query, $slug = null, $name)

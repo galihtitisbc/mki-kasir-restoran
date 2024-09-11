@@ -157,8 +157,9 @@
         @endif
         <script>
             $('.status-product').change(function() {
-                let slug = $(this).data('id');
-                let status = $(this).is(':checked') ? 1 : 0;
+                let $checkbox = $(this);
+                let slug = $checkbox.data('id');
+                let statusCheked = $checkbox.is(':checked') ? 1 : 0;
                 $.ajax({
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -166,13 +167,11 @@
                     url: "/dashboard/produk/status/" + slug,
                     method: "PUT",
                     contentType: "application/json",
-                    data: {
-                        status: status
-                    },
                     success: function(response) {
                         toastr.success("Berhasil");
                     },
                     error: function(xhr, status, error) {
+                        $checkbox.prop('checked', !statusCheked);
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal',

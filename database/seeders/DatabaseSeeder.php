@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $userOutlet = [
             [
                 'user_id'   => 4,
-                'outlet_id' => 2
+                'outlet_id' => 1
             ],
             [
                 'user_id'   => 5,

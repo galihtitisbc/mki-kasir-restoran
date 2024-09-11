@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PegawaiRequest;
-use App\Http\Requests\PegawaiUpdateRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PegawaiRequest;
+use App\Http\Requests\PegawaiUpdateRequest;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class PegawaiController extends Controller
 {
@@ -78,6 +79,20 @@ class PegawaiController extends Controller
             return redirect('/dashboard/pegawai')->with('status', 'Berhasil Edit Pegawai');
         } catch (\Throwable $th) {
             return redirect('/dashboard/pegawai')->with('error', 'Gagal Tambah Pegawai');
+        }
+    }
+    public function changeStatus(User $user)
+    {
+        try {
+            if ($user->user_id == Auth::user()->user_id) {
+                throw new BadRequestException("Bad Request");
+            }
+            $user->update([
+                'is_active' =>  !$user->is_active
+            ]);
+            return response()->json(['message' => 'sukes']);
+        } catch (\Throwable $e) {
+            throw new BadRequestException($e->getMessage());
         }
     }
     public function hapus(User $user)
