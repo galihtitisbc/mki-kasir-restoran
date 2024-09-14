@@ -42,11 +42,15 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Posisi</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($pegawais as $item)
+                        @if ($item->user_id == Auth::getuser()->user_id)
+                            @continue
+                        @endif
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>
@@ -97,6 +101,14 @@
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->getRoleNames()->implode(', ') }}</td>
                             <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" data-id="{{ $item->username }}"
+                                        class="custom-control-input status-akun" id="{{ $item->username }}"
+                                        {{ $item->is_active ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="{{ $item->username }}"></label>
+                                </div>
+                            </td>
+                            <td>
                                 <form action="{{ url('/dashboard/pegawai/hapus', $item->email) }}" class="form-delete"
                                     method="POST">
                                     @method('DELETE')
@@ -117,6 +129,29 @@
         <script src="{{ asset('../../plugins/toastr/toastr.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
+            $('.status-akun').change(function() {
+                let $checkbox = $(this);
+                let username = $checkbox.data('id');
+                let statusCheked = $checkbox.is(':checked') ? 1 : 0;
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                    url: "/dashboard/pegawai/status-akun/" + username,
+                    method: "PATCH",
+                    contentType: "application/json",
+                    success: function(response) {
+                        toastr.success("Berhasil");
+                    },
+                    error: function(xhr, status, error) {
+                        $checkbox.prop('checked', !statusCheked);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal',
+                        })
+                    },
+                });
+            })
             $(".form-delete").submit(function(e) {
                 e.preventDefault();
                 Swal.fire({

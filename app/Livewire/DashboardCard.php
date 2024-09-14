@@ -36,10 +36,10 @@ class DashboardCard extends Component
             ->whereHas('outlet', function (Builder $query) {
                 $userFilter = [
                     'role'      => Auth::user()->roles->pluck('name')[0],
-                    'user_id'   => Auth::user()->user_id
+                    'user_id'   => Auth::user()->user_id,
                 ];
                 $query->whereHas($userFilter['role'] == 'SUPERVISOR' ? 'supervisor' : 'outletHasPegawai', function (Builder $query) use ($userFilter) {
-                    $query->where('user_id', $userFilter['user_id']);
+                    $query->where('users.user_id', $userFilter['user_id']);
                 });
             })
             ->whereMonth('created_at', Carbon::now()->month)

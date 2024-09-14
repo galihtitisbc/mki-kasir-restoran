@@ -46,7 +46,14 @@
                             class="nav-link {{ request()->segment(3) == 'pemilik-outlet' ? 'active' : '' }}">
                             <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                             <p>
-                                Daftar Pemilik Outlet
+                                Daftar Pemilik Restoran
+                            </p>
+                        </a>
+                        <a href="{{ url('/dashboard/superadmin/seluruh-outlet') }}"
+                            class="nav-link {{ request()->segment(3) == 'seluruh-outlet' ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+                            <p>
+                                Daftar Outlet
                             </p>
                         </a>
                     @endrole

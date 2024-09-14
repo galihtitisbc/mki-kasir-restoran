@@ -2,17 +2,17 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
 
-class PegawaiRequest extends FormRequest
+class PemilikRestoCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Auth::user() == null ? false : true;
+        return Auth::user()->roles->pluck('name')[0] == 'SUPERADMIN' ? true : false;
     }
 
     /**
@@ -28,9 +28,6 @@ class PegawaiRequest extends FormRequest
             'email'     => 'required|string|email|max:255|unique:users,email',
             'no_hp'     => 'required|numeric|min:5|unique:users,phone',
             'password'  => 'required|min:4',
-            'role'      => 'required|string|in:DAPUR,KASIR,ADMIN|regex:/^[a-zA-Z\s]*$/',
-            'outlet'    => 'required|array',
-            'outlet.*'  => 'required|numeric'
         ];
     }
 }

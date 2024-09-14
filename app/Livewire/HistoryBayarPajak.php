@@ -27,6 +27,7 @@ class HistoryBayarPajak extends Component
             ->whereHas('outlet', function (Builder $query) {
                 $query->where('slug', $this->outletSearch);
             })
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('livewire.history-bayar-pajak');
     }

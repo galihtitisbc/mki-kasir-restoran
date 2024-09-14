@@ -21,24 +21,30 @@ class UserAndRoleSeeder extends Seeder
             'username' => 'superadmin',
             'email' => 'superadmin@gmail.com',
             'phone' => '123134',
+            'is_active' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+            'password' => Hash::make('12345'),
+            'remember_token' => Str::random(10)
         ]);
         $supervisor = User::create([
             'name' => 'boss',
             'username' => 'supervisor',
             'email' => 'bos@gmail.com',
             'phone' => '123123304',
+            'is_active' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+            'password' => Hash::make('12345'),
+            'remember_token' => Str::random(10)
         ]);
         $supervisor2 = User::create([
             'name' => 'boss2',
             'username' => 'supervisor2',
             'email' => '2@gmail.com',
             'phone' => '123104',
+            'is_active' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+            'password' => Hash::make('12345'),
+            'remember_token' => Str::random(10)
         ]);
         $admin = User::create([
             'name' => 'admin',
@@ -46,8 +52,10 @@ class UserAndRoleSeeder extends Seeder
             'supervisor_id' => 2,
             'email' => 'admin@gmail.com',
             'phone' => '1231774',
+            'is_active' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+            'password' => Hash::make('12345'),
+            'remember_token' => Str::random(10)
         ]);
         $kasir = User::create([
             'name' => 'kasir',
@@ -55,17 +63,21 @@ class UserAndRoleSeeder extends Seeder
             'email' => 'kasir@gmail.com',
             'phone' => '2312334',
             'supervisor_id' => 2,
+            'is_active' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+            'password' => Hash::make('12345'),
+            'remember_token' => Str::random(10)
         ]);
         $kasir2 = User::create([
             'name' => 'kasir2',
             'username' => 'kasir2',
             'email' => 'kasir2@gmail.com',
             'phone' => '2312',
+            'is_active' => true,
             'supervisor_id' => 2,
             'email_verified_at' => now(),
-            'password' => Hash::make('12345'), 'remember_token' => Str::random(10)
+            'password' => Hash::make('12345'),
+            'remember_token' => Str::random(10)
         ]);
         $dapur = User::create([
             'name' => 'dapur',
@@ -73,6 +85,7 @@ class UserAndRoleSeeder extends Seeder
             'email' => 'dapur@gmail.com',
             'phone' => '1312334',
             'supervisor_id' => 2,
+            'is_active' => true,
             'email_verified_at' => now(),
             'password' => Hash::make('12345'),
             'remember_token' => Str::random(10),

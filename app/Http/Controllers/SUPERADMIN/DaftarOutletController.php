@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\SUPERADMIN;
 
+use DB;
 use App\Models\User;
 use App\Models\Outlet;
 use App\Models\SalesHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Models\HistoryBayarPajak;
 use App\Http\Controllers\Controller;
-use DB;
 use Illuminate\Database\Eloquent\Builder;
 
 class DaftarOutletController extends Controller
@@ -21,6 +22,12 @@ class DaftarOutletController extends Controller
             'users'     =>  $pemilikOutlet
         ]);
     }
+    public function semuaOutlet()
+    {
+        return view('superadmin.outlet.seluruh-outlet', [
+            'title'     =>  'Daftar Outlet',
+        ]);
+    }
     public function daftarOutlet(User $user)
     {
         $user->load('supervisorHasOutlets');
@@ -31,8 +38,7 @@ class DaftarOutletController extends Controller
     }
     public function detailOutlet($slug)
     {
-        $outlet = Outlet::with(['products', 'products.salesHistories', 'outletHasPegawai', 'categories'])->where('slug', $slug)->firstOrFail();
-        $pegawai = $outlet->with('outletHasPegawai');
+        $outlet = Outlet::with(['products', 'supervisor', 'products.salesHistories', 'outletHasPegawai', 'categories'])->where('slug', $slug)->firstOrFail();
         $transaksiBulanIni = SalesHistory::whereHas('outlet', function (Builder $query) use ($slug) {
             $query->where('slug', $slug);
         })
@@ -47,12 +53,18 @@ class DaftarOutletController extends Controller
             ->groupBy('product_name')
             ->orderBy('terjual', 'desc')
             ->first();
-
+        $riwayatPajak = HistoryBayarPajak::with('pajakYangDibayar')
+            ->whereHas('outlet', function (Builder $query) use ($slug) {
+                $query->where('slug', $slug);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('superadmin.outlet.detail-outlet', [
             'title'                 =>  'Detail Outlet',
             'outlet'                =>  $outlet,
             'transaksiBulanIni'     =>  $transaksiBulanIni->count(),
-            'terlaris'              => $terlaris
+            'terlaris'              =>  $terlaris,
+            'riwayatPajak'          =>  $riwayatPajak
         ]);
     }
 }
