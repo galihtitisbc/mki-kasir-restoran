@@ -17,6 +17,8 @@ Route::prefix('dashboard/superadmin')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/pemilik-resto', 'create');
         Route::post('/pemilik-resto', 'store');
+        Route::get('/edit-pemilik/{user:email}', 'edit');
+        Route::put('/edit-pemilik/{user:email}', 'update');
         Route::patch('/status-akun/{user:username}', 'changeStatus');
     });
 });

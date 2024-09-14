@@ -48,6 +48,9 @@
                 </thead>
                 <tbody>
                     @foreach ($pegawais as $item)
+                        @if ($item->user_id == Auth::getuser()->user_id)
+                            @continue
+                        @endif
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->name }}</td>

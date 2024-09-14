@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PemilikRestoCreateRequest extends FormRequest
+class PemilikRestoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class PemilikRestoCreateRequest extends FormRequest
     {
         return [
             'name'      => 'required|string|max:255',
-            'username'  => 'required|string|max:255|unique:users,username',
-            'email'     => 'required|string|email|max:255|unique:users,email',
-            'no_hp'     => 'required|numeric|min:5|unique:users,phone',
-            'password'  => 'required|min:4',
+            'username'  => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255',
+            'no_hp'     => 'required|numeric|min:5',
+            'password'  => 'nullable|min:4',
         ];
     }
 }

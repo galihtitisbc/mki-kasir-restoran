@@ -23,7 +23,7 @@ class PegawaiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'required|string|max:255|regex:/^[a-zA-Z\s]*$/',
+            'name'      => 'required|string|max:255',
             'username'  => 'required|string|max:255|unique:users,username',
             'email'     => 'required|string|email|max:255|unique:users,email',
             'no_hp'     => 'required|numeric|min:5|unique:users,phone',

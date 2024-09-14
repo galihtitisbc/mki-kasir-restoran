@@ -38,6 +38,8 @@
                                 </div>
                             </td>
                             <td>
+                                <a href="{{ url('/dashboard/superadmin/edit-pemilik/' . $user->email) }}"
+                                    class="btn btn-warning">Edit User</a>
                                 <a href="{{ url('/dashboard/superadmin/pemilik-outlet/daftar-outlet/' . $user->email) }}"
                                     class="btn btn-outline-primary">Lihat
                                     Outlet</a>

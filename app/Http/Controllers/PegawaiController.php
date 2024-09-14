@@ -69,6 +69,8 @@ class PegawaiController extends Controller
         $validated = $request->validated();
         if ($validated['password'] == null) {
             unset($validated['password']);
+        } else {
+            $validated['password'] = Hash::make($validated['password']);
         }
         try {
             DB::transaction(function () use ($validated, $user) {
