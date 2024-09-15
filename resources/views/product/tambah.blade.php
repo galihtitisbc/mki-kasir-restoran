@@ -11,6 +11,16 @@
         <form action="{{ url('/dashboard/produk/tambah') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body ms-5">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
@@ -24,6 +34,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <input type="hidden" name="is_food" value="0">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Harga : </label>
                             <input type="text" name="price"
@@ -44,13 +55,21 @@
                         </div>
                         <div class="form-group my-4">
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="bahan-switch">
-                                <label class="custom-control-label" for="bahan-switch">Aktifkan Jika Produk Makanan /
-                                    Minuman</label>
+                                <input type="checkbox" name="is_food" class="custom-control-input" id="bahan-switch"
+                                    {{ old('is_food') ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="bahan-switch">Aktifkan Jika Produk Masakan</label>
                             </div>
                         </div>
-                        <div class="form-group bahan-produk" hidden>
-                            <label for="exampleInputEmail1">Bahan Untuk Produk</label>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Stock : ( Isi Jika Produk Bukan Masakan )</label>
+                            <input type="text" name="stock"
+                                class="form-control @error('stock')
+                                                is-invalid
+                                            @enderror"
+                                placeholder="Masukkan Harga Produk" value="{{ old('stock') }}">
+                            @error('stock')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-6">
@@ -191,16 +210,5 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/opsi.js') }}"></script>
-        <script>
-            $('#bahan-switch').change(function() {
-                let status = $(this).is(':checked') ? 1 : 0;
-                if (status === 1) {
-                    $('.bahan-produk').removeAttr('hidden');
-                }
-                if (status === 0) {
-                    $('.bahan-produk').attr('hidden', true);
-                }
-            })
-        </script>
     @endpush
 @endsection

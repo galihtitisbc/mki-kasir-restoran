@@ -55,7 +55,7 @@ class ProductController extends Controller
                     $fileName = $validated['gambar']->hashName();
                     Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
                 }
-                $productCount = Product::latest()->first();
+                $productCount = Product::orderBy('product_id', 'desc')->first();
                 $productCode = 'PRD' . str_pad($productCount->product_id + 1, 3, '0', STR_PAD_LEFT);
 
                 $dns1d = new DNS1D();
@@ -68,7 +68,9 @@ class ProductController extends Controller
                     'price'         => $validated['price'],
                     'gambar'        => $fileName ?? null,
                     'product_code'  => $productCode,
-                    'barcode'       => $barcodeName
+                    'barcode'       => $barcodeName,
+                    'stock'         =>  $validated['stock'] ?? null,
+                    'is_food'       =>  $validated['is_food'] == 0 ? false : true
                 ]);
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);
@@ -111,6 +113,9 @@ class ProductController extends Controller
                 $updateData = [
                     'product_name'  => $validated['product_name'],
                     'price'         => $validated['price'],
+                    'stock'         =>  $validated['stock'] ?? null,
+                    'is_food'       =>  $validated['is_food'] == 0 ? false : true
+
                 ];
                 if (isset($validated['gambar'])) {
                     $fileName = $validated['gambar']->hashName();
@@ -155,5 +160,8 @@ class ProductController extends Controller
         } catch (\Throwable $e) {
             return redirect('/dashboard/produk')->with('error', 'Gagal Hapus produk. message ' . $e->getMessage());
         }
+    }
+    public function tambahBahan(Product $product){
+        dd($product);
     }
 }

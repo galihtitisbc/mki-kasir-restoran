@@ -43,7 +43,7 @@
                         <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Harga</th>
-                        {{-- <th>Stok</th> --}}
+                        <th>Stok</th>
                         <th>Daftar Bahan</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -63,9 +63,28 @@
                             </td>
                             <td>{{ $item->product_name }}</td>
                             <td>{{ $item->price }}</td>
-                            {{-- <td>{{ $item->stock }}</td> --}}
-                            <td><button class="btn btn-outline-primary" data-toggle="modal"
-                                    data-target="#detail-modal{{ $item->product_code }}">Detail</button></td>
+                            <td>{{ $item->stock }}</td>
+                            <td>
+                                @if ($item->is_food == true)
+                                    {{-- <button class="btn btn-outline-primary" data-toggle="modal"
+                                        data-target="#detail-modal{{ $item->product_code }}">Detail</button> --}}
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                            data-target="#detail-modal{{ $item->product_code }}">Detail</button>
+                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon"
+                                            data-toggle="dropdown">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a class="dropdown-item"
+                                                href="{{ url('/dashboard/produk/' . $item->slug . '/tambah-bahan') }}">Tambah
+                                                Bahan</a>
+                                        </div>
+                                    </div>
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" data-id="{{ $item->slug }}"

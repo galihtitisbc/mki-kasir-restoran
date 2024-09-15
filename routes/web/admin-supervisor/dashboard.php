@@ -53,6 +53,7 @@ Route::prefix('dashboard')->group(function () {
         Route::put('/produk/{product:slug}', 'update');
         Route::put('/produk/status/{product:slug}', 'updateStatus');
         Route::delete('/produk/hapus/{product:slug}', 'destroy');
+        Route::get('/produk/{product:slug}/tambah-bahan', 'tambahBahan');
     });
     Route::resource('pajak', TaxController::class);
     Route::get('/riwayat-bayar-pajak', [TaxController::class, 'riwayatBayarPajak']);
