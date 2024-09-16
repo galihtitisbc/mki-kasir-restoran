@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BahanProductRequest;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Category;
+use App\Models\Outlet;
 use App\Models\Product;
 use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
@@ -161,7 +163,38 @@ class ProductController extends Controller
             return redirect('/dashboard/produk')->with('error', 'Gagal Hapus produk. message ' . $e->getMessage());
         }
     }
-    public function tambahBahan(Product $product){
-        dd($product);
+    public function tambahBahan(Product $product)
+    {
+        $product->load('outlets');
+        $outletId = $product->outlets->pluck('outlet_id');
+        $outlet = Outlet::with('bahans')->whereIn('outlet_id', $outletId)->get();
+        $bahan = $outlet->pluck('bahans')->flatten()->unique('bahan_id');
+        return view('bahan.bahan-product', [
+            'title'     =>  'Bahan Product',
+            'product'   =>  $product,
+            'bahan'     =>  $bahan
+        ]);
+    }
+    public function storeBahanProduct(Product $product, BahanProductRequest $request)
+    {
+        $validated = $request->validated();
+        try {
+            DB::beginTransaction();
+            $bahanData = [];
+            foreach ($validated['bahan_id'] as $index => $value) {
+                $bahanData[] = [
+                    'bahan_id'      =>  $value,
+                    'qty'           =>  $validated['takaran'][$index],
+                    'satuan_bahan'  =>  $validated['satuan_bahan'][$index],
+                ];
+            }
+            $product->bahans()->attach($bahanData);
+            DB::commit();
+            return redirect('/dashboard/produk')->with('status', 'success');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            dd($e->getMessage());
+            return redirect('/dashboard/produk')->with('status', 'error');
+        }
     }
 }
