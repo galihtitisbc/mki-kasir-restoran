@@ -7,6 +7,7 @@ use App\Http\Controllers\SUPERADMIN\UserController;
 Route::prefix('dashboard/superadmin')->group(function () {
     Route::controller(DashboardSuperAdmin::class)->group(function () {
         Route::get('/home', 'index');
+        Route::get('/outlet', 'getOutlet');
     });
     Route::controller(DaftarOutletController::class)->group(function () {
         Route::get('/pemilik-outlet', 'index');

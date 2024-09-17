@@ -8,6 +8,11 @@
         <form action="{{ url('/dashboard/pegawai/tambah') }}" method="POST">
             @csrf
             <div class="card-body ms-5">
+                @if (session('error'))
+                    <div class="alert alert-danger mx-auto text-center">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">

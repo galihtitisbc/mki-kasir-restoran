@@ -42,6 +42,11 @@ class PegawaiController extends Controller
         $validated['password'] = Hash::make($validated['password']);
         $validated['phone'] = $validated['no_hp'];
         try {
+            if (in_array($validated['role'], ['DAPUR', 'KASIR'])) {
+                if (count($validated['outlet']) > 1) {
+                    return redirect()->back()->withInput()->with('error', 'Role KASIR dan DAPUR Hanya Boleh 1 Outlet');
+                }
+            }
             DB::transaction(function () use ($validated) {
                 $user = User::create($validated);
                 $user->assignRole($validated['role']);
