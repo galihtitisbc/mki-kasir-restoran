@@ -7,6 +7,7 @@ use App\Models\Meja;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Outlet;
 use App\Models\Pesanan;
 use DB;
 
@@ -65,7 +66,7 @@ class PesananController extends Controller
             });
             return response()->json([
                 'status'    => 'Berhasil',
-                'messahe'   => 'Berhasil Tambah Pesanan Pada Meja Nomor ' . $validated['meja_id'],
+                'message'   => 'Berhasil Tambah Pesanan Pada Meja Nomor ' . $validated['meja_id'],
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -78,9 +79,15 @@ class PesananController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        //
+        $outlet = Outlet::where('slug', $slug)->firstOrFail();
+        $pesanans = $outlet->pesanan()->get();
+
+        return response()->json([
+            'status'    => 'Berhasil',
+            'data'   => $pesanans
+        ]);
     }
 
     /**
