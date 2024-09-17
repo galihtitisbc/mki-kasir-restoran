@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("product_name");
             $table->integer("price");
             $table->boolean("status")->default(false);
+            $table->boolean("is_food")->default(true);
             $table->integer("stock")->nullable();
             $table->string("gambar")->nullable();
             $table->string("barcode")->nullable();

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BahanProductRequest;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Category;
+use App\Models\Outlet;
 use App\Models\Product;
 use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
@@ -55,7 +57,7 @@ class ProductController extends Controller
                     $fileName = $validated['gambar']->hashName();
                     Storage::putFileAs('public/gambar', $validated['gambar'], $fileName);
                 }
-                $productCount = Product::latest()->first();
+                $productCount = Product::orderBy('product_id', 'desc')->first();
                 $productCode = 'PRD' . str_pad($productCount->product_id + 1, 3, '0', STR_PAD_LEFT);
 
                 $dns1d = new DNS1D();
@@ -68,7 +70,9 @@ class ProductController extends Controller
                     'price'         => $validated['price'],
                     'gambar'        => $fileName ?? null,
                     'product_code'  => $productCode,
-                    'barcode'       => $barcodeName
+                    'barcode'       => $barcodeName,
+                    'stock'         =>  $validated['stock'] ?? null,
+                    'is_food'       =>  $validated['is_food'] == 0 ? false : true
                 ]);
                 $produk->categories()->attach($validated['category_id']);
                 $produk->outlets()->attach($validated['outlet_id']);
@@ -111,6 +115,9 @@ class ProductController extends Controller
                 $updateData = [
                     'product_name'  => $validated['product_name'],
                     'price'         => $validated['price'],
+                    'stock'         =>  $validated['stock'] ?? null,
+                    'is_food'       =>  $validated['is_food'] == 0 ? false : true
+
                 ];
                 if (isset($validated['gambar'])) {
                     $fileName = $validated['gambar']->hashName();
@@ -154,6 +161,40 @@ class ProductController extends Controller
             return redirect('/dashboard/produk')->with('status', 'Berhasil Hapus produk');
         } catch (\Throwable $e) {
             return redirect('/dashboard/produk')->with('error', 'Gagal Hapus produk. message ' . $e->getMessage());
+        }
+    }
+    public function tambahBahan(Product $product)
+    {
+        $product->load('outlets');
+        $outletId = $product->outlets->pluck('outlet_id');
+        $outlet = Outlet::with('bahans')->whereIn('outlet_id', $outletId)->get();
+        $bahan = $outlet->pluck('bahans')->flatten()->unique('bahan_id');
+        return view('bahan.bahan-product', [
+            'title'     =>  'Bahan Product',
+            'product'   =>  $product,
+            'bahan'     =>  $bahan
+        ]);
+    }
+    public function storeBahanProduct(Product $product, BahanProductRequest $request)
+    {
+        $validated = $request->validated();
+        try {
+            DB::beginTransaction();
+            $bahanData = [];
+            foreach ($validated['bahan_id'] as $index => $value) {
+                $bahanData[] = [
+                    'bahan_id'      =>  $value,
+                    'qty'           =>  $validated['takaran'][$index],
+                    'satuan_bahan'  =>  $validated['satuan_bahan'][$index],
+                ];
+            }
+            $product->bahans()->attach($bahanData);
+            DB::commit();
+            return redirect('/dashboard/produk')->with('status', 'success');
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            dd($e->getMessage());
+            return redirect('/dashboard/produk')->with('status', 'error');
         }
     }
 }

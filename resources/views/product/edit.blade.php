@@ -36,8 +36,16 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="exampleInputEmail1">Stok : ( Opsional )</label>
+                        <div class="form-group my-4">
+                            <input type="hidden" name="is_food" value="0">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" name="is_food" class="custom-control-input" id="bahan-switch"
+                                    {{ $produk->is_food == true ? 'checked' : '' }}>
+                                <label class="custom-control-label" for="bahan-switch">Aktifkan Jika Produk Masakan</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Stock : ( Opsional )</label>
                             <input type="text" name="stock"
                                 class="form-control @error('stock')
                                                 is-invalid
@@ -46,7 +54,7 @@
                             @error('stock')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div> --}}
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Upload Gambar : </label>
                             <input type="file" name="gambar" class="form-control" id="">

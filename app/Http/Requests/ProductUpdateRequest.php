@@ -33,6 +33,7 @@ class ProductUpdateRequest extends FormRequest
             'category.*'    => 'required|numeric',
             'opsi_id'       => 'nullable|array',
             'opsi.*'        => 'nullable|numeric',
+            'is_food'       => 'nullable'
         ];
     }
 }
