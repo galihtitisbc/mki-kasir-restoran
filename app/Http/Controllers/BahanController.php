@@ -20,7 +20,7 @@ class BahanController extends Controller
         $user = Auth::getUser();
         $outletRelation = $this->getRole() == 'ADMIN' ? 'outletWorks' : 'supervisorHasOutlets';
 
-        $outlets = $user->$outletRelation()->with('suppliers')->get();
+        $outlets = $user->$outletRelation()->with(['suppliers', 'satuanBahan'])->get();
         $suppliers = $outlets->flatMap->suppliers;
 
         return [$outlets, $suppliers];
@@ -54,8 +54,8 @@ class BahanController extends Controller
 
         return view('bahan.create', [
             'title' => 'Bahan Tambah',
-            'outlet' => $outlet,
-            'supplier' => $suppliers
+            'outlet'        => $outlet,
+            'supplier'      => $suppliers,
         ]);
     }
 

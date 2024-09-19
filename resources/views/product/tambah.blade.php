@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Stock : ( Isi Jika Produk Bukan Masakan )</label>
+                            <label for="exampleInputEmail1">Stock : ( Opsional )</label>
                             <input type="text" name="stock"
                                 class="form-control @error('stock')
                                                 is-invalid
@@ -80,8 +80,10 @@
                                 data-placeholder="Pilih Kategori" style="width: 100%;">
                                 <option value=""> -- Pilih Kategori --</option>
                                 @foreach ($category as $item)
-                                    <option value="{{ $item->category_id }}">
-                                        {{ $item->category_name }}</option>
+                                    <option value="{{ $item->category_id }}"
+                                        @if (is_array(old('category_id')) && in_array($item->category_id, old('category_id'))) selected @endif>
+                                        {{ $item->category_name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -95,10 +97,13 @@
                                 data-placeholder="Pilih Outlet" style="width: 100%;">
                                 <option value=""> -- Pilih Outlet --</option>
                                 @foreach ($outlet as $item)
-                                    <option value="{{ $item->outlet_id }}">
-                                        {{ $item->outlet_name }}</option>
+                                    <option value="{{ $item->outlet_id }}"
+                                        @if (is_array(old('outlet_id')) && in_array($item->outlet_id, old('outlet_id'))) selected @endif>
+                                        {{ $item->outlet_name }}
+                                    </option>
                                 @endforeach
                             </select>
+
                             @error('outlet_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

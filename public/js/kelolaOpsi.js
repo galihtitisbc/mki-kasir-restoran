@@ -64,8 +64,6 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (response) {
-                console.log(response);
-
                 if (response.code == 201 || response.code == 200) {
                     $("#tambah-modal").modal("hide");
                     Swal.fire({

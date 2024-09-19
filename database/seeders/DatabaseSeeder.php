@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SupplierSeeder::class,
             TaxSeeder::class,
-            MejaSeeder::class
+            MejaSeeder::class,
+            SatuanBahanSeeder::class
         ]);
         $userOutlet = [
             [

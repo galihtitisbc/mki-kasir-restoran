@@ -10,6 +10,7 @@ use App\Http\Controllers\MejaController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SatuanBahanController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TaxController;
@@ -60,6 +61,8 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/riwayat-bayar-pajak', [TaxController::class, 'riwayatBayarPajak']);
     Route::put('/pajak/status/{tax:slug}', [TaxController::class, 'changeStatus']);
     Route::resource('bahan', BahanController::class);
+    Route::post('/satuan', [SatuanBahanController::class, 'getSatuanBahan']);
+    Route::post('/store', [SatuanBahanController::class, 'storeSatuan']);
     Route::resource('supplier', SupplierController::class);
     Route::controller(StockController::class)->group(function () {
         Route::get('/stock', 'index');
