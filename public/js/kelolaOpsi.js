@@ -25,6 +25,7 @@ $(document).ready(function () {
         let valid = true;
         let grupOpsi = $("#opsi_name").val().trim();
         let outletId = $("[name='outlet_id']").val();
+
         $(".form-detail-opsi").each(function () {
             let namaOpsi = $(this).find(".opsi").val().trim();
             let harga = $(this).find(".harga").val().trim();
@@ -63,24 +64,31 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (response) {
-                $("#tambah-modal").modal("hide");
-                Swal.fire({
-                    title: "Berhasil Tambah Opsi",
-                    text: `${response.message}`,
-                    icon: "success",
-                });
-                setTimeout(() => {
-                    location.reload(true);
-                }, 1000);
-            },
-            error: function (xhr, status, error) {
-                $("#tambah-modal").modal("hide");
-                getOpsi();
-                Swal.fire({
-                    title: "Gagal Tambah Opsi",
-                    text: `${error.messsage}`,
-                    icon: "error",
-                });
+                console.log(response);
+
+                if (response.code == 201 || response.code == 200) {
+                    $("#tambah-modal").modal("hide");
+                    Swal.fire({
+                        title: "Berhasil Tambah Opsi",
+                        text: `${response.message}`,
+                        icon: "success",
+                    });
+                    setTimeout(() => {
+                        location.reload(true);
+                    }, 1000);
+                } else if (response.code == 400) {
+                    Swal.fire({
+                        title: "Gagal Tambah Opsi",
+                        text: `Pastikan Semua Input Sudah Terisi`,
+                        icon: "error",
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Gagal Tambah Opsi",
+                        text: `Pastikan Semua Input Sudah Terisi`,
+                        icon: "error",
+                    });
+                }
             },
         });
     });
