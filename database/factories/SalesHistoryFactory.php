@@ -31,7 +31,10 @@ class SalesHistoryFactory extends Factory
             'quantity'     => rand(1, 10),
             'product_price' => $product->price,
             'total_price'  => rand(1, 6) * $product->price,
-            'created_at'    => \Carbon\Carbon::now()->startOfMonth()->addDays(rand(1, 30))->format('Y-m-d H:i:s'),
+            'created_at'    => \Carbon\Carbon::create(null, rand(1, 12))
+                ->startOfMonth()
+                ->addDays(rand(1, 30))
+                ->format('Y-m-d H:i:s'),
         ];
     }
 }

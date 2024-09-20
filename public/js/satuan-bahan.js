@@ -49,7 +49,7 @@ $(document).ready(function () {
             success: function (response) {
                 let option = "";
                 response.data.forEach((element) => {
-                    option += `<option value="${element.id}">${element.satuan}</option>`;
+                    option += `<option value="${element.satuan}">${element.satuan}</option>`;
                 });
                 $(".satuan-bahan").html(option);
             },

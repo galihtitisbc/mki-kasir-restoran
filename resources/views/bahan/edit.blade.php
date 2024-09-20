@@ -30,10 +30,14 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="satuan_bahan">Satuan Bahan : ( Liter, Kg, gr )</label>
-                            <input type="text" name="satuan_bahan"
-                                class="form-control @error('satuan_bahan') is-invalid @enderror"
-                                placeholder="Masukkan Satuan" value="{{ $bahan->satuan_bahan }}">
+                            <label for="satuan_bahan">Satuan Bahan : </label>
+                            <select name="satuan_bahan" class="form-control" id="">
+                                <option value="">-- Pilih Satuan --</option>
+                                @foreach ($satuanBahan as $item)
+                                    <option {{ $item->satuan == $bahan->satuan_bahan ? 'selected' : '' }}
+                                        value="{{ $item->satuan }}">{{ $item->satuan }}</option>
+                                @endforeach
+                            </select>
                             @error('satuan_bahan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -57,7 +61,8 @@
                                         <div class="form-group clearfix">
                                             <div class="icheck-primary d-inline">
                                                 <input type="checkbox" name="outlet_id[]"
-                                                    id="checkboxPrimary3{{ $item->slug }}" value="{{ $item->outlet_id }}"
+                                                    id="checkboxPrimary3{{ $item->slug }}"
+                                                    value="{{ $item->outlet_id }}"
                                                     {{ in_array($item->outlet_id, $selectedOutlet) ? 'checked' : '' }}>
                                                 <label for="checkboxPrimary3{{ $item->slug }}">
                                                     {{ $item->outlet_name }}

@@ -14,7 +14,7 @@
                 @foreach ($outlets as $outlet)
                     <div class="col-lg-4">
                         <!-- small card -->
-                        <div class="small-box bg-info">
+                        <div class="small-box bg-{{ $outlet->sales_histories_count < 1 ? 'danger' : 'info' }}">
                             <div class="inner">
                                 <h4>{{ $outlet->outlet_name }}</h4>
                                 <p>{{ $outlet->address }}</p>

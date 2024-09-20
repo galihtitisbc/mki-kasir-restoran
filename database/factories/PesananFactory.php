@@ -24,7 +24,11 @@ class PesananFactory extends Factory
         return [
             'meja_id'   =>  Meja::inRandomOrder()->first()->meja_id,
             'outlet_id'   =>  Outlet::inRandomOrder()->first()->outlet_id,
-            'status'    => 'PAID'
+            'status'    => 'PAID',
+            'created_at'    => \Carbon\Carbon::create(null, rand(1, 12))
+                ->startOfMonth()
+                ->addDays(rand(1, 30))
+                ->format('Y-m-d H:i:s'),
         ];
     }
 }

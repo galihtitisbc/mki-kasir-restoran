@@ -35,9 +35,15 @@
                                 </div>
                                 <div class="col-lg-3 col-sm-1 col-md-1">
                                     <div class="form-group">
-                                        <label for="satuan_bahan">Satuan Bahan ( Kg, G, Ltr ): </label>
-                                        <input type="text" name="satuan_bahan[]" class="form-control"
-                                            placeholder="Masukkan Satuan" value="{{ old('satuan_bahan.' . $index) }}">
+                                        <label for="satuan_bahan">Satuan Bahan : </label>
+                                        <select name="satuan_bahan[]" class="form-control" id="">
+                                            <option value="">-- Pilih Satuan --</option>
+                                            @foreach ($satuan as $item)
+                                                <option value="{{ $item->satuan }}"
+                                                    {{ old('satuan_bahan.' . $index) == $item->satuan ? 'selected' : '' }}>
+                                                    {{ $item->satuan }}</option>
+                                            @endforeach
+                                        </select>
                                         @if ($errors->has('satuan_bahan.' . $index))
                                             <span class="text-danger">{{ $errors->first('satuan_bahan.' . $index) }}</span>
                                         @endif
@@ -75,9 +81,15 @@
                             </div>
                             <div class="col-lg-3 col-sm-1 col-md-1">
                                 <div class="form-group">
-                                    <label for="satuan_bahan">Satuan Bahan ( Kg, G, Ltr ): </label>
-                                    <input type="text" name="satuan_bahan[]" class="form-control"
-                                        placeholder="Masukkan Satuan">
+                                    <label for="satuan_bahan">Satuan Bahan : </label>
+                                    <select name="satuan_bahan[]" class="form-control" id="">
+                                        <option value="">-- Pilih Satuan --</option>
+                                        @foreach ($satuan as $item)
+                                            <option value="{{ $item->satuan }}"
+                                                {{ old('satuan_bahan.0') == $item->satuan ? 'selected' : '' }}>
+                                                {{ $item->satuan }}</option>
+                                        @endforeach
+                                    </select>
                                     @if ($errors->has('satuan_bahan.0'))
                                         <span class="text-danger">{{ $errors->first('satuan_bahan.0') }}</span>
                                     @endif
@@ -98,12 +110,12 @@
                         </div>
                     @endif
                 </div>
-                <div class="card-footer d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="card-footer d-flex justify-content-around">
+                    <button type="button" id="add-bahan" class="btn btn-info">Tambah Bahan</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </div>
         </form>
-        <button type="button" id="add-bahan">Tambah Bahan</button>
 
     </div>
 @endsection
@@ -129,10 +141,16 @@
                 </div>
                 <div class="col-lg-3 col-sm-1 col-md-1">
                     <div class="form-group">
-                        <label for="satuan_bahan">Satuan Bahan ( Kg, G, Ltr ): </label>
-                        <input type="text" name="satuan_bahan[]" class="form-control" 
-                               placeholder="Masukkan Satuan">
-                    </div>
+                                        <label for="satuan_bahan">Satuan Bahan : </label>
+                                        <select name="satuan_bahan[]" class="form-control" id="">
+                                            <option value="">-- Pilih Satuan --</option>
+                                            @foreach ($satuan as $item)
+                                                <option value="{{ $item->satuan }}">
+                                                    {{ $item->satuan }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
                 </div>
                 <div class="col-lg-3 col-sm-1 col-md-1">
                     <div class="form-group">

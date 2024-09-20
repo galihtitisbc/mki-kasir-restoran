@@ -167,12 +167,14 @@ class ProductController extends Controller
     {
         $product->load('outlets');
         $outletId = $product->outlets->pluck('outlet_id');
-        $outlet = Outlet::with('bahans')->whereIn('outlet_id', $outletId)->get();
+        $outlet = Outlet::with(['bahans', 'satuanBahan'])->whereIn('outlet_id', $outletId)->get();
         $bahan = $outlet->pluck('bahans')->flatten()->unique('bahan_id');
+        $satuanBahan = $outlet->pluck('satuanBahan')->flatten()->unique('satuan');
         return view('bahan.bahan-product', [
             'title'     =>  'Bahan Product',
             'product'   =>  $product,
-            'bahan'     =>  $bahan
+            'bahan'     =>  $bahan,
+            'satuan'    => $satuanBahan
         ]);
     }
     public function storeBahanProduct(Product $product, BahanProductRequest $request)
