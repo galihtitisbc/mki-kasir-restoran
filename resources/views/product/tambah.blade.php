@@ -22,7 +22,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-8">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Produk : </label>
                             <input type="text" name="product_name"
@@ -72,7 +72,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-8">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
@@ -153,7 +153,7 @@
                         @enderror
                     </div>
                     <div class="detail-opsi" id="form-container">
-                        <div class="col-5 mx-auto">
+                        <div class="col-lg-5 col-md-5 mx-auto">
                             <select class="select-opsi" name="outlet_id" data-placeholder="Pilih Outlet"
                                 style="width: 100%;">
                                 <option value=""> -- Pilih Outlet --</option>
@@ -165,11 +165,11 @@
                         </div>
                         <div class="form-group form-detail-opsi">
                             <div class="row d-flex justify-content-center my-3">
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-4">
                                     <label for="opsi">Nama Opsi : </label>
                                     <input type="text" class="form-control opsi" name="opsi[]" id="opsi">
                                 </div>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-4">
                                     <label for="opsi">Harga : </label>
                                     <input type="number" class="form-control harga" name="harga[]" id="harga">
                                 </div>

@@ -14,7 +14,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Pegawai : </label>
                             <input type="text" name="name"
@@ -49,7 +49,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nomor Hp : </label>
                             <input type="text" name="no_hp"
@@ -94,7 +94,7 @@
                             <label for="exampleInputEmail1">Kerja Di Outlet : </label>
                             <div class="row">
                                 @foreach ($outlet as $item)
-                                    <div class="col-6">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="form-group clearfix">
                                             <div class="icheck-primary d-inline">
                                                 <input type="checkbox" name="outlet[]"

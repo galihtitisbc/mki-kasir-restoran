@@ -1,5 +1,5 @@
 <div>
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-3 col-sm-12">
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="pilih-outlet d-flex justify-content-center">
-        <select wire:model.change="outletSearch" class="form-control col-3 mb-4" id="">
+        <select wire:model.change="outletSearch" class="form-control col-sm-6 col-md-5 col-lg-4 mb-4" id="">
             <option value="">-- Pilih Outlet --</option>
             @foreach ($outlets as $item)
                 <option value="{{ $item->slug }}" {{ request('outlet') == $item->slug ? 'selected' : '' }}>

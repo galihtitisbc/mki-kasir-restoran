@@ -16,7 +16,7 @@
         <div class="card-body table-responsive p-0">
             <form action="{{ url('/dashboard/opsi-produk') }}" method="GET">
                 <div class="row d-flex justify-content-center mt-3">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-md-4 col-sm-5">
                         <select name="outlet" class="form-control" id="">
                             <option value="" selected>-- Semua Outlet --</option>
                             @foreach ($outlet as $item)
@@ -27,7 +27,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
                         <button type="submit" class="btn btn-primary">Cari</button>
                     </div>
                 </div>
@@ -83,12 +83,12 @@
                                     <div class="modal-body">
                                         @foreach ($item->detailOpsi as $detail)
                                             <div class="row d-flex justify-content-center my-3">
-                                                <div class="col-4">
+                                                <div class="col-lg-4 col-md-4">
                                                     <label for="opsi">Nama Opsi : </label>
                                                     <input type="text" class="form-control" value="{{ $detail->opsi }}"
                                                         disabled>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-lg-4 col-md-4">
                                                     <label for="opsi">Harga : </label>
                                                     <input type="number" class="form-control" value="{{ $detail->harga }}"
                                                         disabled>
@@ -124,7 +124,7 @@
                             <div class="opsi-name d-flex justify-content-start">
                                 <label for="exampleInputEmail1">Nama Grup Opsi : </label>
                                 <input type="text" id="opsi_name" name="opsi_name"
-                                    class="form-control mx-4 col-4 @error('opsi_name') is-invalid @enderror"
+                                    class="form-control mx-4 col-lg-4 col-md-4 @error('opsi_name') is-invalid @enderror"
                                     placeholder="Masukkan Nama Grup Opsi" required value="{{ old('opsi_name') }}">
                                 <button type="button" class="btn btn-success tambah-form-opsi"><i class="fa fa-plus-circle"
                                         aria-hidden="true"></i>Tambah Detail Opsi</button>
@@ -146,11 +146,11 @@
                             </div>
                             <div class="form-group form-detail-opsi">
                                 <div class="row d-flex justify-content-center my-3">
-                                    <div class="col-4">
+                                    <div class="col-lg-4 col-md-4">
                                         <label for="opsi">Nama Opsi : </label>
                                         <input type="text" class="form-control opsi" name="opsi[]" id="opsi">
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-lg-4 col-md-4">
                                         <label for="opsi">Harga : </label>
                                         <input type="number" class="form-control harga" name="harga[]" id="harga">
                                     </div>
@@ -182,8 +182,8 @@
                             <div class="opsi-name d-flex justify-content-start">
                                 <label for="exampleInputEmail1">Nama Grup Opsi : </label>
                                 <input type="text" name="opsi_name_update"
-                                    class="form-control mx-4 col-4 opsi_name_update" placeholder="Masukkan Nama Grup Opsi"
-                                    required>
+                                    class="form-control mx-4 col-lg-4 col-md-4 opsi_name_update"
+                                    placeholder="Masukkan Nama Grup Opsi" required>
                                 <button type="button" class="btn btn-success tambah-form-opsi-update"><i
                                         class="fa fa-plus-circle" aria-hidden="true"></i>Tambah Detail Opsi</button>
                             </div>
@@ -201,12 +201,12 @@
                             </div>
                             <div class="form-group form-detail-opsi-update">
                                 {{-- <div class="row d-flex justify-content-center my-3">
-                                    <div class="col-4">
+                                    <div class="col-lg-4 col-md-4">
                                         <label for="opsi">Nama Opsi : </label>
                                         <input type="text" class="form-control opsi-update" name="opsi[]"
                                             id="opsi">
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-lg-4 col-md-4">
                                         <label for="opsi">Harga : </label>
                                         <input type="number" class="form-control harga-update" name="harga[]"
                                             id="harga">

@@ -49,5 +49,20 @@
  {{-- <script src="{{ asset('dist/js/demo.js') }}"></script> --}}
  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
  <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+ <script>
+     function checkScreenSize() {
+         var screenWidth = window.innerWidth;
+         var bodyElement = document.getElementById('mainBody');
+
+         // Jika lebar layar antara 768px dan 1024px (ukuran iPad)
+         if (screenWidth >= 768 && screenWidth <= 1024) {
+             bodyElement.classList.add('sidebar-collapse');
+         }
+     }
+
+     // Panggil fungsi saat halaman dimuat dan saat ukuran layar diubah
+     window.onload = checkScreenSize;
+     window.onresize = checkScreenSize;
+ </script>
  @stack('js')
  </body>
