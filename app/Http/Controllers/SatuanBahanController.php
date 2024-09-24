@@ -3,30 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Models\SatuanBahan;
+use App\Trait\GetOutletByUser;
 use Illuminate\Http\Request;
 
 class SatuanBahanController extends Controller
 {
+    use GetOutletByUser;
     public function getSatuanBahan(Request $request)
     {
-        $validated = $request->validate([
-            'outlet_id' => 'required|array',
-            'outlet_id.*' => 'integer|exists:outlets,outlet_id',
-        ]);
-        $satuan = SatuanBahan::whereIn('outlet_id', $validated['outlet_id'])->get();
+        $outletIds = $this->getOutletByUser()->pluck('outlet_id')->toArray();
+        $data = SatuanBahan::whereIn('outlet_id', $outletIds)
+            ->distinct()
+            ->pluck('satuan');
         return response()->json([
-            'data'  =>  $satuan
+            'data'  =>  $data
         ]);
     }
     public function storeSatuan(Request $request)
     {
         $validated = $request->validate([
-            'outlet_id' => 'integer|exists:outlets,outlet_id',
             'satuan'    =>  'required'
         ]);
-        SatuanBahan::create($validated);
+        $outletIds = $this->getOutletByUser()->pluck('outlet_id');
+        $data = [];
+        foreach ($outletIds as $item) {
+            $data[] = [
+                'outlet_id'     =>  $item,
+                'satuan'        =>  $validated['satuan']
+            ];
+        }
+        SatuanBahan::insert($data);
         return response()->json([
-            'message'   =>  'Sukses'
+            'message'   =>  'Sukses',
+            'data'      =>  'Sukses Tambah Bahan',
         ]);
     }
 }

@@ -61,7 +61,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/riwayat-bayar-pajak', [TaxController::class, 'riwayatBayarPajak']);
     Route::put('/pajak/status/{tax:slug}', [TaxController::class, 'changeStatus']);
     Route::resource('bahan', BahanController::class);
-    Route::post('/satuan', [SatuanBahanController::class, 'getSatuanBahan']);
+    Route::get('/satuan', [SatuanBahanController::class, 'getSatuanBahan']);
     Route::post('/store', [SatuanBahanController::class, 'storeSatuan']);
     Route::resource('supplier', SupplierController::class);
     Route::controller(StockController::class)->group(function () {

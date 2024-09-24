@@ -1,14 +1,27 @@
 $(document).ready(function () {
+    $.ajax({
+        url: "/dashboard/satuan",
+        method: "GET",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        success: function (response) {
+            let option = "";
+            response.data.forEach((element) => {
+                option += `<option value="${element}">${element}</option>`;
+            });
+            $(".satuan-bahan").html(option);
+        },
+        error: function (error) {
+            console.log(error);
+        },
+    });
     $(".satuan-bahan").select2({
         theme: "classic",
     });
     $("#form-tambah-satuan").submit((e) => {
         e.preventDefault();
-        let outletId = $("#outlet_id_satuan").val();
         let satuan = $("#satuan").val();
-        if (outletId === "") {
-            return;
-        }
         if (satuan === "") {
             return;
         }
@@ -19,7 +32,6 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             data: {
-                outlet_id: outletId,
                 satuan: satuan,
             },
             success: function (response) {
@@ -28,30 +40,6 @@ $(document).ready(function () {
             },
             error: function (error) {
                 console.log(error.message);
-            },
-        });
-    });
-    $('input[name="outlet_id[]"]').on("change", function () {
-        let checkedValues = [];
-        $('input[name="outlet_id[]"]:checked').each(function () {
-            checkedValues.push($(this).val());
-        });
-        console.log(checkedValues);
-        $.ajax({
-            url: "/dashboard/satuan",
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            data: {
-                outlet_id: checkedValues,
-            },
-            success: function (response) {
-                let option = "";
-                response.data.forEach((element) => {
-                    option += `<option value="${element.satuan}">${element.satuan}</option>`;
-                });
-                $(".satuan-bahan").html(option);
             },
         });
     });

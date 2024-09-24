@@ -79,7 +79,7 @@
                             <label for="satuan_bahan">Satuan Bahan : </label>
                             <div class="container d-flex flex-warp justify-content-between">
                                 <select name="satuan_bahan" class="satuan-bahan form-control" style="width: 80%"id="">
-                                    <option value="">-- Pilih Outlet Terlebih Dahulu --</option>
+
                                 </select>
                                 <button type="button" class="btn btn-info" data-toggle="modal"
                                     data-target="#tambah-satuan"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -105,15 +105,6 @@
                     </div>
                     <div class="modal-body">
                         <form id="form-tambah-satuan">
-                            <div class="form-group">
-                                <label for="outlet_id_satuan">Pilih Outlet : </label>
-                                <select id="outlet_id_satuan" class="form-control">
-                                    <option value="">-- Pilih Outlet --</option>
-                                    @foreach ($outlet as $item)
-                                        <option value="{{ $item->outlet_id }}">{{ $item->outlet_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="form-group">
                                 <label for="satuan">Nama Satuan : </label>
                                 <input type="text" id="satuan" class="form-control">
