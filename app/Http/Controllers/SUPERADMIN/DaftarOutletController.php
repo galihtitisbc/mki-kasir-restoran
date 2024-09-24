@@ -28,9 +28,16 @@ class DaftarOutletController extends Controller
             'title'     =>  'Daftar Outlet',
         ]);
     }
-    public function daftarOutlet(User $user)
+    public function daftarOutlet($email)
     {
-        $user->load('supervisorHasOutlets');
+        $user = User::where('email', $email)
+            ->with(['supervisorHasOutlets' => function ($query) {
+                $query->withCount(['salesHistories' => function ($query) {
+                    $query->whereMonth('created_at', Carbon::now()->month)
+                        ->whereYear('created_at', Carbon::now()->year);
+                }]);
+            }])
+            ->first();
         return view('superadmin.outlet.daftar-outlet', [
             'title'     =>  'Daftar Outlet',
             'user'      =>  $user
