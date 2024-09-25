@@ -138,6 +138,8 @@
                                         <div class="modal-footer justify-content-between">
                                             <button type="button" class="btn btn-default"
                                                 data-dismiss="modal">Close</button>
+                                            <a href="{{ url('/dashboard/produk/' . $item->slug . '/tambah-bahan') }}"
+                                                class="btn btn-info">Tambah Bahan</a>
                                         </div>
                                     </div>
                                 </div>

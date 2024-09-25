@@ -25,18 +25,6 @@
                                 </option>
                             @endforeach
                         </select>
-                        @error('tax_name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        @error('tax_rate')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        @error('description')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        @error('outlet_id')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="col-3">
                         <button type="submit" class="btn btn-primary">Cari</button>

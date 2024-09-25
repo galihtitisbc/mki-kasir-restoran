@@ -20,10 +20,10 @@ class BahanController extends Controller
         $user = Auth::getUser();
         $outletRelation = $this->getRole() == 'ADMIN' ? 'outletWorks' : 'supervisorHasOutlets';
 
-        $outlets = $user->$outletRelation()->with('suppliers')->get();
+        $outlets = $user->$outletRelation()->with(['suppliers', 'satuanBahan'])->get();
         $suppliers = $outlets->flatMap->suppliers;
-
-        return [$outlets, $suppliers];
+        $satuanBahan = $outlets->flatMap->satuanBahan;
+        return [$outlets, $suppliers, $satuanBahan];
     }
 
     /**
@@ -54,8 +54,8 @@ class BahanController extends Controller
 
         return view('bahan.create', [
             'title' => 'Bahan Tambah',
-            'outlet' => $outlet,
-            'supplier' => $suppliers
+            'outlet'        => $outlet,
+            'supplier'      => $suppliers,
         ]);
     }
 
@@ -93,14 +93,15 @@ class BahanController extends Controller
     public function edit(string $id)
     {
         $bahan = Bahan::where('slug', $id)->first();
-        [$outlet, $suppliers] = $this->getOutletsWithSuppliers();
+        [$outlet, $suppliers, $satuanBahan] = $this->getOutletsWithSuppliers();
         $selectedOutlet = $bahan->outlets->pluck('outlet_id')->toArray();
         return view('bahan.edit', [
             'title' => 'Bahan Edit',
             'bahan' => $bahan,
             'outlet' => $outlet,
             'supplier' => $suppliers,
-            'selectedOutlet' => $selectedOutlet
+            'selectedOutlet' => $selectedOutlet,
+            'satuanBahan'   => $satuanBahan
         ]);
     }
 

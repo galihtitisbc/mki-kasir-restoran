@@ -27,7 +27,15 @@ class PemilikRestoCreateRequest extends FormRequest
             'username'  => 'required|string|max:255|unique:users,username',
             'email'     => 'required|string|email|max:255|unique:users,email',
             'no_hp'     => 'required|numeric|min:5|unique:users,phone',
-            'password'  => 'required|min:4',
+            'password'  => 'required|min:5|regex:/[a-zA-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'password.required' => 'Password harus diisi.',
+            'password.min' => 'Password harus memiliki minimal :min karakter.',
+            'password.regex' => 'Password harus mengandung huruf, angka, dan karakter spesial (@$!%*#?&).',
         ];
     }
 }

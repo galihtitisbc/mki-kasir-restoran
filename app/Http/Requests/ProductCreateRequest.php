@@ -26,7 +26,7 @@ class ProductCreateRequest extends FormRequest
             'product_name'  => 'required|max:255',
             'price'         => 'required|numeric',
             'stock'         => 'nullable|numeric',
-            'gambar'        => 'nullable|image',
+            'gambar'        => 'nullable|image|mimes:jpeg,png,jpg',
             'outlet_id'     => 'required|array',
             'outlet.*'      => 'required|numeric',
             'category_id'   => 'required|array',

@@ -134,8 +134,8 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: function (response) {
-                $("#tambah-modal").modal("hide");
                 if (response.code == 201) {
+                    $("#tambah-modal").modal("hide");
                     getOpsi();
                     Swal.fire({
                         title: "Berhasil",
@@ -152,8 +152,6 @@ $(document).ready(function () {
                 }
             },
             error: function (xhr, status, error) {
-                console.log(error);
-                $("#tambah-modal").modal("hide");
                 Swal.fire({
                     title: "Gagal",
                     text: `${error.messsage}`,

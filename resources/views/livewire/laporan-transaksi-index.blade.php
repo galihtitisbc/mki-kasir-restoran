@@ -2,7 +2,7 @@
     <div class="card-body table-responsive p-0">
         <div class="text-center mx-auto my-4">
             <div class="row d-flex flex-wrap justify-content-center">
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2 col-sm-7">
                     <label for="outlet">Pilih Outlet :</label>
                     <select wire:model.live="outletSearch" class="form-control" id="">
                         <option value="" selected>-- Pilih Outlet --</option>
@@ -13,12 +13,12 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2 col-sm-7">
                     <label for="outlet">Nama Produk :</label>
                     <input type="text" class="form-control" {{ $outletSearch == null ? 'disabled' : '' }}
                         wire:model.live.debounce.300ms="productSearch" id="">
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2 col-sm-7">
                     <label for="outlet">Pilih Kategori :</label>
                     <select wire:model.live="categorySearch" {{ $outletSearch == null ? 'disabled' : '' }}
                         class="form-control" id="category">
@@ -31,12 +31,12 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2 col-sm-7">
                     <label for="fromDate">Dari Tanggal :</label>
                     <input type="date" wire:model.live="fromDate" {{ $outletSearch == null ? 'disabled' : '' }}
                         class="form-control" id="fromDate">
                 </div>
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2 col-sm-7">
                     <label for="toDate">Ke Tanggal :</label>
                     <input type="date" wire:model.live="toDate" {{ $outletSearch == null ? 'disabled' : '' }}
                         class="form-control" id="toDate">

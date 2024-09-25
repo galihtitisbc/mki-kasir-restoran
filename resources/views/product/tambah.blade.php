@@ -22,7 +22,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-8">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Produk : </label>
                             <input type="text" name="product_name"
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Stock : ( Isi Jika Produk Bukan Masakan )</label>
+                            <label for="exampleInputEmail1">Stock : ( Opsional )</label>
                             <input type="text" name="stock"
                                 class="form-control @error('stock')
                                                 is-invalid
@@ -72,7 +72,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-8">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Kategori Produk :</label>
                             <br>
@@ -80,8 +80,10 @@
                                 data-placeholder="Pilih Kategori" style="width: 100%;">
                                 <option value=""> -- Pilih Kategori --</option>
                                 @foreach ($category as $item)
-                                    <option value="{{ $item->category_id }}">
-                                        {{ $item->category_name }}</option>
+                                    <option value="{{ $item->category_id }}"
+                                        @if (is_array(old('category_id')) && in_array($item->category_id, old('category_id'))) selected @endif>
+                                        {{ $item->category_name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -95,10 +97,13 @@
                                 data-placeholder="Pilih Outlet" style="width: 100%;">
                                 <option value=""> -- Pilih Outlet --</option>
                                 @foreach ($outlet as $item)
-                                    <option value="{{ $item->outlet_id }}">
-                                        {{ $item->outlet_name }}</option>
+                                    <option value="{{ $item->outlet_id }}"
+                                        @if (is_array(old('outlet_id')) && in_array($item->outlet_id, old('outlet_id'))) selected @endif>
+                                        {{ $item->outlet_name }}
+                                    </option>
                                 @endforeach
                             </select>
+
                             @error('outlet_id')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -148,7 +153,7 @@
                         @enderror
                     </div>
                     <div class="detail-opsi" id="form-container">
-                        <div class="col-5 mx-auto">
+                        <div class="col-lg-5 col-md-5 mx-auto">
                             <select class="select-opsi" name="outlet_id" data-placeholder="Pilih Outlet"
                                 style="width: 100%;">
                                 <option value=""> -- Pilih Outlet --</option>
@@ -160,11 +165,11 @@
                         </div>
                         <div class="form-group form-detail-opsi">
                             <div class="row d-flex justify-content-center my-3">
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-4">
                                     <label for="opsi">Nama Opsi : </label>
                                     <input type="text" class="form-control opsi" name="opsi[]" id="opsi">
                                 </div>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-md-4">
                                     <label for="opsi">Harga : </label>
                                     <input type="number" class="form-control harga" name="harga[]" id="harga">
                                 </div>

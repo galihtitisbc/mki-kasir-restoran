@@ -13,10 +13,10 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-            <div class="mbuh col-6 text-center mx-auto my-4">
+            <div class="mbuh col-lg-6 col-md-6 text-center mx-auto my-4">
                 <form action="{{ url('/dashboard/pegawai') }}" method="get">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-lg-9 col-md-9">
                             <select name="outlet" class="form-control" id="">
                                 <option value="" selected>-- Pilih Outlet --</option>
                                 @foreach ($outlet as $item)
@@ -26,7 +26,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-3 d-flex">
+                        <div class="col-lg-3 col-md-3 d-flex">
                             <button type="submit" class="btn btn-primary mr-2">Cari</button>
                             <a href="{{ url('/dashboard/pegawai') }}" type="submit" class="btn btn-danger">Reset</a>
                         </div>

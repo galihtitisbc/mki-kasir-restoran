@@ -26,7 +26,7 @@ class BahanCreateRequest extends FormRequest
             'nama_bahan' => 'required|string|max:255',
             'harga_bahan_per_satuan' => 'required|numeric',
             'stock' => 'required|numeric',
-            'satuan_bahan' => 'required|string|max:255',
+            'satuan_bahan' => 'required|string|exists:satuan_bahans,satuan',
             'outlet_id' => 'required|array',
             'outlet_id.*' => 'required|exists:outlets,outlet_id',
             'supplier_id' => 'required|exists:suppliers,supplier_id',

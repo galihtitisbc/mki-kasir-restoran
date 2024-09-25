@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
@@ -16,15 +19,6 @@
                                 class="form-control @error('nama_bahan') is-invalid @enderror" placeholder="Masukkan Nama"
                                 value="{{ old('nama_bahan') }}">
                             @error('nama_bahan')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="satuan_bahan">Satuan Bahan : ( Liter, Kg, gr )</label>
-                            <input type="text" name="satuan_bahan"
-                                class="form-control @error('satuan_bahan') is-invalid @enderror"
-                                placeholder="Masukkan Satuan" value="{{ old('satuan_bahan') }}">
-                            @error('satuan_bahan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -81,6 +75,19 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="satuan_bahan">Satuan Bahan : </label>
+                            <div class="container d-flex flex-warp justify-content-between">
+                                <select name="satuan_bahan" class="satuan-bahan form-control" style="width: 80%"id="">
+
+                                </select>
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#tambah-satuan"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                            @error('satuan_bahan')
+                                <div class="bg bg-danger invalid">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-center">
@@ -88,6 +95,32 @@
                 </div>
             </div>
         </form>
-
+        <div class="modal fade" id="tambah-satuan">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-tambah-satuan">
+                            <div class="form-group">
+                                <label for="satuan">Nama Satuan : </label>
+                                <input type="text" id="satuan" class="form-control">
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('js/satuan-bahan.js') }}"></script>
+@endpush
