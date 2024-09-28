@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\OrderCreated;
 use Validator;
+use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Firebase\Messaging\Notification;
 use App\Models\Meja;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Outlet;
 use App\Models\Pesanan;
 use DB;
 
@@ -26,9 +30,13 @@ class PesananController extends Controller
     public function store(Request $request)
     {
         try {
+            // $outlet = Outlet::where('slug', $slug)->firstOrFail();
             $validator = Validator::make($request->all(), [
+                'notification_token'    => 'required',
                 'meja_id'               => 'required|numeric|exists:mejas,meja_id',
+                'outlet_id'             => 'required|numeric|exists:outlets,outlet_id',
                 "nama_pemesan"          => 'required|max:60',
+                'status'                => 'required',
                 'product.*.product_id'  => 'required|numeric|exists:products,product_id',
                 'product.*.qty'         => 'required|integer|min:1'
             ]);
@@ -46,8 +54,14 @@ class PesananController extends Controller
                 }
                 $pesanan = Pesanan::create([
                     'meja_id'       =>  $validated['meja_id'],
-                    'nama_pemesan'  =>  $validated['nama_pemesan']
+                    'nama_pemesan'  =>  $validated['nama_pemesan'],
+                    'outlet_id'     =>  $validated['outlet_id'],
+                    'status'        =>  $validated['status'],
                 ]);
+
+                // $this->sendFirebaseNotification($validated['notification_token'], 'Pesanan berhasil', 'Pesanan Anda telah ditambahkan.');
+                event(new OrderCreated($pesanan, $validated['notification_token']));
+
                 $dataProduct = [];
                 foreach ($validated['product'] as $value) {
                     $product = Product::where('product_id', $value['product_id'])->first();
@@ -65,7 +79,7 @@ class PesananController extends Controller
             });
             return response()->json([
                 'status'    => 'Berhasil',
-                'messahe'   => 'Berhasil Tambah Pesanan Pada Meja Nomor ' . $validated['meja_id'],
+                'message'   => 'Berhasil Tambah Pesanan Pada Meja Nomor ' . $validated['meja_id'],
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -78,9 +92,15 @@ class PesananController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        //
+        $outlet = Outlet::where('slug', $slug)->firstOrFail();
+        $pesanans = $outlet->pesanan()->with(['product'])->get();
+
+        return response()->json([
+            'status'    => 'Berhasil',
+            'data'   => $pesanans
+        ]);
     }
 
     /**
@@ -97,5 +117,12 @@ class PesananController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function sendFirebaseNotification($fcmToken, $title, $body) {
+        $messaging = app('firebase.messaging');
+        $message = CloudMessage::withTarget('token', $fcmToken)
+        ->withNotification(Notification::create($title, $body));
+        $messaging->send($message);
     }
 }
