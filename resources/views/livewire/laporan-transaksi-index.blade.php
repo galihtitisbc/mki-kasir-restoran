@@ -44,6 +44,9 @@
 
             </div>
         </div>
+        <div class="text-right mr-5">
+            <button>Export PDF</button>
+        </div>
         @if (!is_null($transactions))
             <div class="card-body">
                 <div class="table-responsive">

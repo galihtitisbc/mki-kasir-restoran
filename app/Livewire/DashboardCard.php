@@ -23,6 +23,7 @@ class DashboardCard extends Component
     public $jumlahPegawai;
     public $jumlahProduk;
     public $pajakSeluruhOutlet;
+    public $bulanLalu;
     public function mount()
     {
         $this->transaksiHariIni = 0;
@@ -30,7 +31,7 @@ class DashboardCard extends Component
         $this->jumlahPegawai = 0;
         $this->jumlahProduk = 0;
         $this->outlets = $this->getOutletByUser();
-
+        $this->bulanLalu = Carbon::now()->subMonth();
         $this->pajakSeluruhOutlet =
             SalesHistory::with('taxs')
             ->whereHas('outlet', function (Builder $query) {
@@ -42,8 +43,8 @@ class DashboardCard extends Component
                     $query->where('users.user_id', $userFilter['user_id']);
                 });
             })
-            ->whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', $this->bulanLalu->month)
+            ->whereYear('created_at', $this->bulanLalu->year)
             ->get()
             ->sum(fn($item) => $item->taxs->sum('pivot.total'));
         $this->pajakSeluruhOutlet = $this->rupiah($this->pajakSeluruhOutlet);
@@ -54,16 +55,14 @@ class DashboardCard extends Component
         $this->transaksiHariIni = SalesHistory::whereHas('outlet', function (Builder $query) {
             $query->where('slug', $this->outletSearch);
         })->whereDate('created_at', Carbon::today())->count();
-
         $this->pajakBulanIni = SalesHistory::with('taxs')
             ->whereHas('outlet', function (Builder $query) {
                 $query->where('slug', $this->outletSearch);
             })
-            ->whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', $this->bulanLalu->month)
+            ->whereYear('created_at', $this->bulanLalu->year)
             ->get()
             ->sum(fn($item) => $item->taxs->sum('pivot.total'));
-
         $this->pajakBulanIni = $this->rupiah($this->pajakBulanIni);
 
         $this->jumlahPegawai = User::whereHas('outletWorks', function (Builder $query) {

@@ -15,7 +15,7 @@
         <table class="table table-hover text-center mt-3">
             <thead>
                 <th>No</th>
-                <th>Tanggal Bayar</th>
+                <th>Di Generate</th>
                 <th>Untuk Bulan</th>
                 <th>Jumlah Bayar</th>
                 <th>Pajak Yang Dibayar</th>
