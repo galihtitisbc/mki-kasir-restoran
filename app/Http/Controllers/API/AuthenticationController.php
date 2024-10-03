@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OutletWorks;
+use App\Http\Resources\UserAuthResource;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class AuthenticationController extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->firstOrFail();
             if ($user->is_active == false) {
                 throw ValidationException::withMessages([
                     'is_active' => ['Akun Anda Tidak Aktif'],
@@ -34,6 +35,7 @@ class AuthenticationController extends Controller
             return response()->json([
                 'message' => 'Sukses',
                 'token' => $token,
+                'user'  =>  new UserAuthResource($user),
                 'outlet_kerja' => OutletWorks::collection($user->outletWorks)
             ], 200);
         } catch (\Exception $e) {
