@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SalesHistory;
 use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
+use Dompdf\Dompdf;
 use Illuminate\Database\Eloquent\Builder;
 
 class LaporanTransaksiIndex extends Component
@@ -45,5 +46,20 @@ class LaporanTransaksiIndex extends Component
             'pesanan:pesanan_id'
         ])->filter($data)->get();
         return view('livewire.laporan-transaksi-index');
+    }
+
+    public function printPdf()
+    {
+        $data = [
+            'transactions'  =>  $this->transactions
+        ];
+        $html = view('PDF.laporan_pdf', $data)->render();
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->render();
+        // return $pdf->stream('laporan_transaksi.pdf', ['Attachment' => false]);
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, 'laporan_transaksi.pdf');
     }
 }

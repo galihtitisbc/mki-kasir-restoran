@@ -78,4 +78,15 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/opsi-produk', [OpsiController::class, 'index']);
     Route::delete('/opsi/hapus/{opsi:slug}', [OpsiController::class, 'destroy']);
     Route::put('/opsi/update/{opsi:slug}', [OpsiController::class, 'update']);
+
+    Route::get('/test', function () {
+        $data = App\Models\SalesHistory::with([
+            'product:product_id,product_name',
+            'product.categories:category_id,category_name',
+            'user:user_id,name',
+            'outlet:outlet_id,outlet_name',
+            'pesanan:pesanan_id'
+        ])->get();
+        return view('PDF.laporan_pdf', ['transactions' => $data]);
+    });
 });

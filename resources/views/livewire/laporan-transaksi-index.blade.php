@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="text-right mr-5">
-            <button>Export PDF</button>
+            <button class="btn btn-danger" wire:click="printPdf">Export PDF</button>
         </div>
         @if (!is_null($transactions))
             <div class="card-body">
