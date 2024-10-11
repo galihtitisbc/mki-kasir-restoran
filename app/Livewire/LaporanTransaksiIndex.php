@@ -5,9 +5,11 @@ namespace App\Livewire;
 use Auth;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Outlet;
 use App\Models\SalesHistory;
 use App\Trait\GetOutletByUser;
 use App\Trait\UserAndRoleLoggedIn;
+use DB;
 use Dompdf\Dompdf;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -51,15 +53,36 @@ class LaporanTransaksiIndex extends Component
     public function printPdf()
     {
         $data = [
-            'transactions'  =>  $this->transactions
+            'outlet'        => $this->outletSearch,
+            'fromDate'      => $this->fromDate,
+            'toDate'        => $this->toDate,
+            'category'      => $this->categorySearch,
+            'productName'   => $this->productSearch
         ];
-        $html = view('PDF.laporan_pdf', $data)->render();
-        $pdf = new Dompdf();
-        $pdf->loadHtml($html);
-        $pdf->render();
-        // return $pdf->stream('laporan_transaksi.pdf', ['Attachment' => false]);
-        return response()->streamDownload(function () use ($pdf) {
-            echo $pdf->output();
-        }, 'laporan_transaksi.pdf');
+        $history = SalesHistory::with('taxs')
+            ->select(
+                'sales_history_id',
+                'created_at',
+                DB::raw(
+                    'SUM(total_price) AS total_penjualan'
+                )
+            )
+            ->filter($data)
+            ->groupBy(DB::raw('DAY(created_at)'))
+            ->get();
+        $data = [
+            'transactions'  =>  $history,
+            'outlet'        => Outlet::where('slug', $this->outletSearch)->first()
+        ];
+        session(['pdf_data' => $data]);
+        return redirect()->route('download-pdf');
+        // $html = view('PDF.laporan_pdf', $data)->render();
+        // $pdf = new Dompdf();
+        // $pdf->loadHtml($html);
+        // $pdf->render();
+        // return $pdf->stream('laporan_transaksi.pdf', ['Attachment' => true]);
+        // return response()->streamDownload(function () use ($pdf) {
+        //     echo $pdf->output();
+        // }, 'laporan_transaksi.pdf');
     }
 }

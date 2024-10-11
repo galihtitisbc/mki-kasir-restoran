@@ -14,6 +14,7 @@ use App\Http\Controllers\SatuanBahanController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TaxController;
+use Dompdf\Dompdf;
 
 Route::prefix('dashboard')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
@@ -79,14 +80,30 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('/opsi/hapus/{opsi:slug}', [OpsiController::class, 'destroy']);
     Route::put('/opsi/update/{opsi:slug}', [OpsiController::class, 'update']);
 
+    Route::get('/download-pdf', function (Request $request) {
+        $data = session('pdf_data');
+        // dd($data);/
+        //$data['transactions']
+        $html = view('PDF.laporan_pdf', compact('data'))->render();
+        $pdf = new Dompdf();
+        $pdf->loadHtml($html);
+        $pdf->render();
+        return response($pdf->output(), 200)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'inline; filename="laporan_transaksi.pdf"');
+    })->name('download-pdf');
     Route::get('/test', function () {
-        $data = App\Models\SalesHistory::with([
-            'product:product_id,product_name',
-            'product.categories:category_id,category_name',
-            'user:user_id,name',
-            'outlet:outlet_id,outlet_name',
-            'pesanan:pesanan_id'
-        ])->get();
-        return view('PDF.laporan_pdf', ['transactions' => $data]);
+        $data = App\Models\SalesHistory::with('taxs')
+            ->select(
+                'sales_history_id',
+                'created_at',
+                DB::raw(
+                    'SUM(total_price) AS total_penjualan'
+                )
+            )
+            ->groupBy(DB::raw('DAY(created_at)'))
+            ->get();
+        // dd($data);
+        return view('PDF.laporan_pdf', ['transactions' => $data, 'outlet' => 'Coral']);
     });
 });
