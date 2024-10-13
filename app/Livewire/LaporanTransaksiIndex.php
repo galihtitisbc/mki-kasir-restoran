@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Exports\LaporanTransaksi;
 use Auth;
 use Livewire\Component;
 use App\Models\Category;
@@ -12,6 +13,7 @@ use App\Trait\UserAndRoleLoggedIn;
 use DB;
 use Dompdf\Dompdf;
 use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanTransaksiIndex extends Component
 {
@@ -50,7 +52,17 @@ class LaporanTransaksiIndex extends Component
         return view('livewire.laporan-transaksi-index');
     }
 
-    public function printPdf()
+    public function printPdf($type)
+    {
+        $this->printData($type);
+        return redirect()->route('download-pdf');
+    }
+    public function printExcel($type)
+    {
+        $this->printData($type);
+        return Excel::download(new LaporanTransaksi, 'laporan.xlsx');
+    }
+    public function printData($type)
     {
         $data = [
             'outlet'        => $this->outletSearch,
@@ -72,17 +84,11 @@ class LaporanTransaksiIndex extends Component
             ->get();
         $data = [
             'transactions'  =>  $history,
-            'outlet'        => Outlet::where('slug', $this->outletSearch)->first()
+            'outlet'        => Outlet::where('slug', $this->outletSearch)->first(),
+            'fromDate'      => $this->fromDate,
+            'toDate'        => $this->toDate,
+            'type'          => $type
         ];
         session(['pdf_data' => $data]);
-        return redirect()->route('download-pdf');
-        // $html = view('PDF.laporan_pdf', $data)->render();
-        // $pdf = new Dompdf();
-        // $pdf->loadHtml($html);
-        // $pdf->render();
-        // return $pdf->stream('laporan_transaksi.pdf', ['Attachment' => true]);
-        // return response()->streamDownload(function () use ($pdf) {
-        //     echo $pdf->output();
-        // }, 'laporan_transaksi.pdf');
     }
 }

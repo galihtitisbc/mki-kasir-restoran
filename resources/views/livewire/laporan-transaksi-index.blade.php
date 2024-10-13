@@ -44,9 +44,12 @@
 
             </div>
         </div>
-        <div class="text-right mr-5">
-            <button class="btn btn-danger" wire:click="printPdf">Export PDF</button>
-        </div>
+        @if ($outletSearch)
+            <div class="text-right mr-5">
+                <button class="btn btn-danger" wire:click="printPdf('pdf')">Export PDF</button>
+                <button class="btn btn-success" wire:click="printExcel('excel')">Export Excel</button>
+            </div>
+        @endif
         @if (!is_null($transactions))
             <div class="card-body">
                 <div class="table-responsive">

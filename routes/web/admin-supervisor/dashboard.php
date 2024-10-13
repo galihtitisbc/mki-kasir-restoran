@@ -82,7 +82,7 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('/download-pdf', function (Request $request) {
         $data = session('pdf_data');
-        // dd($data);/
+        // dd($data);
         //$data['transactions']
         $html = view('PDF.laporan_pdf', compact('data'))->render();
         $pdf = new Dompdf();
