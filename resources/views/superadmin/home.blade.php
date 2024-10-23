@@ -6,10 +6,30 @@
          <div class="col-6">
              <div class="card card-primary">
                  <div class="card-header">
-                     <h3 class="card-title">Quick Example</h3>
+                     <h3 class="card-title text-center">Outlet Terlaris</h3>
                  </div>
                  <div class="card-body">
-                     sdfdsf
+                     <div class="row">
+                         <div class="col-3"><strong>Nama Outlet</strong></div>
+                         <div class="col-1">:</div>
+                         <div class="col-8">
+                             <p id="nama"></p>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-3"><strong>Alamat</strong></div>
+                         <div class="col-1">:</div>
+                         <div class="col-8">
+                             <p id="alamat"></p>
+                         </div>
+                     </div>
+                     <div class="row">
+                         <div class="col-3"><strong>Telp</strong></div>
+                         <div class="col-1">:</div>
+                         <div class="col-8">
+                             <p id="telp"></p>
+                         </div>
+                     </div>
                  </div>
              </div>
          </div>

@@ -4,6 +4,10 @@ $(document).ready(function () {
         url: "/dashboard/superadmin/outlet",
         type: "GET",
         success: function (res) {
+            document.getElementById("nama").innerHTML = res.data["outlet_name"];
+            document.getElementById("alamat").innerHTML = res.data["address"];
+            document.getElementById("telp").innerHTML = res.data["phone"];
+
             let data = Array.from(Object.values(res.sales));
             var areaChartData = {
                 labels: [
