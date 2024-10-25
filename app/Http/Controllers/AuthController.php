@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TestNotification;
 use Closure;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class AuthController extends Controller
     }
     public function loginAction(LoginRequest $request)
     {
+        TestNotification::dispatch("test");
         $validated = $request->validated();
         $user = User::where('email', $request->email)->first();
 
