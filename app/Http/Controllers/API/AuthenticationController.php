@@ -31,11 +31,11 @@ class AuthenticationController extends Controller
                 ]);
             }
             $token = $user->createToken($request->email)->plainTextToken;
-            $user->load('outletWorks');
+            $user->load(['outletWorks', 'roles']);
             return response()->json([
                 'message' => 'Sukses',
                 'token' => $token,
-                'user'  =>  new UserAuthResource($user),
+                'user'  =>  $user->load(['roles']),
                 'outlet_kerja' => OutletWorks::collection($user->outletWorks)
             ], 200);
         } catch (\Exception $e) {
