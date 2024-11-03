@@ -81,7 +81,7 @@
                                     <td>{{ $item->outlet->outlet_name }}</td>
                                     <td>{{ $item->product_price }}</td>
                                     <td>{{ $item->quantity }}</td>
-                                    <td>{{ $item->total_price }}</td>
+                                    <td>{{ 'Rp ' . number_format($item->total_price, 0, ',', '.') }}</td>
                                     <td>{{ $item->created_at }}</td>
                                 </tr>
                             @endforeach

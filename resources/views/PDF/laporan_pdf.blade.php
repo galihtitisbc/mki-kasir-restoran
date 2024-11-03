@@ -73,33 +73,64 @@
             <th>Jumlah</th>
         </tr>
     </thead>
-    <tbody class="text-center">
-        @php
-            $totalPajak = 0;
-            $totalJumlah = 0;
-            $totalPenjualan = 0;
-        @endphp
-        @foreach ($data['transactions'] as $item)
+    @if ($data['type'] == 'pdf')
+        <tbody class="text-center">
             @php
-                $totalPajak += $item->taxs->sum('pivot.total');
-                $totalJumlah += $item->total_penjualan + $item->taxs->sum('pivot.total');
-                $totalPenjualan += $item->total_penjualan;
+                $totalPajak = 0;
+                $totalJumlah = 0;
+                $totalPenjualan = 0;
             @endphp
+            @foreach ($data['transactions'] as $item)
+                @php
+                    $totalPajak += $item->taxs->sum('pivot.total');
+                    $totalJumlah += $item->total_penjualan + $item->taxs->sum('pivot.total');
+                    $totalPenjualan += $item->total_penjualan;
+                @endphp
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}</td>
+                    <td>{{ number_format($item->total_penjualan, 0, ',', '.') }}</td>
+                    <td>{{ number_format($item->taxs->sum('pivot.total'), 0, ',', '.') }}</td>
+                    <td>{{ number_format($item->total_penjualan + $item->taxs->sum('pivot.total'), 0, ',', '.') }}
+                    </td>
+                </tr>
+            @endforeach
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}</td>
-                <td>{{ $item->total_penjualan }}</td>
-                <td>{{ $item->taxs->sum('pivot.total') }}</td>
-                <td>{{ $item->total_penjualan + $item->taxs->sum('pivot.total') }}</td>
+                <td colspan="2"><strong>Jumlah : </strong></td>
+                <td>{{ number_format($totalPenjualan, 0, ',', '.') }}</td>
+                <td>{{ number_format($totalPajak, 0, ',', '.') }}</td>
+                <td>{{ number_format($totalJumlah, 0, ',', '.') }}</td>
             </tr>
-        @endforeach
-        <tr>
-            <td colspan="2"><strong>Jumlah : </strong></td>
-            <td><strong>{{ $totalPenjualan }}</strong></td>
-            <td><strong>{{ $totalPajak }}</strong></td>
-            <td><strong>{{ $totalJumlah }}</strong></td>
-        </tr>
-    </tbody>
+        </tbody>
+    @else
+        <tbody class="text-center">
+            @php
+                $totalPajak = 0;
+                $totalJumlah = 0;
+                $totalPenjualan = 0;
+            @endphp
+            @foreach ($data['transactions'] as $item)
+                @php
+                    $totalPajak += $item->taxs->sum('pivot.total');
+                    $totalJumlah += $item->total_penjualan + $item->taxs->sum('pivot.total');
+                    $totalPenjualan += $item->total_penjualan;
+                @endphp
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}</td>
+                    <td>{{ $item->total_penjualan }}</td>
+                    <td>{{ $item->taxs->sum('pivot.total') }}</td>
+                    <td>{{ $item->total_penjualan + $item->taxs->sum('pivot.total') }}</td>
+                </tr>
+            @endforeach
+            <tr>
+                <td colspan="2"><strong>Jumlah : </strong></td>
+                <td><strong>{{ $totalPenjualan }}</strong></td>
+                <td><strong>{{ $totalPajak }}</strong></td>
+                <td><strong>{{ $totalJumlah }}</strong></td>
+            </tr>
+        </tbody>
+    @endif
 </table>
 @if ($data['type'] == 'pdf')
     </body>
