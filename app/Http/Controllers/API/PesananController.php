@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\CreateOrderEvent;
 use App\Events\OrderCreated;
 use Validator;
 use Kreait\Firebase\Messaging\CloudMessage;
@@ -60,7 +61,8 @@ class PesananController extends Controller
                 ]);
 
                 // $this->sendFirebaseNotification($validated['notification_token'], 'Pesanan berhasil', 'Pesanan Anda telah ditambahkan.');
-                event(new OrderCreated($pesanan, $validated['notification_token']));
+                // event(new OrderCreated($pesanan, $validated['notification_token']));
+                // broadcast(new CreateOrderEvent($pesanan))->toOthers();
 
                 $dataProduct = [];
                 foreach ($validated['product'] as $value) {
@@ -76,6 +78,7 @@ class PesananController extends Controller
                 $meja->update([
                     'status_meja' => 'TERPESAN',
                 ]);
+                event(new CreateOrderEvent($pesanan));
             });
             return response()->json([
                 'status'    => 'Berhasil',
@@ -95,7 +98,7 @@ class PesananController extends Controller
     public function show($slug)
     {
         $outlet = Outlet::where('slug', $slug)->firstOrFail();
-        $pesanans = $outlet->pesanan()->with(['product'])->get();
+        $pesanans = $outlet->pesanan()->with(['product'])->orderBy('created_at', 'desc')->get();
 
         return response()->json([
             'status'    => 'Berhasil',
