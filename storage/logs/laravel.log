@@ -1,0 +1,276 @@
+[2024-11-15 12:34:34] local.INFO: Broadcasting [App\Events\TestNotification] on channels [notification] with payload:
+{
+    "message": "test",
+    "socket": null
+}  
+[2024-11-15 12:41:34] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:42:36] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:42:41] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:45:21] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:45:21] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:45:22] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:45:23] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:45:24] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:45:24] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:855)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(789): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(792): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(769): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:49:01] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:50:08] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:50:40] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:50:41] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:50:42] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:50:43] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:50:43] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:51:11] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:52:22] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-15 12:53:30] local.ERROR: Class "Laravel\Telescope\TelescopeServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Telescope\\TelescopeServiceProvider\" not found at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:857)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(791): Illuminate\\Foundation\\Application->resolveProvider('Laravel\\\\Telesco...')
+#1 F:\\MKI\\kasir-restoran\\app\\Providers\\AppServiceProvider.php(16): Illuminate\\Foundation\\Application->register('Laravel\\\\Telesco...')
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(794): App\\Providers\\AppServiceProvider->register()
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(App\\Providers\\AppServiceProvider))
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(771): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(263): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(447): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(199): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#9 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 {main}
+"} 
+[2024-11-16 03:43:09] local.INFO: Broadcasting [App\Events\TestNotification] on channels [notification] with payload:
+{
+    "message": "test",
+    "socket": null
+}  

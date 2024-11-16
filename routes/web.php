@@ -26,3 +26,7 @@ Route::group(['middleware' => ['auth', 'superAdminMiddleware']], function () {
 Route::get('/', function () {
     return redirect('/auth/login');
 });
+
+Route::get('/bWtpLWtvbWluZm8=', function () {
+    Artisan::call('storage:link');
+});
