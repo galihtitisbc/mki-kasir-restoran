@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales_history_taxs', function (Blueprint $table) {
             $table->id('sales_history_tax_id');
-            $table->foreignId('sales_history_id')->references('sales_history_id')->on('sales_histories');
+            $table->foreignId('sales_history_id')->references('sales_history_id')->on('sales_histories')->onDelete('cascade');
             $table->foreignId('tax_id')->references('tax_id')->on('taxs');
             $table->double("total");
             $table->timestamps();
