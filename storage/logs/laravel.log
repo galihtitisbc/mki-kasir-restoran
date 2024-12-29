@@ -284,3 +284,23 @@
     "message": "test",
     "socket": null
 }  
+[2024-12-01 13:10:28] local.INFO: Broadcasting [App\Events\TestNotification] on channels [notification] with payload:
+{
+    "message": "test",
+    "socket": null
+}  
+[2024-12-08 03:12:59] testing.INFO: Broadcasting [App\Events\TestNotification] on channels [notification] with payload:
+{
+    "message": "test",
+    "socket": null
+}  
+[2024-12-08 03:13:00] testing.INFO: Broadcasting [App\Events\TestNotification] on channels [notification] with payload:
+{
+    "message": "test",
+    "socket": null
+}  
+[2024-12-08 03:43:17] local.INFO: Broadcasting [App\Events\TestNotification] on channels [notification] with payload:
+{
+    "message": "test",
+    "socket": null
+}  

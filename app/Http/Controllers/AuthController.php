@@ -21,10 +21,8 @@ class AuthController extends Controller
     }
     public function loginAction(LoginRequest $request)
     {
-        TestNotification::dispatch("test");
         $validated = $request->validated();
-        $user = User::where('email', $request->email)->first();
-
+        $user = User::where('email', $validated['email'])->first();
         if ($user && !$user->is_active) {
             return back()->withErrors([
                 'login' => 'Akun Anda Tidak Aktif, Silahkan Hubungi Pemilik Restoran',

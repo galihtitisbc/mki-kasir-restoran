@@ -154,7 +154,8 @@ class DatabaseSeeder extends Seeder
             }
             $product->pesanans()->attach($pivotArray);
         });
-        HistoryBayarPajak::factory(1)->create();
-        PajakyangDibayar::factory(3)->create();
+        $this->call([
+            HistoryBayarPajakSeeder::class
+        ]);
     }
 }

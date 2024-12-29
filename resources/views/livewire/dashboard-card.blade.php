@@ -1,17 +1,7 @@
 <div>
     <div class="col-lg-3 col-sm-12">
         <!-- small box -->
-        <div class="small-box bg-success">
-            <div class="inner">
-                <h3>{{ $pajakSeluruhOutlet }}</h3>
-                <h4>
-                    Pajak Seluruh Outlet Bulan Ini
-                </h4>
-            </div>
-            <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-            </div>
-        </div>
+
     </div>
     <div class="pilih-outlet d-flex justify-content-center">
         <select wire:model.change="outletSearch" class="form-control col-sm-6 col-md-5 col-lg-4 mb-4" id="">

@@ -139,7 +139,7 @@
                                 class="nav-link {{ request()->segment(2) == 'riwayat-bayar-pajak' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-credit-card" aria-hidden="true"></i>
                                 <p>
-                                    Riwayat Bayar Pajak
+                                    Riwayat Pajak
                                 </p>
                             </a>
                         </li>
