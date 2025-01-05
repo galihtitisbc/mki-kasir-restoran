@@ -18,11 +18,12 @@ class ProductFactory extends Factory
     protected $model = Product::class;
     public function definition(): array
     {
+        $this->faker->addProvider(new \FakerRestaurant\Provider\id_ID\Restaurant($this->faker));
         return [
             'product_code'  => fake()->unique()->regexify('[A-Z0-9]{10}'),
             'user_id'       => fake()->randomElement([2, 4]),
             'slug'          => fake()->slug(3),
-            'product_name'  => fake()->unique()->name(),
+            'product_name'  => $this->faker->foodName(),
             'price'         => rand(1, 5) * 10000,
             'status'        => fake()->boolean(),
         ];

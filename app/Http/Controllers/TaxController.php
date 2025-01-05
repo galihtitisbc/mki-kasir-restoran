@@ -32,6 +32,7 @@ class TaxController extends Controller
         ]);
         try {
             DB::transaction(function () use ($validated) {
+                $validated['status'] = true;
                 $tax = Tax::create($validated);
                 $tax->outlets()->attach($validated['outlet_id']);
             });

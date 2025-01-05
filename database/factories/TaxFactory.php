@@ -23,7 +23,8 @@ class TaxFactory extends Factory
             'tax_name' => fake()->colorName(),
             'slug'      => fake()->slug(3),
             'tax_rate' => rand(5, 10),
-            'description' => fake()->sentence(3)
+            'description' => fake()->sentence(3),
+            'status'    => 1
         ];
     }
 }

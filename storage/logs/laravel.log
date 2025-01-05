@@ -304,3 +304,267 @@
     "message": "test",
     "socket": null
 }  
+[2025-01-01 11:45:27] local.ERROR: Call to undefined method App\Models\User::outlet() {"userId":4,"exception":"[object] (BadMethodCallException(code: 0): Call to undefined method App\\Models\\User::outlet() at F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php:67)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\ForwardsCalls.php(36): Illuminate\\Database\\Eloquent\\Model::throwBadMethodCallException('outlet')
+#1 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(2335): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'outlet', Array)
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships.php(876): Illuminate\\Database\\Eloquent\\Model->__call('outlet', Array)
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Relations\\Relation.php(110): Illuminate\\Database\\Eloquent\\Builder->Illuminate\\Database\\Eloquent\\Concerns\\{closure}()
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships.php(877): Illuminate\\Database\\Eloquent\\Relations\\Relation::noConstraints(Object(Closure))
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships.php(39): Illuminate\\Database\\Eloquent\\Builder->getRelationWithoutConstraints('outlet')
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships.php(101): Illuminate\\Database\\Eloquent\\Builder->has('outlet', '>=', 1, 'and', Object(Closure))
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships.php(36): Illuminate\\Database\\Eloquent\\Builder->hasNested(Array, '>=', 1, 'and', Object(Closure))
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\QueriesRelationships.php(152): Illuminate\\Database\\Eloquent\\Builder->has('outlet.outletHa...', '>=', 1, 'and', Object(Closure))
+#9 F:\\MKI\\kasir-restoran\\app\\Models\\User.php(69): Illuminate\\Database\\Eloquent\\Builder->whereHas('outlet.outletHa...', Object(Closure))
+#10 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(1627): App\\Models\\User->scopePegawaiByOutlet(Object(Illuminate\\Database\\Eloquent\\Builder), NULL)
+#11 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1415): Illuminate\\Database\\Eloquent\\Model->callNamedScope('pegawaiByOutlet', Array)
+#12 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1396): Illuminate\\Database\\Eloquent\\Builder->Illuminate\\Database\\Eloquent\\{closure}(Object(Illuminate\\Database\\Eloquent\\Builder), NULL)
+#13 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1414): Illuminate\\Database\\Eloquent\\Builder->callScope(Object(Closure), Array)
+#14 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(1978): Illuminate\\Database\\Eloquent\\Builder->callNamedScope('pegawaiByOutlet', Array)
+#15 F:\\MKI\\kasir-restoran\\app\\Http\\Controllers\\PegawaiController.php(22): Illuminate\\Database\\Eloquent\\Builder->__call('pegawaiByOutlet', Array)
+#16 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php(54): App\\Http\\Controllers\\PegawaiController->index(Object(Illuminate\\Http\\Request))
+#17 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(43): Illuminate\\Routing\\Controller->callAction('index', Array)
+#18 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(260): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\PegawaiController), 'index')
+#19 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(205): Illuminate\\Routing\\Route->runController()
+#20 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(806): Illuminate\\Routing\\Route->run()
+#21 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#22 F:\\MKI\\kasir-restoran\\app\\Http\\Middleware\\SupervisorMiddleware.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): App\\Http\\Middleware\\SupervisorMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#24 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#25 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(57): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#34 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#35 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#36 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#41 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(784): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#42 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(748): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#43 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(737): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#44 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(200): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#45 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#46 F:\\MKI\\kasir-restoran\\vendor\\livewire\\livewire\\src\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#49 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#50 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(99): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#59 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(175): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#64 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(144): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#65 F:\\MKI\\kasir-restoran\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#66 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('F:\\\\MKI\\\\kasir-re...')
+#67 {main}
+"} 
+[2025-01-05 07:19:50] local.ERROR: Call to a member function unique() on string {"exception":"[object] (Error(code: 0): Call to a member function unique() on string at F:\\MKI\\kasir-restoran\\database\\factories\\ProductFactory.php:26)
+[stacktrace]
+#0 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(454): Database\\Factories\\ProductFactory->definition()
+#1 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(433): Illuminate\\Database\\Eloquent\\Factories\\Factory->getRawAttributes(NULL)
+#2 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(417): Illuminate\\Database\\Eloquent\\Factories\\Factory->getExpandedAttributes(NULL)
+#3 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(149): Illuminate\\Database\\Eloquent\\Factories\\Factory->Illuminate\\Database\\Eloquent\\Factories\\{closure}()
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(422): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(400): Illuminate\\Database\\Eloquent\\Factories\\Factory->makeInstance(NULL)
+#6 [internal function]: Illuminate\\Database\\Eloquent\\Factories\\Factory->Illuminate\\Database\\Eloquent\\Factories\\{closure}(1)
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(401): array_map(Object(Closure), Array)
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(284): Illuminate\\Database\\Eloquent\\Factories\\Factory->make(Array, NULL)
+#9 F:\\MKI\\kasir-restoran\\database\\seeders\\DatabaseSeeder.php(110): Illuminate\\Database\\Eloquent\\Factories\\Factory->create()
+#10 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#11 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#13 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call(Array, Array)
+#16 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#17 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(70): Illuminate\\Database\\Seeder->__invoke()
+#18 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->Illuminate\\Database\\Console\\Seeds\\{closure}()
+#19 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(71): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#20 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#21 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#22 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#23 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#24 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#25 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#26 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#27 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#28 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(68): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#29 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(28): Illuminate\\Console\\Command->runCommand('db:seed', Array, Object(Illuminate\\Console\\OutputStyle))
+#30 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(94): Illuminate\\Console\\Command->call('db:seed', Array)
+#31 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(69): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder(NULL)
+#32 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#33 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#34 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#35 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#36 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#37 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#38 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#39 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#40 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#41 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\FreshCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#42 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#43 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#44 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#45 {main}
+"} 
+[2025-01-05 07:24:09] local.ERROR: Cannot write to directory "/tmp" {"exception":"[object] (InvalidArgumentException(code: 0): Cannot write to directory \"/tmp\" at F:\\MKI\\kasir-restoran\\vendor\\fakerphp\\faker\\src\\Faker\\Provider\\Image.php:129)
+[stacktrace]
+#0 [internal function]: Faker\\Provider\\Image::image('/tmp', 480, 480, 'foods')
+#1 F:\\MKI\\kasir-restoran\\vendor\\fakerphp\\faker\\src\\Faker\\Generator.php(708): call_user_func_array(Array, Array)
+#2 F:\\MKI\\kasir-restoran\\vendor\\fakerphp\\faker\\src\\Faker\\Generator.php(973): Faker\\Generator->format('image', Array)
+#3 F:\\MKI\\kasir-restoran\\database\\factories\\ProductFactory.php(29): Faker\\Generator->__call('image', Array)
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(454): Database\\Factories\\ProductFactory->definition()
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(433): Illuminate\\Database\\Eloquent\\Factories\\Factory->getRawAttributes(NULL)
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(417): Illuminate\\Database\\Eloquent\\Factories\\Factory->getExpandedAttributes(NULL)
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(149): Illuminate\\Database\\Eloquent\\Factories\\Factory->Illuminate\\Database\\Eloquent\\Factories\\{closure}()
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(422): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#9 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(400): Illuminate\\Database\\Eloquent\\Factories\\Factory->makeInstance(NULL)
+#10 [internal function]: Illuminate\\Database\\Eloquent\\Factories\\Factory->Illuminate\\Database\\Eloquent\\Factories\\{closure}(1)
+#11 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(401): array_map(Object(Closure), Array)
+#12 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(284): Illuminate\\Database\\Eloquent\\Factories\\Factory->make(Array, NULL)
+#13 F:\\MKI\\kasir-restoran\\database\\seeders\\DatabaseSeeder.php(110): Illuminate\\Database\\Eloquent\\Factories\\Factory->create()
+#14 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#15 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#17 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#18 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#19 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call(Array, Array)
+#20 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#21 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(70): Illuminate\\Database\\Seeder->__invoke()
+#22 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->Illuminate\\Database\\Console\\Seeds\\{closure}()
+#23 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(71): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#24 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#25 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#26 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#27 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#28 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#29 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#30 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#31 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#32 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(68): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#33 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(28): Illuminate\\Console\\Command->runCommand('db:seed', Array, Object(Illuminate\\Console\\OutputStyle))
+#34 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(94): Illuminate\\Console\\Command->call('db:seed', Array)
+#35 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(69): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder(NULL)
+#36 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#37 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#38 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#39 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#40 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#41 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#42 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#43 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#44 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#45 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\FreshCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#46 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#47 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#48 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#49 {main}
+"} 
+[2025-01-05 07:24:33] local.ERROR: Cannot write to directory "/tmp" {"exception":"[object] (InvalidArgumentException(code: 0): Cannot write to directory \"/tmp\" at F:\\MKI\\kasir-restoran\\vendor\\fakerphp\\faker\\src\\Faker\\Provider\\Image.php:129)
+[stacktrace]
+#0 [internal function]: Faker\\Provider\\Image::image('/tmp', 480, 480, 'foods')
+#1 F:\\MKI\\kasir-restoran\\vendor\\fakerphp\\faker\\src\\Faker\\Generator.php(708): call_user_func_array(Array, Array)
+#2 F:\\MKI\\kasir-restoran\\vendor\\fakerphp\\faker\\src\\Faker\\Generator.php(973): Faker\\Generator->format('image', Array)
+#3 F:\\MKI\\kasir-restoran\\database\\factories\\ProductFactory.php(29): Faker\\Generator->__call('image', Array)
+#4 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(454): Database\\Factories\\ProductFactory->definition()
+#5 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(433): Illuminate\\Database\\Eloquent\\Factories\\Factory->getRawAttributes(NULL)
+#6 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(417): Illuminate\\Database\\Eloquent\\Factories\\Factory->getExpandedAttributes(NULL)
+#7 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(149): Illuminate\\Database\\Eloquent\\Factories\\Factory->Illuminate\\Database\\Eloquent\\Factories\\{closure}()
+#8 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(422): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#9 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(400): Illuminate\\Database\\Eloquent\\Factories\\Factory->makeInstance(NULL)
+#10 [internal function]: Illuminate\\Database\\Eloquent\\Factories\\Factory->Illuminate\\Database\\Eloquent\\Factories\\{closure}(1)
+#11 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(401): array_map(Object(Closure), Array)
+#12 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Factories\\Factory.php(284): Illuminate\\Database\\Eloquent\\Factories\\Factory->make(Array, NULL)
+#13 F:\\MKI\\kasir-restoran\\database\\seeders\\DatabaseSeeder.php(110): Illuminate\\Database\\Eloquent\\Factories\\Factory->create()
+#14 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#15 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#17 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#18 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#19 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call(Array, Array)
+#20 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#21 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(70): Illuminate\\Database\\Seeder->__invoke()
+#22 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->Illuminate\\Database\\Console\\Seeds\\{closure}()
+#23 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(71): Illuminate\\Database\\Eloquent\\Model::unguarded(Object(Closure))
+#24 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#25 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#26 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#27 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#28 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#29 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#30 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#31 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#32 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(68): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArrayInput), Object(Illuminate\\Console\\OutputStyle))
+#33 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(28): Illuminate\\Console\\Command->runCommand('db:seed', Array, Object(Illuminate\\Console\\OutputStyle))
+#34 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(94): Illuminate\\Console\\Command->call('db:seed', Array)
+#35 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(69): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder(NULL)
+#36 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#37 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#38 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#39 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#40 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#41 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)
+#42 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Command\\Command.php(326): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#43 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#44 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(1096): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#45 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(324): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\FreshCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#46 F:\\MKI\\kasir-restoran\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#47 F:\\MKI\\kasir-restoran\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#48 F:\\MKI\\kasir-restoran\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#49 {main}
+"} 
+[2025-01-05 07:29:06] local.INFO: Broadcasting [App\Events\CreateOrderEvent] on channels [create-order] with payload:
+{
+    "message": {
+        "pesanan_id": 21,
+        "meja_id": 7,
+        "outlet_id": 1,
+        "status": "UNPAID",
+        "nama_pemesan": "Widura Hasta Sasangka",
+        "created_at": "2025-01-05T07:29:05.000000Z",
+        "updated_at": "2025-01-05T07:29:05.000000Z",
+        "product": [
+            {
+                "product_id": 9,
+                "product_code": "RDI2S4318B",
+                "user_id": 2,
+                "slug": "getuk-3",
+                "product_name": "Getuk",
+                "price": 40000,
+                "status": 1,
+                "is_food": 1,
+                "stock": null,
+                "gambar": null,
+                "barcode": null,
+                "created_at": "2025-01-05T07:24:53.000000Z",
+                "updated_at": "2025-01-05T07:24:53.000000Z",
+                "deleted_at": null,
+                "pivot": {
+                    "pesanan_id": 21,
+                    "product_id": 9,
+                    "qty": 1,
+                    "harga": 40000,
+                    "total": 40000
+                }
+            }
+        ]
+    },
+    "socket": null
+}  
